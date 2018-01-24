@@ -8,16 +8,18 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/css/CustomerNavbar.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link href="~/css/CustomerNavbar.css" rel="stylesheet" />
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-custom navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,13 +28,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Бейс2Бейс</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <img src="~/images/Base2BaseDemoLogo.png" style="width:40px;height:30px" /></a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Company">Компания</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Software">Программное обеспечение</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Equipment">Оборудование</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Products">Комплексные решения</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a a asp-area="" asp-controller="Home" asp-action="SignUp"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
+                    <li><a a asp-area="" asp-controller="Home" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
                 </ul>
             </div>
         </div>
