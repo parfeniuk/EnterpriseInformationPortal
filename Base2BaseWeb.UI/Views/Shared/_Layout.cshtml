@@ -8,6 +8,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/lib/Font-Awesome/css/font-awesome.css" rel="stylesheet" />
         <link href="~/css/CustomerNavbar.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
@@ -15,6 +16,7 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link href="~/lib/Font-Awesome/css/font-awesome.min.css" rel="stylesheet" />
         <link href="~/css/CustomerNavbar.css" rel="stylesheet" />
     </environment>
 </head>
@@ -38,7 +40,7 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Products">Комплексные решения</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" id="authSection">
                     <li><a a asp-area="" asp-controller="Home" asp-action="SignUp"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
                     <li><a a asp-area="" asp-controller="Home" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
                 </ul>
@@ -74,6 +76,8 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
+    <script src="~/js/CustomerAlignNavBar.js"></script>
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

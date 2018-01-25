@@ -12,5 +12,15 @@ namespace Base2BaseWeb.UI.Controllers
         {
             return View();
         }
+
+        public IActionResult Company()
+        {
+            return View();
+        }
+
+        public IActionResult Software()
+        {
+            return View();
+        }
     }
 }

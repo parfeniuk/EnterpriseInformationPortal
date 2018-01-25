@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "Company";
+}
+
+<!--About-->
+<div class="aboutCompany">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                О нас
+            </h1>
+        </div>
+    </div>
+    <!-- Intro Content -->
+    <div class="row">
+        <div class="col-md-12">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
+        </div>
+    </div>
+    <p>
+        <strong>Компания Base2Base</strong> является разработчиком готовых решений для автоматизации торговли.
+    </p>
+</div>
+
+<!--Clients-->
+<div class="clients">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Наши Клиенты</h2>
+        </div>
+        @{
+            int count = 8;
+            string name="Company ";
+            int ind = 0;
+            for (int i = 0; i < count; i++)
+            {
+                ind=i+1;
+            <div class="col-md-3 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="http://placehold.it/500x300" alt="">
+                    <div class="caption">
+                        <strong class="text-capitalize text-primary">
+                            @name @ind
+                        </strong>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+    </div>
+</div>
