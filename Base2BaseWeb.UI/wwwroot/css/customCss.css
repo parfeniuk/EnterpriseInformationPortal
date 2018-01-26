@@ -1,0 +1,78 @@
+﻿/*Navbar Styles*/
+.navbar-custom {
+    background-color: #43597c;
+    color: #ffffff;
+    border-radius: 0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+
+.navbar-custom .navbar-nav > .active > a {
+    color: #ffffff;
+    background-color:transparent;
+}
+
+    .navbar-custom .navbar-nav > li > a:hover,
+    .navbar-custom .navbar-nav > li > a:focus,
+    .navbar-custom .navbar-nav > .active > a:hover,
+    .navbar-custom .navbar-nav > .active > a:focus,
+    .navbar-custom .navbar-nav > .open > a {
+        text-decoration: none;
+        background-color: #4f6484;
+    }
+
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+    background-color:#eeeeee;
+}
+.navbar-custom .icon-bar {
+        background-color: #4f6484;
+}
+
+/*Main Page*/
+.jumbotron {
+    background-color: #ffffff;
+    color: #ffffff;
+    background: url(/images/banner.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 600px;
+    padding: 100px 25px;
+}
+.banner-info {
+    margin: 16% auto 0;
+    text-align: left;
+}
+.banner-info h2 {
+    font-size: 3em;
+    margin: 4% 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    width: 58%;
+    text-align: left;
+}
+
+.banner-info h3 {
+    font-size: 1.8em;
+    margin: 1% auto 0;
+    font-family: 'Cabin', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    text-align: left;
+}
+
+.banner-info p {
+    font-size: 1.13em;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.7em;
+    font-weight: 400;
+    color: #fff;
+    text-align: left;
+    width: 53%;
+    margin: 1em 0 3em 0;
+}
