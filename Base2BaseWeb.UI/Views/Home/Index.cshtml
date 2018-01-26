@@ -3,7 +3,7 @@
 }
 
 <!--Consider to use Carousel with Company's mainstream Products-->
-<div class="container-fluid jumbotron text-center">
+<div class="jumbotron text-center">
     <div class="banner-info">
         <h2>Ускорьте ваши продажи с лучшими решениями для торговли</h2>
         <p>
@@ -12,7 +12,7 @@
         </p>
         <form class="form-inline">
             <div class="input-group">
-                <input type="email" class="form-control" size="50" placeholder="Email Address" required>
+                <input type="email" class="form-control" size="50" placeholder="Email Адрес" required>
                 <div class="input-group-btn">
                     <button type="button" class="btn btn-danger">Бесплатная демо-версия</button>
                 </div>
@@ -21,18 +21,50 @@
     </div>
 </div>
 
-<div class="container">
+
     <!--Преимущества работы с компанией-->
-    <div class="row custom-features">
-        <h4>С нами вы сможете лучше контролировать свой бизнес и зарабывать больше:</h4>
+<div class="container">
+    <div class="row features-header">
+        <div class="text-center">
+            <h3>Особенности наших продуктов, которые вы полюбите:</h3>
+        </div>
+        <div class=" row features-section">
+            <div class="col-md-3">
+                @*<div class="fa fa-rocket fa-2x"></div>*@
+                <div class="text-center"><span class="feature-logo fa fa-rocket fa-2x"></span></div>
+                <h4 class="text-center">Эффективные продажи</h4>
+                <p>Кассы работают быстро</p>
+            </div>
+            <div class="col-md-3">
+                @*<div class="fa fa-bar-chart fa-2x" />*@
+                <div class="text-center"><span class="feature-logo fa fa-book fa-2x"></span></div>
+                <h4 class="text-center">Контроль товара</h4>
+                <p>Наши решения позволяют контролировать продажи и зарабатывать больше</p>
+            </div>
+            <div class="col-md-3">
+                @*<div class="fa fa-rocket fa-2x" />*@
+                <div class="text-center"><span class="feature-logo fa fa-bar-chart fa-2x"></span></div>
+                <h4 class="text-center">Отчетность</h4>
+                <p>Крутая аналитика в разрезе всех торговых точек и товаров</p>
+            </div>
+            <div class="col-md-3">
+                @*<div class="fa fa-rocket fa-2x" />*@
+                <div class="text-center"><span class="feature-logo fa fa-binoculars fa-2x"></span></div>
+                <h4 class="text-center">Он-лайн навигация</h4>
+                <p>GPS мониторинг торговых агентов</p>
+            </div>
+        </div>
+        <div class="row text-center">
+            <a asp-controller="Home" asp-action="Software" class="linkProductsDescription btn btn-lg btn-danger">Ознакомится с нашими решениями</a>
+        </div>
         <!--Panels list - Feature + Image (Glyphicon?) -->
     </div>
+</div>
 
     <!--Продуктовая линейка-->
-    <div class="row custom-products">
-        <h4>Более 10 лет мы разрабатываем, внедряем и сопровождаем лучшие инновационные решения для торговли:</h4>
+    @*<div class="row products">*@
+        @*<h4>Более 10 лет мы разрабатываем, внедряем и сопровождаем лучшие инновационные решения для торговли:</h4>*@
         <!--Thumbnails List of Products-->
-    </div>
+    @*</div>*@
 
-</div>
 

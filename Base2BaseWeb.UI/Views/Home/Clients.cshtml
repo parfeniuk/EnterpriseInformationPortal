@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Clients";
+}
+
+<!--Clients-->
+<div class="clients">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Наши Клиенты</h2>
+        </div>
+        @{
+            int count = 8;
+            string name = "Company ";
+            int ind = 0;
+            for (int i = 0; i < count; i++)
+            {
+                ind = i + 1;
+                <div class="col-md-3 text-center">
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="http://placehold.it/500x300" alt="">
+                        <div class="caption">
+                            <strong class="text-capitalize text-primary">
+                                @name @ind
+                            </strong>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+

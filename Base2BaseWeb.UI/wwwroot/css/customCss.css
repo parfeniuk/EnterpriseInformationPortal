@@ -32,6 +32,10 @@
 .navbar-custom .icon-bar {
         background-color: #4f6484;
 }
+.navbar-header .logo-small {
+    max-width:100px; 
+    margin-top: -7px;
+}
 
 /*Main Page*/
 .jumbotron {
@@ -40,16 +44,16 @@
     background: url(/images/banner.jpg);
     background-size: cover;
     background-position: center;
-    min-height: 600px;
-    padding: 100px 25px;
+    min-height: 400px;
+    /*padding: 100px 25px;*/
 }
 .banner-info {
-    margin: 16% auto 0;
+    /*margin: 16% auto 0;*/
     text-align: left;
 }
 .banner-info h2 {
     font-size: 3em;
-    margin: 4% 0;
+    /*margin: 4% 0;*/
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     color: #fff;
@@ -59,7 +63,7 @@
 
 .banner-info h3 {
     font-size: 1.8em;
-    margin: 1% auto 0;
+    /*margin: 1% auto 0;*/
     font-family: 'Cabin', sans-serif;
     font-weight: 500;
     color: #fff;
@@ -74,5 +78,56 @@
     color: #fff;
     text-align: left;
     width: 53%;
-    margin: 1em 0 3em 0;
+    /*margin: 1em 0 3em 0;*/
+}
+
+.feature-logo {
+    color: #f4511e;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.feature-logo:hover {
+    transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    -o-transform: rotateY(360deg);
+    -webkit-transition: 0.99s;
+    -moz-transition: 0.99s;
+    -o-transition: 0.99s;
+    transition: 0.99s;
+}
+
+/*About Company header*/
+.aboutCompany-header {
+    display:inline-block;
+}
+.aboutCompany-clients {
+    display: inline-block;
+    float:right;
+}
+
+.aboutCompany-clients a:link,
+.aboutCompany-clients a:visited {
+    background-color: white;
+    color: black;
+    border-width: 0.05em;
+    border-style: solid;
+    border-color: #f4511e;
+    border-radius: 0.15em;
+    padding: 0.3em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.aboutCompany-clients a:hover,
+.aboutCompany-clients a:active {
+    background-color:darkgray;
+    color: black;
+}
+
+/*Software Page*/
+.software-card .thumbnail {
+    height:200px;
 }
