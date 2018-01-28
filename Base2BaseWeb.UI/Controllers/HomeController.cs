@@ -27,5 +27,15 @@ namespace Base2BaseWeb.UI.Controllers
         {
             return View();
         }
+
+        public IActionResult Equipment()
+        {
+            return View();
+        }
+
+        public IActionResult Contacts()
+        {
+            return View();
+        }
     }
 }

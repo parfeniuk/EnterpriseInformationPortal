@@ -14,17 +14,28 @@
     background-color:transparent;
 }
 
-    .navbar-custom .navbar-nav > li > a:hover,
-    .navbar-custom .navbar-nav > li > a:focus,
-    .navbar-custom .navbar-nav > .active > a:hover,
-    .navbar-custom .navbar-nav > .active > a:focus,
-    .navbar-custom .navbar-nav > .open > a {
-        text-decoration: none;
-        background-color: #4f6484;
-    }
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open > a {
+    text-decoration: none;
+    background-color: #4f6484;
+}
+/*Style of Dropdown menu*/
+.navbar-custom .navbar-nav .open .dropdown-menu > li > a,
+.navbar-default .navbar-nav .open .dropdown-menu {
+    background-color:#fff;
+    cursor: pointer;
+    color: black;
+}
 
+.navbar-custom .navbar-nav .open .dropdown-menu > li > a:hover {
+    background-color: #f2f3f4;
+}
+        
 .navbar-custom .navbar-brand {
-    color:#eeeeee;
+    color: #eeeeee;
 }
 .navbar-custom .navbar-toggle {
     background-color:#eeeeee;
@@ -128,6 +139,57 @@
 }
 
 /*Software Page*/
-.software-card .thumbnail {
-    height:200px;
+
+/*
+ * Row with equal height columns
+ * --------------------------------------------------
+ */
+.equal {
+    display:flex;
+}
+.thumbnail {
+    height:100%;
+    margin:0.1em;
+    padding:0.1em;
+}
+.thumbnail img {
+}
+.thumbnail {
+    border: 1px solid #f4511e;
+    border-radius: 0;
+    transition: box-shadow 0.5s;
+}
+
+.thumbnail:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+
+/*Equipments Page*/
+.equipment-icon {
+    color:orange;
+}
+.equipment-icon:hover {
+    transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    -o-transform: rotateY(360deg);
+    -webkit-transition: 0.99s;
+    -moz-transition: 0.99s;
+    -o-transition: 0.99s;
+    transition: 0.99s;
+}
+.equal {
+    display: flex;
+}
+.equipment-item {
+    height:100%;
+}
+.panel {
+    border: 1px solid #f4511e;
+    border-radius: 0;
+    transition: box-shadow 0.5s;
+}
+
+.panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
 }

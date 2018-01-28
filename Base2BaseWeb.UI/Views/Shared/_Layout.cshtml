@@ -31,7 +31,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                    <img class="logo-small" src="~/images/big-logo.png" /></a>
+                    <img class="logo-small" src="~/images/big-logo.png" />
+                </a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -41,8 +42,33 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="authSection">
-                    <li><a a asp-area="" asp-controller="Home" asp-action="SignUp"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
-                    <li><a a asp-area="" asp-controller="Home" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
+                    @*<li><a a asp-area="" asp-controller="Home" asp-action="SignUp"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>*@
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-group"></span>
+                            <span> Мы в соцсетях</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu social-media">
+                            <li><a href="https://ru-ru.facebook.com/Base2BaseLtd/" target="_blank"><span class="fa fa-facebook-official fa-2x" style="color:#3b5998"></span> Facebook</a></li>
+                            <li><a href="#"><span class="fa fa-google-plus-official fa-2x" style="color:#ea4335"></span> Google</a></li>
+                            <li><a href="#"><span class="fa fa-twitter-square fa-2x" style="color:#1dcaff"></span> Twitter</a></li>
+                            <li><a href="#"><span class="fa fa-instagram fa-2x" style="color:#c1558b"></span> Instagram</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-phone"></span>
+                            <span> (044) 225-24-05</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu contacts">
+                            <li><a href="#">(050) 225-24-05</a></li>
+                            <li><a href="#">(068) 225-24-05</a></li>
+                            <li><a href="#">(093) 225-24-05</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -76,7 +102,7 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
-    <script src="~/js/CustomerAlignNavBar.js"></script>
+    <script src="~/js/customAlignNavBar.js"></script>
     @RenderSection("Scripts", required: false)
 
 </body>

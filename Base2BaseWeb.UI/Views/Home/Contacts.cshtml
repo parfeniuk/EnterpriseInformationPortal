@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "Contacts";
+}
+
+<div class="container">
+    <h2 class="text-center">Оформить заявку</h2>
+    <div class="row">
+        <div class="col-sm-4 contacts">
+            <p><span class="fa fa-map-marker fa-lg"></span> г. Киев, проспект Правды 31-А </p>
+            <p><span class="fa fa-clock-o fa-lg"></span> Понедельник - Воскресенье с 8:00 до 21:00</p>
+            <ul class="fa-ul contacts-phones">
+                <li><span class="fa-li fa fa-phone"></span> (044) 225-24-05</li>
+                <li><span class="fa-li fa fa-mobile fa-lg"></span> (050) 225-24-05</li>
+                <li><span class="fa-li fa fa-mobile fa-lg"></span> (068) 225-24-05</li>
+                <li><span class="fa-li fa fa-mobile fa-lg"></span> (093) 225-24-05</li>
+            </ul>
+            <p><span class="fa fa-envelope-o fa-lg"></span> support@base2base.com.ua</p>
+        </div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <input class="form-control" id="name" name="name" placeholder="Наименование организации" type="text" required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                </div>
+            </div>
+            <textarea class="form-control" id="comments" name="comments" placeholder="Сообщение" rows="5"></textarea><br>
+            <div class="row">
+                <div class="col-sm-3 form-group">
+                    <button class="btn btn-lg btn-primary btn-block pull-right" type="submit">Оформить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Google Maps -->
+    <div id="googleMap" style="height:400px;width:100%;"></div>
+    @section Scripts
+        {
+
+        <script src="~/js/customGoogleMap.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ0xZXwZ5was6zmRgE72yeuwbGxpIHDZY&callback=myMap"></script>
+    }
+</div>
