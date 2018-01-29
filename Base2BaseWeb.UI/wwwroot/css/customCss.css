@@ -1,6 +1,7 @@
 ﻿/*Navbar Styles*/
 .navbar-custom {
-    background-color: #43597c;
+    /*background-color: #43597c;*/
+    background-color: #303030;
     color: #ffffff;
     border-radius: 0;
 }
@@ -20,15 +21,17 @@
 .navbar-custom .navbar-nav > .active > a:focus,
 .navbar-custom .navbar-nav > .open > a {
     text-decoration: none;
-    background-color: #4f6484;
+    /*background-color: #4f6484;*/
+    background-color: #000;
 }
-/*Style of Dropdown menu*/
-.navbar-custom .navbar-nav .open .dropdown-menu > li > a,
-.navbar-default .navbar-nav .open .dropdown-menu {
-    background-color:#fff;
-    cursor: pointer;
-    color: black;
-}
+
+    /*Style of Dropdown menu*/
+    .navbar-custom .navbar-nav .open .dropdown-menu > li > a,
+    .navbar-default .navbar-nav .open .dropdown-menu {
+        background-color: #fff;
+        cursor: pointer;
+        color: black;
+    }
 
 .navbar-custom .navbar-nav .open .dropdown-menu > li > a:hover {
     background-color: #f2f3f4;
@@ -139,7 +142,6 @@
 }
 
 /*Software Page*/
-
 /*
  * Row with equal height columns
  * --------------------------------------------------
@@ -192,4 +194,24 @@
 
 .panel:hover {
     box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+
+/*Footer View*/
+.footer-social-media  > a {
+    margin-left: 1.5em;
+}
+
+.footer-phone-numbers a:hover,
+.footer-phone-numbers a:active {
+    text-decoration: none;
+    background-color: lightgray;
+}
+
+.btn-social:hover {
+    transform: scale(1.5, 1.5); /** default is 1, scale it to 1.5 */
+    opacity: 1;
+}
+.phone-number:hover {
+    transform: scale(1.2, 1.2); /** default is 1, scale it to 1.5 */
+    opacity: 1;
 }

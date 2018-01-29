@@ -76,8 +76,50 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; 2018 - Бейс2Бейс</p>
+        <footer class="row">
+            <div class="col-md-4 footer-address">
+                <p>&copy; @DateTime.Now.Year - Бейс2Бейс</p>
+                <p>г. Киев, проспект Правды 31-А</p>
+            </div>
+            <div class="col-md-4 footer-social-media">
+                <a href="https://ru-ru.facebook.com/Base2BaseLtd/" target="_blank"><span class="btn-social fa fa-facebook fa-lg" style="color:#3b5998"></span></a>
+                <a href="#"><span class="btn-social fa fa-google fa-lg" style="color:#ea4335"></span></a>
+                <a href="#"><span class="btn-social fa fa-twitter fa-lg" style="color:#1dcaff"></span></a>
+                <a href="#"><span class="btn-social fa fa-instagram fa-lg" style="color:#c1558b"></span></a>
+            </div>
+            <div class="col-md-2 footer-phone-numbers">
+                <p class="phone-number"><a class="" href="#">(044) 225-24-05</a></p>
+                <p class="phone-number"><a href="#">(050) 225-24-05</a></p>
+            </div>
+            <div class="col-md-2 footer-phone-numbers">
+                <p class="phone-number"><a href="#">(068) 225-24-05</a></p>
+                <p class="phone-number"><a href="#">(093) 225-24-05</a></p>
+            </div>
+
+            @*<div class="footer-address">
+            <p>&copy; @DateTime.Now.Year - Бейс2Бейс</p>
+            <p>г. Киев, проспект Правды 31-А</p>
+        </div>*@
+            @*<div class="footer-social-media">
+            <ul class="ul-social-media">
+                <li><a href="https://ru-ru.facebook.com/Base2BaseLtd/" target="_blank"><span class="fa fa-facebook fa-lg" style="color:#3b5998"></span></a></li>
+                <li><a href="#"><span class="fa fa-google fa-lg" style="color:#ea4335"></span></a></li>
+                <li><a href="#"><span class="fa fa-twitter fa-lg" style="color:#1dcaff"></span></a></li>
+                <li><a href="#"><span class="fa fa-instagram fa-lg" style="color:#c1558b"></span></a></li>
+            </ul>
+        </div>*@
+            @*<div class="footer-phone-numbers">
+            <div class="footer-phone-numbers-1">
+                <p><a href="#">(044) 225-24-05</a></p>
+                <p><a href="#">(050) 225-24-05</a></p>
+            </div>
+            <div class="footer-phone-numbers-2">
+                <p><a href="#">(068) 225-24-05</a></p>
+                <p><a href="#">(093) 225-24-05</a></p>
+            </div>
+        </div>*@
+
+            @*<p>&copy; 2018 - Бейс2Бейс</p>*@
         </footer>
     </div>
 
