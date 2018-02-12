@@ -18,6 +18,21 @@ namespace Base2BaseWeb.UI.Controllers
             return View();
         }
 
+        public IActionResult Blog()
+        {
+            return View();
+        }
+
+        public IActionResult Support()
+        {
+            return View();
+        }
+
+        public IActionResult Updates()
+        {
+            return View();
+        }
+
         public IActionResult Clients()
         {
             return View();
@@ -29,6 +44,26 @@ namespace Base2BaseWeb.UI.Controllers
         }
 
         public IActionResult Equipment()
+        {
+            return View();
+        }
+
+        public IActionResult Store()
+        {
+            return View();
+        }
+
+        public IActionResult Supermarket()
+        {
+            return View();
+        }
+
+        public IActionResult Cafe()
+        {
+            return View();
+        }
+
+        public IActionResult Kiosk()
         {
             return View();
         }

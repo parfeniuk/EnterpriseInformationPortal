@@ -1,0 +1,171 @@
+﻿/*body {
+    padding-top:0px;
+    padding-bottom:0px;
+}*/
+/*Navbar Styles*/
+
+
+/*Main Page*/
+.jumbotron {
+    background-color: #ffffff;
+    color: #ffffff;
+    background: url(/images/banner.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+    /*padding: 100px 25px;*/
+}
+.banner-info {
+    /*margin: 16% auto 0;*/
+    text-align: left;
+}
+.banner-info h2 {
+    font-size: 3em;
+    /*margin: 4% 0;*/
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    width: 58%;
+    text-align: left;
+}
+
+.banner-info h3 {
+    font-size: 1.8em;
+    /*margin: 1% auto 0;*/
+    font-family: 'Cabin', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    text-align: left;
+}
+
+.banner-info p {
+    font-size: 1.13em;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.7em;
+    font-weight: 400;
+    color: #fff;
+    text-align: left;
+    width: 53%;
+    /*margin: 1em 0 3em 0;*/
+}
+
+.feature-logo {
+    color: #f4511e;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.feature-logo:hover {
+    transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    -o-transform: rotateY(360deg);
+    -webkit-transition: 0.99s;
+    -moz-transition: 0.99s;
+    -o-transition: 0.99s;
+    transition: 0.99s;
+}
+
+/*About Company header*/
+.aboutCompany-header {
+    display:inline-block;
+}
+.aboutCompany-clients {
+    display: inline-block;
+    float:right;
+}
+
+.aboutCompany-clients a:link,
+.aboutCompany-clients a:visited {
+    background-color: white;
+    color: black;
+    border-width: 0.05em;
+    border-style: solid;
+    border-color: #f4511e;
+    border-radius: 0.15em;
+    padding: 0.3em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.aboutCompany-clients a:hover,
+.aboutCompany-clients a:active {
+    background-color:darkgray;
+    color: black;
+}
+
+/*Software Page*/
+/*
+ * Row with equal height columns
+ * --------------------------------------------------
+ */
+.equal {
+    display:flex;
+}
+.thumbnail {
+    height:100%;
+    margin:0.1em;
+    padding:0.1em;
+}
+.thumbnail img {
+}
+.thumbnail {
+    border: 1px solid #f4511e;
+    border-radius: 0;
+    transition: box-shadow 0.5s;
+}
+
+.thumbnail:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+
+/*Equipments Page*/
+.equipment-icon {
+    color:orange;
+}
+.equipment-icon:hover {
+    transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    -o-transform: rotateY(360deg);
+    -webkit-transition: 0.99s;
+    -moz-transition: 0.99s;
+    -o-transition: 0.99s;
+    transition: 0.99s;
+}
+.equal {
+    display: flex;
+}
+.equipment-item {
+    height:100%;
+}
+.panel {
+    border: 1px solid #f4511e;
+    border-radius: 0;
+    transition: box-shadow 0.5s;
+}
+
+.panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+
+/*Footer View*/
+.footer-social-media  > a {
+    margin-left: 1.5em;
+}
+
+.footer-phone-numbers a:hover,
+.footer-phone-numbers a:active {
+    text-decoration: none;
+    background-color: lightgray;
+}
+
+.btn-social:hover {
+    transform: scale(1.5, 1.5); /** default is 1, scale it to 1.5 */
+    opacity: 1;
+}
+.phone-number:hover {
+    transform: scale(1.2, 1.2); /** default is 1, scale it to 1.5 */
+    opacity: 1;
+}

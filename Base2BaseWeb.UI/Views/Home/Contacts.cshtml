@@ -1,24 +1,32 @@
 ﻿
 @{
-    ViewData["Title"] = "Contacts";
+    ViewData["Title"] = "Контакты";
 }
 
 <div class="container">
-    <h2 class="text-center">Оформить заявку</h2>
     <div class="row">
         <div class="col-sm-4 contacts">
-            <p><span class="fa fa-map-marker fa-lg"></span> г. Киев, проспект Правды 31-А </p>
-            <p><span class="fa fa-clock-o fa-lg"></span> Понедельник - Воскресенье с 8:00 до 21:00</p>
+            <p><span class="btn-zoom-small fa fa-map-marker fa-lg"></span> г. Киев, проспект Правды 31-А </p>
+            <p><span class="btn-zoom-small fa fa-clock-o fa-lg"></span> Понедельник - Воскресенье с 8:00 до 21:00</p>
             <ul class="fa-ul contacts-phones">
-                <li><span class="fa-li fa fa-phone"></span> (044) 225-24-05</li>
-                <li><span class="fa-li fa fa-mobile fa-lg"></span> (050) 225-24-05</li>
-                <li><span class="fa-li fa fa-mobile fa-lg"></span> (068) 225-24-05</li>
-                <li><span class="fa-li fa fa-mobile fa-lg"></span> (093) 225-24-05</li>
+                <li><span class="btn-zoom-small fa-li fa fa-phone"></span> (044) 225-24-05</li>
+                <li><span class="btn-zoom-small fa-li fa fa-mobile fa-lg"></span> (050) 225-24-05</li>
+                <li><span class="btn-zoom-small fa-li fa fa-mobile fa-lg"></span> (068) 225-24-05</li>
+                <li><span class="btn-zoom-small fa-li fa fa-mobile fa-lg"></span> (093) 225-24-05</li>
             </ul>
-            <p><span class="fa fa-envelope-o fa-lg"></span> support@base2base.com.ua</p>
+            <p><span class="btn-zoom-small fa fa-envelope-o fa-lg"></span> support@base2base.com.ua</p>
+            <div class="contacts-social-media">
+                <a href="https://ru-ru.facebook.com/Base2BaseLtd/" target="_blank">
+                    <span class="btn-social-contacts fa fa-facebook-square fa-2x" style="color:#3b59ff"></span>
+                </a>
+                <a href="#"><span class="btn-social-contacts fa fa-google-plus-square fa-2x" style="color:#ea4335"></span></a>
+                <a href="#"><span class="btn-social-contacts fa fa-twitter-square fa-2x" style="color:#1dcaff"></span></a>
+                <a href="#"><span class="btn-social-contacts fa fa-instagram fa-2x" style="color:#c1558b"></span></a>
+            </div>
         </div>
         <div class="col-sm-8">
             <div class="row">
+                <h3 class="text-center">Оформить заявку</h3>
                 <div class="col-sm-6 form-group">
                     <input class="form-control" id="name" name="name" placeholder="Наименование организации" type="text" required>
                 </div>
@@ -29,13 +37,13 @@
             <textarea class="form-control" id="comments" name="comments" placeholder="Сообщение" rows="5"></textarea><br>
             <div class="row">
                 <div class="col-sm-3 form-group">
-                    <button class="btn btn-lg btn-primary btn-block pull-right" type="submit">Оформить</button>
+                    <button class="btn btn-lg btn-primary btn-block btn-send" type="submit">Оформить</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- Add Google Maps -->
-    <div id="googleMap" style="height:400px;width:100%;"></div>
+    <div id="googleMap" style="height:300px;width:100%;"></div>
     @section Scripts
         {
 

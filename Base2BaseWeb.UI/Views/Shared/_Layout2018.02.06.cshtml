@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Бейс2Бейс: Автоматизация торговли</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/lib/Font-Awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="~/css/customCss.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link href="~/lib/Font-Awesome/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/css/customCss.css" rel="stylesheet" />
+    </environment>
+</head>
+<body>
+    <!--Navigation Bar Section-->
+    <div id="menu-master">
+        <div class="menu-static">
+            <ul class="container ul-menu-static">
+                <li><a asp-area="" asp-controller="Home" asp-action="Company">Компания</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Software">Продукты</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Support">Поддержка</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Updates">Обновления</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Blog">Блог</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a></li>
+                <li class="navbar-right"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
+            </ul>
+        </div>
+            <nav class="navbar navbar-default" data-spy="affix" data-offset-top="30">
+                <div class="container menu-fixed">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                            <img class="logo-small" src="~/images/big-logo.png" />
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Store">Для магазина</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Supermarket">Для супермаркета</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Cafe">Для кафе</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Kiosk">Для киосков</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Equipment">Оборудование</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right menu-right">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <span class="fa fa-phone"></span>
+                                    <span> (044) 225-24-05</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu contacts">
+                                    <li><a href="#">(050) 225-24-05</a></li>
+                                    <li><a href="#">(068) 225-24-05</a></li>
+                                    <li><a href="#">(093) 225-24-05</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-fixed-phone-numbers"><a asp-controller="Home" asp-action="Contacts"><span class="fa fa-envelope"></span> Написать нам</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+    </div>
+
+    <!--Body Section-->
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <div class="container">
+            <footer class="row footer-container">
+                <div class="col-md-offset-1 col-md-2 footer-address">
+                    <p>&copy; @DateTime.Now.Year - ООО "Бэйстубейс"</p>
+                    @*<p>г. Киев, проспект Правды 31-А</p>*@
+                </div>
+                <div class="col-md-2 footer-social-media">
+                    <a href="https://ru-ru.facebook.com/Base2BaseLtd/" target="_blank">
+                        <span class="btn-social fa fa-facebook fa-lg" style="color:#3b59ff"></span>
+                    </a>
+                    <a href="#"><span class="btn-social fa fa-google fa-lg" style="color:#ea4335"></span></a>
+                    <a href="#"><span class="btn-social fa fa-twitter fa-lg" style="color:#1dcaff"></span></a>
+                    <a href="#"><span class="btn-social fa fa-instagram fa-lg" style="color:#c1558b"></span></a>
+                </div>
+                @*<div class="col-xs-12 col-sm-6 col-md-6 footer-phone-numbers">
+                    <div class="phone-number">(044) 225-24-05, </div>
+                    <div class="phone-number">(050) 225-24-05, </div>
+                    <div class="phone-number">(068) 225-24-05, </div>
+                    <div class="phone-number">(093) 225-24-05</div>
+                </div>*@
+            </footer>
+        </div>
+
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script src="~/js/customAlignNavBar.js"></script>
+    <script src="~/js/customAffix.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
