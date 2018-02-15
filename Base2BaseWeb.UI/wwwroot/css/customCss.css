@@ -162,8 +162,19 @@ body {
 .ul-menu-static {
     margin-left: 8em;
 }
+.menu-right-static.ul-menu-static-right {
+    margin-left: 10em;
+}
 .menu-right-static {
     margin-left: 25em;
+    line-height:1;
+}
+.menu-right-static ul {
+    list-style:none;
+}
+.menu-right-static .btn {
+    padding:4px;
+    border:none;
 }
 
 .menu-fixed {

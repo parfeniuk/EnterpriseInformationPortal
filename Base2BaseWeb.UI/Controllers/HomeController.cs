@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Base2BaseWeb.UI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Base2BaseWeb.UI.Controllers
 {
+    
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-
+        //[Route("Company")]
         public IActionResult Company()
         {
             return View();
@@ -71,6 +75,10 @@ namespace Base2BaseWeb.UI.Controllers
         public IActionResult Contacts()
         {
             return View();
+        }
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
