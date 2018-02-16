@@ -8,20 +8,46 @@ namespace Base2BaseWeb.UI.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        [Required(ErrorMessage ="Поле {0} является обязательным")]
+        [StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
+        [Display(Name = "Имя")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
+        [Display(Name = "Отчество")]
+        public string MiddleName { get; set; }
+
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
+        [Display(Name = "Фамилия")]
+        public string LastName { get; set; }
+
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [StringLength(100, ErrorMessage = "{0} не должно превышать {1} символов")]
+        [Display(Name = "Организация")]
+        public string CompanyName { get; set; }
+
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [EmailAddress(ErrorMessage = "Введенное значение не является действительным адресом электронной почты")]
+        [Display(Name = "Эл. почта")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [Phone]
+        [Display(Name = "Телефон")]
+        public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [StringLength(100, ErrorMessage = "{0} должен быть не менее {2} и не более {1} символов.", MinimumLength = 8)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Подтверждение пароля")]
+        [Compare("Password", ErrorMessage = "Пароль и подтверждение пароля не совпадают.")]
         public string ConfirmPassword { get; set; }
     }
 }

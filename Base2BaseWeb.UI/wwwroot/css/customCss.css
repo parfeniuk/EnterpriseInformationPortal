@@ -700,10 +700,11 @@ div.menu-static ul li a {
     background-color: #2a5e88;
     cursor: pointer;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
-    margin-right:auto;
-    margin-left:100%;
-    margin-top:0.5em;
-    margin-bottom: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding:0.5em;
     text-align: center;
 }
 

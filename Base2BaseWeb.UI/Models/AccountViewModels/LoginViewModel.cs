@@ -8,11 +8,11 @@ namespace Base2BaseWeb.UI.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [EmailAddress(ErrorMessage = "Введенное значение не является действительным адресом электронной почты")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
