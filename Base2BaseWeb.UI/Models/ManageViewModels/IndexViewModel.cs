@@ -12,12 +12,14 @@ namespace Base2BaseWeb.UI.Models.ManageViewModels
 
         public bool IsEmailConfirmed { get; set; }
 
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [EmailAddress(ErrorMessage = "Введенное значение не является действительным адресом электронной почты")]
+        [Display(Name = "Эл. почта")]
         public string Email { get; set; }
 
-        [Phone]
-        [Display(Name = "Phone number")]
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [Phone(ErrorMessage = "Введенное значение не является действительным номером телефона")]
+        [Display(Name = "Телефон")]
         public string PhoneNumber { get; set; }
 
         public string StatusMessage { get; set; }

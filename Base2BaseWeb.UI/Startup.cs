@@ -84,7 +84,8 @@ namespace Base2BaseWeb.UI
             services.AddMvc();
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration);
+
+            //services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -98,17 +99,15 @@ namespace Base2BaseWeb.UI
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseBrowserLink();
+                app.UseDeveloperExceptionPage();
+
+                //app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();
 
             app.UseAuthentication();
-
-            //DbInitializer.Initialize(context, userManager, roleManager, new AppUserCredentials
-            //{
-            //    Name ="admin",Role="admins",Email="admin@contoso.com",Password="_qwerty123_" }
-            //);
 
             app.UseMvc(routes =>
             {

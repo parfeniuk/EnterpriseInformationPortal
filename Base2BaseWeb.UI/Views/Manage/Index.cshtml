@@ -1,6 +1,6 @@
 ﻿@model IndexViewModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Профиль пользователя";
     ViewData.AddActivePage(ManageNavPages.Index);
 }
 
@@ -11,7 +11,7 @@
         <form method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Username"></label>
+                <label asp-for="Username">Пользователь</label>
                 <input asp-for="Username" class="form-control" disabled />
             </div>
             <div class="form-group">
@@ -26,7 +26,7 @@
                 else
                 {
                     <input asp-for="Email" class="form-control" />
-                    <button asp-action="SendVerificationEmail" class="btn btn-link">Send verification email</button>
+                    <button asp-action="SendVerificationEmail" class="btn btn-main-page">Отправить письмо с подтверждением</button>
                 }
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
@@ -35,7 +35,7 @@
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-main-page">Save</button>
+            <button type="submit" class="btn btn-main-page">Сохранить</button>
         </form>
     </div>
 </div>

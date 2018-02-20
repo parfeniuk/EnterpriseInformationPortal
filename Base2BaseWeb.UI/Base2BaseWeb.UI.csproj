@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <UserSecretsId>65019748-6b4f-4681-b2a8-d16a1be91064</UserSecretsId>
+    <!--<UserSecretsId>6a3406ed-47d0-4f0f-b280-2b1fc046b54b</UserSecretsId>-->
+    <!--<UserSecretsId>65019748-6b4f-4681-b2a8-d16a1be91064</UserSecretsId>-->
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +14,7 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
-    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+    <!--<DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />-->
   </ItemGroup>
 
   <ItemGroup>

@@ -8,20 +8,20 @@ namespace Base2BaseWeb.UI.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage ="Поле {0} является обязательным")]
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
         [StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
         [Display(Name = "Имя")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Поле {0} является обязательным")]
-        [StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
-        [Display(Name = "Отчество")]
-        public string MiddleName { get; set; }
+        //[Required(ErrorMessage = "Поле {0} является обязательным")]
+        //[StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
+        //[Display(Name = "Отчество")]
+        //public string MiddleName { get; set; }
 
-        [Required(ErrorMessage = "Поле {0} является обязательным")]
-        [StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
-        [Display(Name = "Фамилия")]
-        public string LastName { get; set; }
+        //[Required(ErrorMessage = "Поле {0} является обязательным")]
+        //[StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
+        //[Display(Name = "Фамилия")]
+        //public string LastName { get; set; }
 
         [Required(ErrorMessage = "Поле {0} является обязательным")]
         [StringLength(100, ErrorMessage = "{0} не должно превышать {1} символов")]
@@ -34,7 +34,8 @@ namespace Base2BaseWeb.UI.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Поле {0} является обязательным")]
-        [Phone]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Введенное значение не является действительным номером телефона")]
+        [Phone(ErrorMessage = "Введенное значение не является действительным номером телефона")]
         [Display(Name = "Телефон")]
         public string PhoneNumber { get; set; }
 
@@ -44,7 +45,6 @@ namespace Base2BaseWeb.UI.Models.AccountViewModels
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Поле {0} является обязательным")]
         [DataType(DataType.Password)]
         [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароль и подтверждение пароля не совпадают.")]

@@ -1,0 +1,17 @@
+﻿{
+  "mailSettings": {
+    "uBase2BaseGmail": {
+      "mailBoxSettings": {
+        "mailBoxName": "Base2Base",
+        "mailBoxAddress": "ubase2base@gmail.com"
+      },
+      "smtpSettings": {
+        "host": "smtp.gmail.com",
+        "port": "587",
+        "ssl": "false",
+        "username": "ubase2base@gmail.com",
+        "password": "$@TrustedPipe!"
+      }
+    }
+  }
+}

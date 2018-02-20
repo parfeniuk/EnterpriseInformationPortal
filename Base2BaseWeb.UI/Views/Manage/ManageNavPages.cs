@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace AspNetCoreIdentityDemo.Views.Manage
+namespace Base2BaseWeb.UI.Views.Manage
 {
     public static class ManageNavPages
     {

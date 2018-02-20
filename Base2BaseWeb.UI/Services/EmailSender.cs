@@ -13,12 +13,15 @@ namespace Base2BaseWeb.UI.Services
     public class EmailSender : IEmailSender
     {
         // IOptions instance of secret configurations via DI
-        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
+        //public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
+        //{
+        //    Options = optionsAccessor.Value;
+        //}
+        public EmailSender()
         {
-            Options = optionsAccessor.Value;
-        }
 
-        public AuthMessageSenderOptions Options { get; } //set only via Secret Manager
+        }
+        //public AuthMessageSenderOptions Options { get; } //set only via Secret Manager
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
@@ -29,7 +32,7 @@ namespace Base2BaseWeb.UI.Services
         {
             // Instantiate MimeMessage object
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress(Options.Mailbox, Options.Login));
+            emailMessage.From.Add(new MailboxAddress("Base2Base", "ubase2base@gmail.com"));
             emailMessage.To.Add(new MailboxAddress("", email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -41,7 +44,7 @@ namespace Base2BaseWeb.UI.Services
             using (var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp.gmail.com", 587, false);
-                await client.AuthenticateAsync(Options.Login, Options.Password);
+                await client.AuthenticateAsync("ubase2base@gmail.com", "$@TrustedPipe!");
                 await client.SendAsync(emailMessage);
                 await client.DisconnectAsync(true);
             }

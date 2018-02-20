@@ -101,7 +101,7 @@ namespace Base2BaseWeb.UI.Controllers
                 }
             }
 
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Ваш профиль был обновлен";
             return RedirectToAction(nameof(Index));
         }
 
@@ -125,7 +125,7 @@ namespace Base2BaseWeb.UI.Controllers
             var email = user.Email;
             await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Письмо для подтверждения отправлено. Пожалуйста, проверьте Ваш email.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -172,7 +172,7 @@ namespace Base2BaseWeb.UI.Controllers
 
             await _signInManager.SignInAsync(user, isPersistent: false);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            StatusMessage = "Ваш пароль был изменен.";
 
             return RedirectToAction(nameof(ChangePassword));
         }
@@ -220,7 +220,7 @@ namespace Base2BaseWeb.UI.Controllers
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-            StatusMessage = "Your password has been set.";
+            StatusMessage = "Ваш пароль был установлен.";
 
             return RedirectToAction(nameof(SetPassword));
         }
