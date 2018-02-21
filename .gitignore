@@ -23,21 +23,21 @@ bld/
 [Ll]og/
 
 # ignore appsettings
-**/appsettings.development.json
-**/appsettings.staging.json
-**/appsettings.production.json
+appsettings.development.json
+appsettings.staging.json
+appsettings.production.json
 
 # ignore connectionstrings
-**/connectionstrings.json
-**/connectionstrings.development.json
-**/connectionstrings.staging.json
-**/connectionstrings.production.json
+connectionstrings.json
+connectionstrings.development.json
+connectionstrings.staging.json
+connectionstrings.production.json
 
 # ignore mailsettings
-**/mailsettings.json
-**/mailsettings.development.json
-**/mailsettings.staging.json
-**/mailsettings.production.json
+mailsettings.json
+mailsettings.development.json
+mailsettings.staging.json
+mailsettings.production.json
 
 # Visual Studio 2015 cache/options directory
 .vs/
