@@ -99,8 +99,10 @@ namespace Base2BaseWeb.UI
             }
             else
             {
+                // EXCLUDE IN PRODUCTION
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+                //
 
                 //app.UseExceptionHandler("/Home/Error");
             }

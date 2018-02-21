@@ -19,6 +19,12 @@ namespace Base2BaseWeb.UI
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((builderContext,config) => 
+                {
+                    IHostingEnvironment env = builderContext.HostingEnvironment;
+                    config.AddJsonFile($"connectionsettings.{env.EnvironmentName}.json")
+                    .AddJsonFile($"mailsettings.{env.EnvironmentName}.json");
+                })
                 .UseStartup<Startup>()
                 .Build();
     }

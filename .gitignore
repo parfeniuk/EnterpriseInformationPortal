@@ -28,11 +28,13 @@ bld/
 **/appsettings.production.json
 
 # ignore connectionstrings
+**/connectionstrings.json
 **/connectionstrings.development.json
 **/connectionstrings.staging.json
 **/connectionstrings.production.json
 
 # ignore mailsettings
+**/mailsettings.json
 **/mailsettings.development.json
 **/mailsettings.staging.json
 **/mailsettings.production.json
