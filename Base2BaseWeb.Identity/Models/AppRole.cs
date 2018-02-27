@@ -7,5 +7,7 @@ namespace Base2BaseWeb.Identity.Models
 {
     public class AppRole:IdentityRole<Guid>
     {
+        public AppRole() { }
+        public AppRole(string name) : base(name) { }
     }
 }

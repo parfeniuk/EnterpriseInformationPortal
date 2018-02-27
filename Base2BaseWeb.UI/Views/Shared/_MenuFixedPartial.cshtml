@@ -1,0 +1,127 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Base2BaseWeb.Identity.Models
+@using Base2BaseWeb.UI.Helpers
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@{
+    bool isAdmin = false;
+    if (User.Identity.Name != null)
+    {
+        var user = await SignInManager.UserManager.FindByNameAsync(User.Identity.Name);
+        if (user != null)
+        {
+            var roles = await SignInManager.UserManager.GetRolesAsync(user);
+            isAdmin = roles.Contains("Admin");
+        }
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="menu-fixed">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header menu-fixed-left" id="menu-fixed-left">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                            <img class="logo-small" src="~/images/big-logo.png" />
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav menu-fixed-center" id="menu-fixed-center">
+                            <li><a asp-area="" asp-controller="Manage" asp-action="Index">Профиль</a></li>
+                            @if (isAdmin)
+                            {
+                                <li><a asp-area="Admin" asp-controller="Roles" asp-action="Index">Администрирование</a></li>
+                            }
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        }
+        else
+        {
+            <div class="menu-fixed">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header menu-fixed-left" id="menu-fixed-left">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                            <img class="logo-small" src="~/images/big-logo.png" />
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav menu-fixed-center" id="menu-fixed-center">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Store">Для магазина</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Supermarket">Для супермаркета</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Cafe" class="disabled">Для кафе</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Kiosk">Для киосков</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Equipment">Оборудование</a></li>
+                        </ul>
+                        <div class="navbar-nav menu-fixed-right" id="menu-fixed-right">
+                            <div class="menu-phone-numbers">
+                                <span class="fa fa-phone"></span>
+                                <span> (044) <strong class="menu-phone-number">225-24-05</strong></span>
+                            </div>
+                            <div class="menu-contacts">
+                                <a class="btn btn-border-blue" asp-controller="Home" asp-action="Contacts">
+                                    <span class="fa fa-envelope"></span> Написать нам
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="menu-fixed">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header menu-fixed-left" id="menu-fixed-left">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                        <img class="logo-small" src="~/images/big-logo.png" />
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav menu-fixed-center" id="menu-fixed-center">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Store">Для магазина</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Supermarket">Для супермаркета</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Cafe" class="disabled">Для кафе</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Kiosk">Для киосков</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Equipment">Оборудование</a></li>
+                    </ul>
+                    <div class="navbar-nav menu-fixed-right" id="menu-fixed-right">
+                        <div class="menu-phone-numbers">
+                            <span class="fa fa-phone"></span>
+                            <span> (044) <strong class="menu-phone-number">225-24-05</strong></span>
+                        </div>
+                        <div class="menu-contacts">
+                            <a class="btn btn-border-blue" asp-controller="Home" asp-action="Contacts">
+                                <span class="fa fa-envelope"></span> Написать нам
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    }
+}
+
+
+

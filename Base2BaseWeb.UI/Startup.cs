@@ -85,7 +85,8 @@ namespace Base2BaseWeb.UI
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            //services.Configure<AuthMessageSenderOptions>(Configuration);
+            services.AddOptions();
+            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("Base2BaseServer"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -99,12 +100,10 @@ namespace Base2BaseWeb.UI
             }
             else
             {
-                // EXCLUDE IN PRODUCTION
-                app.UseBrowserLink();
-                app.UseDeveloperExceptionPage();
-                //
+                //app.UseBrowserLink();
+                //app.UseDeveloperExceptionPage();
 
-                //app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();
@@ -113,6 +112,9 @@ namespace Base2BaseWeb.UI
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

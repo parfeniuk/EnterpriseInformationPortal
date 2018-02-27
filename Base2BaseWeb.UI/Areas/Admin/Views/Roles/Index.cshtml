@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AppRole>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Список ролей</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                @foreach (var role in Model)
+                {
+                    <tr>
+                        <td>@role.Name</td>
+                        <td>
+                            <form asp-action="Delete" asp-route-id="@role.Id" method="post">
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <span class="btn-text-white">Удалить</span> 
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <a asp-action="Create" class="btn btn-primary">Добавить роль</a>
+        <a asp-action="UserList" class="btn btn-primary">Список пользователей</a>
+    </div>
+</div>
+

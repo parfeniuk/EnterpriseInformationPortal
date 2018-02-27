@@ -51,7 +51,7 @@ namespace Base2BaseWeb.UI.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Не удалось загрузить пользователя с идентификатором '{_userManager.GetUserId(User)}'.");
             }
 
             var model = new IndexViewModel
@@ -59,7 +59,11 @@ namespace Base2BaseWeb.UI.Controllers
                 Username = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                IsEmailConfirmed = user.EmailConfirmed,
+                //IsEmailConfirmed = user.EmailConfirmed,
+                FirstName=user.FirstName,
+                MiddleName = user.MiddleName,
+                LastName = user.LastName,
+                DateBirth=user.DateBirth,
                 StatusMessage = StatusMessage
             };
 
@@ -78,18 +82,18 @@ namespace Base2BaseWeb.UI.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Не удалось загрузить пользователя с идентификатором '{_userManager.GetUserId(User)}'.");
             }
 
-            var email = user.Email;
-            if (model.Email != email)
-            {
-                var setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
-                if (!setEmailResult.Succeeded)
-                {
-                    throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
-                }
-            }
+            //var email = user.Email;
+            //if (model.Email != email)
+            //{
+            //    var setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
+            //    if (!setEmailResult.Succeeded)
+            //    {
+            //        throw new ApplicationException($"Произошла непредвиденная ошибка при настройке электронной почты для пользователя с идентификатором '{user.Id}'.");
+            //    }
+            //}
 
             var phoneNumber = user.PhoneNumber;
             if (model.PhoneNumber != phoneNumber)
@@ -97,9 +101,12 @@ namespace Base2BaseWeb.UI.Controllers
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
+                    throw new ApplicationException($"Произошла непредвиденная ошибка при установке номера телефона для пользователя с идентификатором '{user.Id}'.");
                 }
             }
+            // Set extended fields for AppUser
+            //var userUpdated=
+            //var updateUserResult=_userManager.UpdateAsync()
 
             StatusMessage = "Ваш профиль был обновлен";
             return RedirectToAction(nameof(Index));
@@ -160,7 +167,7 @@ namespace Base2BaseWeb.UI.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Не удалось загрузить пользователя с идентификатором '{_userManager.GetUserId(User)}'.");
             }
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
@@ -183,7 +190,7 @@ namespace Base2BaseWeb.UI.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Не удалось загрузить пользователя с идентификатором '{_userManager.GetUserId(User)}'.");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -209,7 +216,7 @@ namespace Base2BaseWeb.UI.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Не удалось загрузить пользователя с идентификатором '{_userManager.GetUserId(User)}'.");
             }
 
             var addPasswordResult = await _userManager.AddPasswordAsync(user, model.NewPassword);

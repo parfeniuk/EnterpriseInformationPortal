@@ -10,11 +10,36 @@ namespace Base2BaseWeb.UI.Models.ManageViewModels
     {
         public string Username { get; set; }
 
-        public bool IsEmailConfirmed { get; set; }
+        //public bool IsEmailConfirmed { get; set; }
 
         [Required(ErrorMessage = "Поле {0} является обязательным")]
-        [EmailAddress(ErrorMessage = "Введенное значение не является действительным адресом электронной почты")]
-        [Display(Name = "Эл. почта")]
+        [StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
+        [Display(Name = "Имя")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
+        [Display(Name = "Отчество")]
+        public string MiddleName { get; set; }
+
+        [Required(ErrorMessage = "Поле {0} является обязательным")]
+        [StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
+        [Display(Name = "Фамилия")]
+        public string LastName { get; set; }
+
+        [Display(Name ="Дата рождения")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
+        [DataType(DataType.DateTime)]
+        public DateTime DateBirth { get; set; }
+
+        //[Required(ErrorMessage = "Поле {0} является обязательным")]
+        //[StringLength(100, ErrorMessage = "{0} не должно превышать {1} символов")]
+        //[Display(Name = "Организация")]
+        //public string CompanyName { get; set; }
+
+        //[Required(ErrorMessage = "Поле {0} является обязательным")]
+        //[EmailAddress(ErrorMessage = "Введенное значение не является действительным адресом электронной почты")]
+        //[Display(Name = "Эл. почта")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Поле {0} является обязательным")]

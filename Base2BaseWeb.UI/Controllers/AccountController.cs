@@ -60,39 +60,52 @@ namespace Base2BaseWeb.UI.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                // This count login failures towards account lockout
-                // To disable password failures to trigger account lockout, set lockoutOnFailure: false
-
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
-                if (result.Succeeded)
+                //var user = await _userManager.FindByNameAsync(model.Email);
+                var appUser = await _userManager.FindByEmailAsync(model.Email);
+                if (appUser != null)
                 {
-                    // проверяем, принадлежит ли URL приложению
-                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    // Check is email confirmed
+                    if (!await _userManager.IsEmailConfirmedAsync(appUser))
                     {
-                        _logger.LogInformation("User logged in.");
-                        return Redirect(returnUrl);
+                        ModelState.AddModelError(string.Empty, "Ваш email не подтвержден!");
+                        return View(model);
+                    }
+                    // This count login failures towards account lockout
+                    // To disable password failures to trigger account lockout, set lockoutOnFailure: false
+
+
+                    var result = await _signInManager.PasswordSignInAsync(appUser.UserName, model.Password, model.RememberMe, lockoutOnFailure: true);
+                    if (result.Succeeded)
+                    {
+                        // проверяем, принадлежит ли URL приложению
+                        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        {
+                            _logger.LogInformation("User logged in.");
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    //if (result.RequiresTwoFactor)
+                    //{
+                    //    return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
+                    //}
+                    if (result.IsLockedOut)
+                    {
+                        _logger.LogWarning("User account locked out.");
+                        return RedirectToAction(nameof(Lockout));
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        ModelState.AddModelError(string.Empty, "Неверная попытка входа в систему.");
+                        return View(model);
                     }
-                }
-                //if (result.RequiresTwoFactor)
-                //{
-                //    return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
-                //}
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToAction(nameof(Lockout));
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
                 }
             }
             // If we got this far, something failed, redisplay form
+            ModelState.AddModelError(string.Empty, "Неверная попытка входа в систему.");
             return View(model);
         }
         [HttpGet]
@@ -111,7 +124,13 @@ namespace Base2BaseWeb.UI.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = model.Email, Email = model.Email };
+                var user = new AppUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    CompanyName=model.CompanyName,
+                    PhoneNumber=model.PhoneNumber,
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -129,7 +148,6 @@ namespace Base2BaseWeb.UI.Controllers
                 }
                 AddErrors(result);
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }

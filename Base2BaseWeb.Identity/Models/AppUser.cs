@@ -12,13 +12,17 @@ namespace Base2BaseWeb.Identity.Models
         public string LastName { get; set; }
         public DateTime DateBirth { get; set; }
 
-        public string PostalCode { get; set; }
-        public string City { get; set; }
-        public string Address { get; set; }
-                
-        public DateTime CreatedDate { get; private set; }
-        public DateTime LastVisitDate { get; private set; }
+        public string CompanyName { get; set; }
 
-        public bool UserVerified { get;private set; }
+        public string Country { get; set; }
+        public string PostalCode { get; set; }
+        public string Region { get; set; }
+        public string City { get; set; }
+        public string AddressLine { get; set; }
+                
+        public DateTime CreatedDate { get;  set; }
+        public DateTime LastVisitDate { get;  set; }
+
+        public bool UserVerified { get; set; }
     }
 }

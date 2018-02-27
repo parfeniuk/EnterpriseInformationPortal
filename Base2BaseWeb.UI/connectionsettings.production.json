@@ -1,5 +1,5 @@
 ﻿{
   "ConnectionStrings": {
-    "DefaultConnection": "server=localhost;database=Base2BaseIdentity;Trusted_Connection=True;App=Base2BaseIdentity"
+    "DefaultConnection": "server=localhost;database=Base2Base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseIdentity"
   }
 }

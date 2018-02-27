@@ -1,7 +1,16 @@
-﻿@using Base2BaseWeb.UI.Views.Manage
+﻿@using System.Linq
+@using Base2BaseWeb.UI.Views.Manage
 @inject SignInManager<AppUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+
+    //bool isAdmin=false;
+    //var user = await SignInManager.UserManager.FindByNameAsync(User.Identity.Name);
+    //if (user != null)
+    //{
+    //    var roles = await SignInManager.UserManager.GetRolesAsync(user);
+    //    isAdmin = roles.Contains("Admin");
+    //}
 }
 
 <ul class="nav nav-pills nav-stacked">
@@ -11,6 +20,10 @@
     {
         <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a asp-action="ExternalLogins">Внешние логины</a></li>
     }
+    @*@if (isAdmin)
+    {
+        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a asp-area="Admin" asp-controller="Roles" asp-action="Index">Панель администрирования</a></li>
+    }*@
     @*<li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"><a asp-action="TwoFactorAuthentication">Two-factor authentication</a></li>*@
 </ul>
 

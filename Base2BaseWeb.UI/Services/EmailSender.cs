@@ -9,19 +9,14 @@ using MailKit.Net.Smtp;
 namespace Base2BaseWeb.UI.Services
 {
     // This class is used by the application to send email for account confirmation and password reset.
-    // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
     public class EmailSender : IEmailSender
     {
         // IOptions instance of secret configurations via DI
-        //public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
-        //{
-        //    Options = optionsAccessor.Value;
-        //}
-        public EmailSender()
+        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
         {
-
+            Options = optionsAccessor.Value;
         }
-        //public AuthMessageSenderOptions Options { get; } //set only via Secret Manager
+        public AuthMessageSenderOptions Options { get; } //set only via Secret Manager
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
@@ -32,7 +27,7 @@ namespace Base2BaseWeb.UI.Services
         {
             // Instantiate MimeMessage object
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("Base2Base", "ubase2base@gmail.com"));
+            emailMessage.From.Add(new MailboxAddress(Options.MailBoxSettings.MailboxName, Options.MailBoxSettings.MailboxAddress));
             emailMessage.To.Add(new MailboxAddress("", email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -43,8 +38,8 @@ namespace Base2BaseWeb.UI.Services
             // Send Mails async
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync("smtp.gmail.com", 587, false);
-                await client.AuthenticateAsync("ubase2base@gmail.com", "$@TrustedPipe!");
+                await client.ConnectAsync(Options.SmtpSettings.Host, Options.SmtpSettings.Port, Options.SmtpSettings.Ssl);
+                await client.AuthenticateAsync(Options.SmtpSettings.Username, Options.SmtpSettings.Password);
                 await client.SendAsync(emailMessage);
                 await client.DisconnectAsync(true);
             }

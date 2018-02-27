@@ -11,7 +11,7 @@ using System;
 namespace Base2BaseWeb.Identity.Migrations
 {
     [DbContext(typeof(AppIdentityContext))]
-    [Migration("20180213113355_Initial")]
+    [Migration("20180221140451_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,12 +52,16 @@ namespace Base2BaseWeb.Identity.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Address");
+                    b.Property<string>("AddressLine");
 
                     b.Property<string>("City");
 
+                    b.Property<string>("CompanyName");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("Country");
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -93,6 +97,8 @@ namespace Base2BaseWeb.Identity.Migrations
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("PostalCode");
+
+                    b.Property<string>("Region");
 
                     b.Property<string>("SecurityStamp");
 

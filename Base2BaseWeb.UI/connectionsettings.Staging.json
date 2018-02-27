@@ -1,0 +1,5 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "server=base2base.com.ua,14337;database=Base2Base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseIdentity"
+  }
+}

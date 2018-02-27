@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model Base2BaseWeb.UI.Areas.Admin.Models.RoleViewModels.ChangeRoleViewModel
+
+<h2>Изменение ролей для пользователя @Model.UserEmail</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="userId" value="@Model.UserId" />
+    <div class="form-group">
+        @foreach (AppRole role in Model.AllRoles)
+        {
+            <input type="checkbox" name="roles" value="@role.Name"
+                   @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") />@role.Name <br />
+            }
+    </div>
+    <button type="submit" class="btn btn-primary"><span class="btn-text-white">Сохранить</span></button>
+</form>

@@ -1,0 +1,15 @@
+﻿.avatar-container {
+    width:75px;
+    height:65px;
+    margin-bottom:10px;
+    overflow:hidden;
+}
+.avatar-circle {
+    display:block;
+    vertical-align:middle;
+    border-radius:50%;
+    width:100%;
+    height:100%;
+    margin-left:auto;
+    margin-right:auto;
+}

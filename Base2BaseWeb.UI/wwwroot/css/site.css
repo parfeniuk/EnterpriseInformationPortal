@@ -33,3 +33,24 @@
         display: none;
     }
 }
+.panel {
+    border-radius: 5px;
+    transition: box-shadow 0.5s;
+}
+.panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+/* Tag asp-validation-summary styling */
+.validation-summary-errors > ul {
+    list-style:none!important;
+    color:red;
+}
+a.disabled {
+    /* Make the disabled links grayish*/
+    color: gray;
+    /* And disable the pointer events */
+    pointer-events: none;
+}
+button .btn-text-white {
+    color: #fff;
+}

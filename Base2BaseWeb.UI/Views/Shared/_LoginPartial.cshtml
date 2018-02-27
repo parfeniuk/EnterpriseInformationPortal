@@ -7,10 +7,9 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-@*<div class="menu-right-static">*@
-<ul class="nav navbar-nav menu-static-right">
+<ul class="nav navbar-nav menu-static-right" id="menu-static-right">
     <li>
-        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">
+        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" class="btn btn-link">
             <span class="fa fa-user"></span> @UserManager.GetUserName(User)
         </a>
     </li>
@@ -22,19 +21,13 @@
         </form>
 
     </li>
-    @*<li>*@
-    @*<form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">*@
-    @*<a class="btn btn-link">Log out</a>*@
-    @*</form>*@
-    @*</li>*@
 </ul>
-@*</div>*@
 }
 else
 {
-    <ul class="nav navbar-nav menu-static-right">
+    <ul class="nav navbar-nav menu-static-right" id="menu-static-right">
         <li>
-            <a asp-area="" asp-controller="Account" asp-action="Login">
+            <a asp-area="" asp-controller="Account" asp-action="Login" class="btn btn-link">
                 <span class="fa fa-sign-in"></span> Вход
             </a>
         </li>

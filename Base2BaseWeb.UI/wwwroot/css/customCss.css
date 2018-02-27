@@ -103,9 +103,16 @@ body {
 
 /* Navbar Affixed (menu-fixed class) section end */
 
+#menu-static > nav.inline-navbar  li {
+    display: inline!important;
+}
+.menu-static {
+    position:relative;
+}
+
 /*Navbar BRAND styles begin*/
 .navbar-brand img {
-    width: 100px;
+    width: 140px;
 }
 .navbar-header a.navbar-brand > img {
     display: block;
@@ -123,10 +130,13 @@ body {
 .menu-static {
     background-color: #333;
 }
-.menu-static a {
+.menu-static a,button {
     padding-top:5px!important;
     padding-bottom:5px!important;
+    font-size:14px!important;
+    line-height:1!important;
 }
+
 .menu-static-left a, .menu-static-center a {
     text-transform: uppercase;
 }
@@ -136,27 +146,27 @@ body {
 .menu-static li > a:hover {
     text-decoration: underline;
 }
-.menu-static button {
+/*.menu-static button {
     position:relative;
     top:50%;
     transform:translateY(-10%);
-}
+}*/
 .menu-static-right a, button {
     color: #00adf1!important;
 }
 .navbar-nav.menu-static-left {
     position: relative;
-    left: 10.5%;
+    left: 11.5%;
     transform: translateX(-50%);
 }
 .navbar-nav.menu-static-center {
     position: relative;
-    left: 33%;
+    left: 35%;
     transform: translateX(-50%);
 }
 .navbar-nav.menu-static-right {
     position: relative;
-    left: 35%;
+    left: 37%;
     transform: translateX(-50%);
 }
 .nav.navbar-nav.menu-static-right > li > a {
@@ -700,9 +710,9 @@ div.menu-static ul li a {
 }
 /*HOME PAGE - Banner Styles end*/
 .btn-main-page {
-    line-height: 1.0;
+    line-height: 1.0!important;
     border-radius: 6px;
-    font-size: 18px;
+    font-size: 18px!important;
     color: #fff !important;
     background-color: #2a5e88;
     cursor: pointer;
@@ -725,6 +735,8 @@ div.menu-static ul li a {
 .external-auth-providers div {
     display: inline-block;
     box-shadow: 0px 4px 2px #aaaaaa;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 /*.external-auth-provider {
     border: 1px solid #aaa;
@@ -785,7 +797,18 @@ feature-item-container {
     position: relative;
 }
 
-.feature-item {
+.feature-item-software-spec {
+    text-align: center;
+    overflow: hidden;
+    height: 80px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    margin: 0;
+    padding-top: 0.5em;
+    cursor: pointer;
+}
+
+.feature-item-software {
     text-align: center;
     overflow: hidden;
     height: 105px;
@@ -796,19 +819,41 @@ feature-item-container {
     cursor: pointer;
 }
 
+.feature-item-software h5 {
+    position: relative;
+    top: 20%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+feature-logo-container {
+    position: relative;
+    overflow: visible;
+}
+
 .feature-logo {
-    position:absolute;
-    top:-0.5em;
-    left:5.1em;
-    /*z-index:10000!important;*/
-    background:#fff;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: #fff;
+    color: #f4511e;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.feature-logo-software {
+    position: relative;
+    top: -0.1em;
+    left: 0em;
+    background: #fff;
     color: #f4511e;
     display: inline-block;
     cursor: pointer;
     transition: all 0.3s ease-out;
 }
 
-.feature-logo:hover {
+.feature-logo-software:hover {
     transform: rotateY(360deg);
     -webkit-transform: rotateY(360deg);
     -moz-transform: rotateY(360deg);
@@ -867,6 +912,26 @@ feature-item-container {
     }
 }
 /*About Company header*/
+.aboutCompany-clients > a.btn-border-blue {
+    position:relative;
+    left:0%;
+    border: 1px solid #00adf1;
+    font-size:20px;
+    height: 44px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 0 6px;
+    line-height: 44px;
+    font-weight:600;
+    color: #00adf1;
+    text-transform: uppercase;
+}
+
+.aboutCompany-clients > a.btn-border-blue:hover {
+    background: #00adf1;
+    color: #fff;
+}
+
 .aboutCompany-header {
     display: inline-block;
 }
@@ -876,7 +941,7 @@ feature-item-container {
     float: right;
 }
 
-.aboutCompany-clients a:link,
+/*.aboutCompany-clients a:link,
 .aboutCompany-clients a:visited {
     background-color: white;
     color: black;
@@ -894,7 +959,7 @@ feature-item-container {
 .aboutCompany-clients a:active {
     background-color: darkgray;
     color: black;
-}
+}*/
 
 /*SOFTWARE Page Styles begin*/
 .software-feature-item {
@@ -1017,16 +1082,6 @@ feature-item-container {
     height: 100%;
 }
 
-.panel {
-    border: 1px solid #f4511e;
-    border-radius: 0;
-    transition: box-shadow 0.5s;
-}
-
-.panel:hover {
-    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
-}
-
 /*CONTACTS Page*/
 .btn-zoom-small {
     color: #2a5e88;
@@ -1050,4 +1105,16 @@ feature-item-container {
 .contacts-container {
     padding-top:0;
     margin-top:0;
+}
+
+/* LOGIN PAGE */
+div.register p  {
+    display:inline-block;
+}
+div.register p > a {
+    display: block;
+    margin-right:15px;
+}
+div.form-group.register {
+    margin-bottom:1px!important;
 }

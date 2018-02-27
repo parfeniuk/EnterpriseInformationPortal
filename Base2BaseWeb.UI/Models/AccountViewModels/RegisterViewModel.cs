@@ -11,7 +11,7 @@ namespace Base2BaseWeb.UI.Models.AccountViewModels
         [Required(ErrorMessage = "Поле {0} является обязательным")]
         [StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
         [Display(Name = "Имя")]
-        public string FirstName { get; set; }
+        public string UserName { get; set; }
 
         //[Required(ErrorMessage = "Поле {0} является обязательным")]
         //[StringLength(50, ErrorMessage = "{0} не должно превышать {1} символов")]
