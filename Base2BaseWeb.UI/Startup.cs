@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Threading.Tasks;
+using Base2BaseWeb.DataLayer.Entities;
+using Base2BaseWeb.DataLayer.Repository;
 using Base2BaseWeb.Identity.Models;
 using Base2BaseWeb.Identity.Store;
+using Base2BaseWeb.UI.Helpers;
 using Base2BaseWeb.UI.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -15,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.WebEncoders;
+using RepositoryGeneric;
 
 namespace Base2BaseWeb.UI
 {
@@ -30,7 +34,7 @@ namespace Base2BaseWeb.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //  Add reference to DbContext in a different Assembly (Base2BaseWeb.Identity)
+            //  Add reference to AppIdentityContext in a different Assembly (Base2BaseWeb.Identity)
             services.AddDbContext<AppIdentityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly("Base2BaseWeb.Identity")));
@@ -38,6 +42,18 @@ namespace Base2BaseWeb.UI
             services.AddIdentity<AppUser, AppRole>()
                 .AddEntityFrameworkStores<AppIdentityContext>()
                 .AddDefaultTokenProviders();
+
+            // Add reference to Base2BaseWebContext in a different Assembly (Base2BaseWeb.DataLayer)
+            services.AddDbContext<Base2BaseWebContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("Base2BaseWebConnection"),
+                b => b.MigrationsAssembly("Base2BaseWeb.DataLayer")));
+            services.AddScoped<DbContext, Base2BaseWebContext>();
+
+            // Add RepositoryContext
+            services.AddTransient<IRepositoryContextBase, RepositoryContext>();
+
+            // Add FilesHelper
+            services.AddTransient<IFilesHelper, FilesHelper>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -87,6 +103,8 @@ namespace Base2BaseWeb.UI
 
             services.AddOptions();
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("Base2BaseServer"));
+            services.Configure<ImageSettings>(Configuration.GetSection("ImageSettings"));
+            //services.AddSingleton<IConfiguration>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,10 +118,10 @@ namespace Base2BaseWeb.UI
             }
             else
             {
-                //app.UseBrowserLink();
-                //app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+                app.UseDeveloperExceptionPage();
 
-                app.UseExceptionHandler("/Home/Error");
+                //app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();

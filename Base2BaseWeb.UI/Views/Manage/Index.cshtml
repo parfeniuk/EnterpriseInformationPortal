@@ -3,6 +3,7 @@
     ViewData["Title"] = "Профиль пользователя";
     ViewData.AddActivePage(ManageNavPages.Index);
 }
+<link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
 
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 <div class="container-fluid">
@@ -12,7 +13,7 @@
                 <div class="form-group">
                     <label asp-for="Email"></label>
                     <div class="input-group">
-                        <input asp-for="Email" class="form-control" disabled/>
+                        <input asp-for="Email" class="form-control" disabled />
                         <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
                     </div>
                     <span asp-validation-for="Email" class="text-danger"></span>
@@ -29,7 +30,8 @@
                          data-date-autoclose="true"
                          data-date-format="dd.mm.yyyy"
                          data-date-language="@System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0,2)">
-                        <input asp-for="DateBirth" type="text" class="form-control" name="DateBirth" />
+                        <input asp-for="DateBirth" type="text" class="form-control" 
+                               name="DateBirth" />
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th-large"></span>
                         </div>
@@ -60,9 +62,5 @@
                 <button type="submit" class="btn btn-main-page">Сохранить</button>
             </div>
         </div>
-   </form>
+    </form>
 </div>
-
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}

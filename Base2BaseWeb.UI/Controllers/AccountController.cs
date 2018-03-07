@@ -85,7 +85,10 @@ namespace Base2BaseWeb.UI.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Manage");
+                            //if (await _userManager.IsInRoleAsync(appUser, "Admin"))
+                            //    return RedirectToAction("Index", "Roles", new { area = "Admin" });
+                            //else return RedirectToAction("Index", "Manage");
                         }
                     }
                     //if (result.RequiresTwoFactor)

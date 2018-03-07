@@ -1,0 +1,29 @@
+﻿@model ProductCategoryEditViewModel
+@{
+    ViewData["Title"] = "Редактирование категории";
+}
+
+<div class="container-fluid">
+    <form method="post" asp-action="Edit" asp-area="Admin" enctype="multipart/form-data">
+        <div class="row">
+            <h4>@ViewData["Title"]</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <input asp-for="ProductCategoryId" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="submit" value="Сохранить изменения" class="btn btn-main-page" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

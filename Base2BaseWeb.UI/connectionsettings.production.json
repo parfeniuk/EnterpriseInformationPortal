@@ -1,5 +1,6 @@
 ﻿{
   "ConnectionStrings": {
-    "DefaultConnection": "server=localhost;database=Base2Base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseIdentity"
+    "DefaultConnection": "server=tcp:127.0.0.1,1433;database=Base2Base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseIdentity",
+    "Base2BaseWebConnection": "Server=tcp:127.0.0.1,1433;Database=base2base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseWeb"
   }
 }

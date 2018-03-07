@@ -18,7 +18,7 @@
 x64/
 x86/
 bld/
-[Bb]in/
+[Bb]in/`
 [Oo]bj/
 [Ll]og/
 
@@ -28,10 +28,10 @@ appsettings.staging.json
 appsettings.production.json
 
 # ignore connectionstrings
-connectionstrings.json
-connectionstrings.development.json
-connectionstrings.staging.json
-connectionstrings.production.json
+connectionsettings.json
+connectionsettings.development.json
+connectionsettings.staging.json
+connectionsettings.production.json
 
 # ignore mailsettings
 mailsettings.json

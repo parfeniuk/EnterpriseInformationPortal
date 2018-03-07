@@ -5,7 +5,11 @@ VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Base2BaseWeb.UI", "Base2BaseWeb.UI\Base2BaseWeb.UI.csproj", "{95A79A7F-28F8-457D-B021-E65C56C3A268}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base2BaseWeb.Identity", "Base2BaseWeb.Identity\Base2BaseWeb.Identity.csproj", "{01F45E7D-EDB1-4B10-BFA8-9C7E2F30BB5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Base2BaseWeb.Identity", "Base2BaseWeb.Identity\Base2BaseWeb.Identity.csproj", "{01F45E7D-EDB1-4B10-BFA8-9C7E2F30BB5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryGeneric", "RepositoryGeneric\RepositoryGeneric.csproj", "{A5F140C7-9F29-40C5-956C-835E01E6FC8A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Base2BaseWeb.DataLayer", "Base2BaseWeb.DataLayer\Base2BaseWeb.DataLayer.csproj", "{EAD8A603-BECD-4C58-9EAF-5B18C065AFAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{01F45E7D-EDB1-4B10-BFA8-9C7E2F30BB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01F45E7D-EDB1-4B10-BFA8-9C7E2F30BB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01F45E7D-EDB1-4B10-BFA8-9C7E2F30BB5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5F140C7-9F29-40C5-956C-835E01E6FC8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5F140C7-9F29-40C5-956C-835E01E6FC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5F140C7-9F29-40C5-956C-835E01E6FC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5F140C7-9F29-40C5-956C-835E01E6FC8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD8A603-BECD-4C58-9EAF-5B18C065AFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD8A603-BECD-4C58-9EAF-5B18C065AFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD8A603-BECD-4C58-9EAF-5B18C065AFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD8A603-BECD-4C58-9EAF-5B18C065AFAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

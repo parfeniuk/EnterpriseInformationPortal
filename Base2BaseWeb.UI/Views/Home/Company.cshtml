@@ -12,7 +12,8 @@
                     О нас
                 </h1>
                 <h1 class="aboutCompany-clients">
-                    <a asp-controller="Home" asp-action="Clients" class="btn btn-border-blue">Наши клиенты</a></h1>
+                    <a asp-controller="Home" asp-action="Clients" class="btn btn-border-blue">Наши клиенты</a>
+                </h1>
             </div>
 
         </div>
@@ -46,3 +47,6 @@
         </div>
     </div>
 </div>
+@section Footer{
+    @Html.Partial("_FooterPartial")
+}

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="2.6.362" />
     <PackageReference Include="MailKit" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
@@ -20,9 +21,11 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Views\Products\" />
+    <Folder Include="wwwroot\images\ClientImages\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Base2BaseWeb.DataLayer\Base2BaseWeb.DataLayer.csproj" />
     <ProjectReference Include="..\Base2BaseWeb.Identity\Base2BaseWeb.Identity.csproj" />
   </ItemGroup>
 

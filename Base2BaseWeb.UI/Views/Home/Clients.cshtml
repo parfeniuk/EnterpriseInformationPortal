@@ -1,34 +1,30 @@
-﻿
+﻿@model IQueryable<Client>
 @{
     ViewData["Title"] = "Наши клиенты";
 }
 
 <!--Clients-->
-<div class="clients">
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Наши Клиенты</h2>
-        </div>
-        @{
-            int count = 8;
-            string name = "Company ";
-            int ind = 0;
-            for (int i = 0; i < count; i++)
+<div class="container">
+    <div class="clients">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Наши Клиенты</h2>
+            </div>
+            @foreach (var client in Model)
             {
-                ind = i + 1;
                 <div class="col-md-3 text-center">
-                    <div class="thumbnail">
-                        <img class="img-responsive" src="http://placehold.it/500x300" alt="">
-                        <div class="caption">
+                    <div class="image-container-clients">
+                        <img class="img-responsive" src="@client.ClientImages.FirstOrDefault().Path" alt="default image">
+                        <div class="description-container">
                             <strong class="text-capitalize text-primary">
-                                @name @ind
+                                @client.Name
                             </strong>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
+                            <p>@client.ShortDescription</p>
                         </div>
                     </div>
                 </div>
             }
-        }
+        </div>
     </div>
 </div>
 

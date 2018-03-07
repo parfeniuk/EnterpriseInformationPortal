@@ -1,0 +1,8 @@
+﻿{
+  "ImageSettings": {
+    "ClientImages": "images\\ClientImages\\",
+    "ProductSubCategoryImages": "images\\ProductSubCategoryImages\\",
+    "ProductImages": "images\\ProductImages\\",
+    "CompanyImages": "images\\CompanyImages\\"
+  }
+}

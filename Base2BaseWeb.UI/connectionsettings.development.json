@@ -1,5 +1,6 @@
 ﻿{
   "ConnectionStrings": {
-    "DefaultConnection": "Server=base2base.com.ua,14337;Database=base2base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseIdentity"
+    "DefaultConnection": "Server=base2base.com.ua,14337;Database=base2base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseWeb",
+    "Base2BaseWebConnection": "Server=base2base.com.ua,14337;Database=base2base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseWeb"
   }
 }

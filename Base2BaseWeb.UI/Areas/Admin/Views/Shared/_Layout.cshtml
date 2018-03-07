@@ -1,43 +1,54 @@
 ﻿@{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-<link href="~/css/personalCabinet.css" rel="stylesheet" />
-
-
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
-            <h3 class="text-center">Панель администратора</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="col-md-3">
+        <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="avatar-container">
                     <img class="avatar-circle img-responsive center-block" src="~/images/DefaultImages/DefaultUser.jpg" />
                 </div>
             </div>
-            <div class="col-md-9">
-                <h3>@User.Identity.Name</h3>
+            <div class="col-md-8">
+                <div>
+                    <h4>@User.Identity.Name</h4>
+                </div>
             </div>
             <div class="col-md-12">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class=""><a asp-action="UserList">Пользователи</a></li>
-                    <li class=""><a asp-action="Index">Роли</a></li>
-                    <li class=""><a asp-action="">Контент сайта</a></li>
-                </ul>
+                <div>
+                    @*@await Html.PartialAsync("_ManageNav")*@
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class=""><a asp-controller="Roles" asp-action="UserList">Пользователи</a></li>
+                        <li class=""><a asp-controller="Roles" asp-action="Index">Роли</a></li>
+                        @*<li class=""><a asp-action="">Контент сайта</a></li>*@
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Контент сайта<b class="caret"></b></a>
+                            <ul class="dropdown-menu sub-menu">
+                                <li><a asp-controller="Clients" asp-action="Index">Наши клиенты</a></li>
+                                <li class="divider"></li>
+                                <li><a asp-controller="ProductCategories" asp-action="Index">Категории продуктов</a></li>
+                                <li><a asp-controller="ProductSubcategories" asp-action="Index">Каталог продуктов</a></li>
+                                <li><a asp-controller="Products" asp-action="Index">Описание ПО</a></li>
+                                <li><a href="#">Описание оборудования</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Для магазина</a></li>
+                                <li><a href="#">Для супермаркета</a></li>
+                                <li><a href="#">Для кафе</a></li>
+                                <li><a href="#">Для киосков</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-         </div>
-        <div class="col-md-9">
+        </div>
+        <div class="col-md-10">
             @RenderBody()
         </div>
     </div>
 </div>
 
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>*@
-@*<script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.uk.min.js"></script>*@
-
-@section Scripts {
-    @*@RenderSection("Scripts", required: false)*@
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+@section Scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="~/js/productCatalogLoad.js"></script>
 }

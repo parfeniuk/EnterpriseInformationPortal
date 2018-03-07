@@ -1,40 +1,40 @@
 ﻿@{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet" />
-<link href="~/css/personalCabinet.css" rel="stylesheet" />
+@*<link href="~/css/personalCabinet.css" rel="stylesheet" />*@
 
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
-            <h3 class="text-center">Персональный кабинет</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="col-md-3">
+        <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="avatar-container">
                     <img class="avatar-circle img-responsive center-block" src="~/images/DefaultImages/DefaultUser.jpg" />
                 </div>
             </div>
-            <div class="col-md-9">
-                <h4>@User.Identity.Name</h4>
+            <div class="col-md-8">
+                <div>
+                    <h4>@User.Identity.Name</h4>
+                </div>
             </div>
             <div class="col-md-12">
-                @await Html.PartialAsync("_ManageNav")
+                <div>
+                    @await Html.PartialAsync("_ManageNav")
+                </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             @RenderBody()
         </div>
     </div>
 </div>
 
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>*@
-@*<script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.uk.min.js"></script>*@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
-@RenderSection("Scripts", required: false)
-
+@section Scripts
+    {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    
+    <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.uk.js"></script>
+    <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
+}
 

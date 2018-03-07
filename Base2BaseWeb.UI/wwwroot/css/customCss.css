@@ -166,7 +166,7 @@ body {
 }
 .navbar-nav.menu-static-right {
     position: relative;
-    left: 37%;
+    left: 33%;
     transform: translateX(-50%);
 }
 .nav.navbar-nav.menu-static-right > li > a {
@@ -199,11 +199,17 @@ body {
     position: relative;
     left: 30.0%;
     transform: translateX(-50%);
+    padding-top:7px;
+    padding-bottom:4px;
+}
+.navbar-nav.menu-fixed-right div {
+    display:inline-block;
+    margin-right:20px;
 }
 .menu-fixed-center a {
     text-transform: uppercase;
     border-bottom: 3px solid #fff;
-    padding-bottom:30px!important;
+    /*padding-bottom:30px!important;*/
     color:#000;
 }
 .menu-fixed-center a {

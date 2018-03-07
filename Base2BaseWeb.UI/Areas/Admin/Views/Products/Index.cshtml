@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Наши продукты";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <a asp-action="Create" class="btn btn-main-page">Добавить новый продукт</a>
+        </div>
+    </div>
+    <div class="row">
+        <h4>Список продуктов:</h4>
+        <div class="col-md-12">
+            <table class="table table-hover table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">Продукт</th>
+                        <th class="col-md-2">Предназначение продукта</th>
+                        <th class="col-md-3">Краткое описание</th>
+                        <th class="col-md-2">Изображение</th>
+                        <th class="col-md-1"></th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Title</td>
+                        <td>@product.ShortDescription</td>
+                        <td>
+                            <div class="image-container-admin">
+                                @if (product.ProductImages.FirstOrDefault() == null)
+                                {
+                                    <img src="http://placehold.it/100x50" alt="default logo" title="@product.Name logo" /> 
+                                }
+                                else
+                                {
+                                    <img src = "@product.ProductImages.Where(i => i.IsPoster == true).FirstOrDefault().Path" 
+                                            alt="@product.Name logo" title="@product.Name logo"/>
+                                }
+                            </div>
+                        </td>
+                        <td><a class="btn btn-warning" asp-action="Edit" asp-route-id="@product.ProductId.ToString()">Редактировать</a></td>
+                        <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@product.ProductId.ToString()">Удалить</a></td>
+                    </tr>
+                    }
+               </tbody>
+            </table>
+        </div>
+    </div>
+</div>

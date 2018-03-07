@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Client>
+
+@{
+    ViewData["Title"] = "Клиенты";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <a asp-action="Create" class="btn btn-main-page">Добавить нового клиента</a>
+        </div>
+    </div>
+    <div class="row">
+        <h4>Список клиентов:</h4>
+        <div class="col-md-12">
+            <table class="table table-hover table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">Клиент</th>
+                        <th class="col-md-3">Краткое описание</th>
+                        <th class="col-md-3">Сайт</th>
+                        <th class="col-md-2">Изображение</th>
+                        <th class="col-md-1"></th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var client in Model)
+                    {
+                    <tr>
+                        <td>@client.Name</td>
+                        <td>@client.ShortDescription</td>
+                        <td><a href="@client.HttpUrl" target="_blank">@client.HttpUrl</a></td>
+                        <td>
+                            <div class="image-container-admin">
+                                @if (client.ClientImages.FirstOrDefault() == null)
+                                {
+                                    <img src="http://placehold.it/100x50" alt="default logo" title="@client.Name logo" /> 
+                                }
+                                else
+                                {
+                                    <img src = "@client.ClientImages.Where(i => i.IsPoster == true).FirstOrDefault().Path" 
+                                            alt="@client.Name logo" title="@client.Name logo"/>
+                                }
+                            </div>
+                        </td>
+                        <td><a class="btn btn-warning" asp-action="Edit" asp-route-id="@client.ClientId.ToString()">Редактировать</a></td>
+                        <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@client.ClientId.ToString()">Удалить</a></td>
+                    </tr>
+                    }
+               </tbody>
+            </table>
+        </div>
+    </div>
+</div>

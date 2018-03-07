@@ -20,14 +20,6 @@
                     <li><span class="btn-zoom-small fa-li fa fa-mobile fa-lg"></span> (093) 225-24-05</li>
                 </ul>
             </div>
-
-            @*<ul class="fa-ul contacts-phones">
-
-            <li><span class="btn-zoom-small fa-li fa fa-phone"></span> (044) 225-24-05</li>
-            <li><span class="btn-zoom-small fa-li fa fa-mobile fa-lg"></span> (050) 225-24-05</li>
-            <li><span class="btn-zoom-small fa-li fa fa-mobile fa-lg"></span> (068) 225-24-05</li>
-            <li><span class="btn-zoom-small fa-li fa fa-mobile fa-lg"></span> (093) 225-24-05</li>
-        </ul>*@
             <p><span class="btn-zoom-small fa fa-envelope-o fa-lg"></span> support@base2base.com.ua</p>
             <div class="contacts-social-media">
                 <a href="https://ru-ru.facebook.com/Base2BaseLtd/" target="_blank">
@@ -56,6 +48,9 @@
             </div>
         </div>
     </div>
+    @section Footer{
+        @Html.Partial("_FooterPartial")
+    }
     <!-- Add Google Maps -->
     <div id="googleMap" style="height:280px;width:100%;"></div>
     @section Scripts

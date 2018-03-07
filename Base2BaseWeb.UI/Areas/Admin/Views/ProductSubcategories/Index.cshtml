@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ProductCategory>
+
+@{
+    ViewData["Title"] = "Каталог продуктов";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <h4>@ViewData["Title"]:</h4>
+        <div class="col-md-3">
+            <div class="form-group">
+                <select class="form-control" id="productCategories">
+                    @foreach (var category in Model)
+                      {
+                        <option value="@category.ProductCategoryId">@category.ProductCategoryName</option>
+                      }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                 <a id="btnCreateProductSubcategory" class="btn btn-primary"
+                    data-request-url="@Url.Action("Create","ProductSubcategories")" 
+                    asp-action="Create" >Добавить продукт</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" id="productCatalog" 
+             data-request-url="@Url.Action("ProductCatalog","ProductSubcategories")">
+
+        </div>
+    </div>
+</div>
