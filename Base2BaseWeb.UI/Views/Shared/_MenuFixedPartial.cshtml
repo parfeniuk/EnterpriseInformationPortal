@@ -22,7 +22,7 @@
                         <li><a data-unique-attr="1" asp-area="" asp-controller="Manage" asp-action="Index">Мой кабинет</a></li>
                         @if (isAdmin)
                         {
-                            <li><a data-unique-attr="2" asp-area="Admin" asp-controller="Roles" asp-action="Index">Пользователи и роли</a></li>
+                            <li><a data-unique-attr="2" asp-area="Admin" asp-controller="Roles" asp-action="Index">Администрирование</a></li>
                         }
                     </ul>
                 </div>
@@ -45,10 +45,10 @@
                         <li><a data-unique-attr="5" asp-area="" asp-controller="Home" asp-action="Equipment">Оборудование</a></li>
                     </ul>
                     <div class="navbar-nav menu-fixed-right" id="menu-fixed-right">
-                        <div class="menu-phone-numbers">
+                        @*<div class="menu-phone-numbers">
                             <span class="fa fa-phone"></span>
                             <span> (044) <strong class="menu-phone-number">225-24-05</strong></span>
-                        </div>
+                        </div>*@
                         <div class="menu-contacts">
                             <a class="btn btn-border-blue" asp-controller="Home" asp-action="Contacts">
                                 <span class="fa fa-envelope"></span> Написать нам

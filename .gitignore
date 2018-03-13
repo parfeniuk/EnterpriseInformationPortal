@@ -39,6 +39,13 @@ mailsettings.development.json
 mailsettings.staging.json
 mailsettings.production.json
 
+# ignore adminsettings
+adminsettings.json
+adminsettings.development.json
+adminsettings.staging.json
+adminsettings.production.json
+
+
 # Visual Studio 2015 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot

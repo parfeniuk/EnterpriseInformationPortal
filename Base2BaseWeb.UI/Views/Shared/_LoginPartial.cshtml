@@ -7,21 +7,21 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-<ul class="nav navbar-nav menu-static-right" id="menu-static-right">
-    <li>
-        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" class="btn btn-link">
-            <span class="fa fa-user"></span> @UserManager.GetUserName(User)
-        </a>
-    </li>
-    <li>
-        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-            <button type="submit" class="btn btn-link">
-                <span class="fa fa-sign-out"></span> Выход
-            </button>
-        </form>
+    <ul class="nav navbar-nav menu-static-right" id="menu-static-right">
+        <li>
+            <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" class="btn btn-link">
+                <span class="fa fa-user"></span> @UserManager.GetUserName(User)
+            </a>
+        </li>
+        <li>
+            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                <button type="submit" class="btn btn-link">
+                    <span class="fa fa-sign-out"></span> Выход
+                </button>
+            </form>
 
-    </li>
-</ul>
+        </li>
+    </ul>
 }
 else
 {
@@ -31,5 +31,17 @@ else
                 <span class="fa fa-sign-in"></span> Вход
             </a>
         </li>
+        <li>
+            <a class="btn btn-link" href="#">
+                <span class="fa fa-phone"></span>
+                <span>(044) <strong>225-24-05</strong></span>
+            </a>
+
+            @*<span> (044) <strong>225-24-05</strong></span>*@
+        </li>
     </ul>
+    @*<div class="menu-phone-numbers">
+        <span class="fa fa-phone"></span>
+        <span> (044) <strong class="menu-phone-number">225-24-05</strong></span>
+    </div>*@
 }

@@ -154,6 +154,10 @@ body {
 .menu-static-right a, button {
     color: #00adf1!important;
 }
+.nav.navbar-nav.menu-static-right span {
+    display:inline-block;
+}
+
 .navbar-nav.menu-static-left {
     position: relative;
     left: 11.5%;
@@ -197,7 +201,7 @@ body {
 }
 .navbar-nav.menu-fixed-right {
     position: relative;
-    left: 30.0%;
+    left: 20.0%;
     transform: translateX(-50%);
     padding-top:7px;
     padding-bottom:4px;

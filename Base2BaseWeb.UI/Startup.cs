@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Base2BaseWeb.DataLayer.Entities;
 using Base2BaseWeb.DataLayer.Repository;
 using Base2BaseWeb.Identity.Models;
+using Base2BaseWeb.Identity.Services;
 using Base2BaseWeb.Identity.Store;
 using Base2BaseWeb.UI.Helpers;
 using Base2BaseWeb.UI.Services;
@@ -17,6 +18,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.WebEncoders;
 using RepositoryGeneric;
 
@@ -104,12 +106,13 @@ namespace Base2BaseWeb.UI
             services.AddOptions();
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("Base2BaseServer"));
             services.Configure<ImageSettings>(Configuration.GetSection("ImageSettings"));
-            //services.AddSingleton<IConfiguration>(Configuration);
+            services.Configure<AdminSettings>(Configuration.GetSection("AdminSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-            AppIdentityContext context, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
+            AppIdentityContext identityContext, Base2BaseWebContext base2BaseWebContext,
+            UserManager<AppUser> userManager, RoleManager<AppRole> roleManager,IOptions<AdminSettings> options)
         {
             if (env.IsDevelopment())
             {
@@ -125,6 +128,10 @@ namespace Base2BaseWeb.UI
             }
 
             app.UseStaticFiles();
+
+            // Apply migration
+            AppIdentityContextInitializer.Initialize(identityContext,userManager,roleManager,options);
+            Base2BaseWebContextInitializer.Initialize(base2BaseWebContext);
 
             app.UseAuthentication();
 

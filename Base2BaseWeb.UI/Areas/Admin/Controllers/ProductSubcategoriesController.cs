@@ -110,16 +110,21 @@ namespace Base2BaseWeb.UI.Areas.Admin.Controllers
 
             if (productSubCategory == null) return NotFound($"Продукт с id: {id} не найден");
 
-            ProductSubcategoryEditViewModel model = new ProductSubcategoryEditViewModel
+            ProductSubcategoryEditViewModel model = new ProductSubcategoryEditViewModel();
+            model.ProductSubcategoryId = id;
+            model.Name = productSubCategory.Name;
+            model.Title = productSubCategory.Title;
+            model.ShortDescription = productSubCategory.ShortDescription;
+            if (productSubCategory.ProductSubCategoryImages.FirstOrDefault() != null)
             {
-                ProductSubcategoryId = id,
-                Name = productSubCategory.Name,
-                Title=productSubCategory.Title,
-                ShortDescription = productSubCategory.ShortDescription,
-                ImagePath = productSubCategory.ProductSubCategoryImages.FirstOrDefault()?.Path,
-                ImageIsPoster = productSubCategory.ProductSubCategoryImages.FirstOrDefault().IsPoster
-            };
-
+                model.ImagePath = productSubCategory.ProductSubCategoryImages.FirstOrDefault().Path;
+                model.ImageIsPoster = productSubCategory.ProductSubCategoryImages.FirstOrDefault().IsPoster;
+            }
+            else
+            {
+                model.ImagePath = "";
+                model.ImageIsPoster = false;
+            }
             return View(model);
         }
 
@@ -160,10 +165,11 @@ namespace Base2BaseWeb.UI.Areas.Admin.Controllers
                         // Remove existed File from Server
                         string pathDir = _optionsAccessor.Value.ProductSubCategoryImages;
                         string pathExistedFile = productSubCategory.ProductSubCategoryImages
-                            .FirstOrDefault().Path.Substring(1);
-
-                        _filesHelper.Delete(pathExistedFile);
-
+                            .FirstOrDefault()?.Path.Substring(1);
+                        if (!string.IsNullOrEmpty(pathExistedFile))
+                        {
+                            _filesHelper.Delete(pathExistedFile);
+                        }
                         // Copy New File to Server
                         string pathNewFileName = Guid.NewGuid().ToString();
                         string pathNewFileExt = Path.GetExtension(model.ImageUpload.FileName);
@@ -229,6 +235,5 @@ namespace Base2BaseWeb.UI.Areas.Admin.Controllers
             _context.Dispose();
             base.Dispose(disposing);
         }
-
     }
 }

@@ -24,7 +24,8 @@ namespace Base2BaseWeb.UI
                     IHostingEnvironment env = builderContext.HostingEnvironment;
                     config.AddJsonFile($"connectionsettings.{env.EnvironmentName}.json")
                     .AddJsonFile($"mailsettings.{env.EnvironmentName}.json")
-                    .AddJsonFile($"imagesettings.{env.EnvironmentName}.json");
+                    .AddJsonFile($"imagesettings.{env.EnvironmentName}.json")
+                    .AddJsonFile($"adminsettings.json");
                 })
                 .UseStartup<Startup>()
                 .Build();
