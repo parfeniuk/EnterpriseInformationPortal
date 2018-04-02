@@ -7,7 +7,7 @@ using System.Text;
 
 namespace RepositoryGeneric
 {
-    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
+    public class RepositoryBase<TEntity> : IRepositoryContext<TEntity>
         where TEntity : class, new()
     {
         private DbContext _context;

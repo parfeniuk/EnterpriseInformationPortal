@@ -8,7 +8,8 @@
       "wwwroot/css/site.css",
       "wwwroot/css/customCss.css",
       "wwwroot/css/bootstrap-social.css",
-      "wwwroot/css/customForm.css"
+      "wwwroot/css/customForm.css",
+      "wwwroot/css/portalStyles.css"
     ]
   },
   {

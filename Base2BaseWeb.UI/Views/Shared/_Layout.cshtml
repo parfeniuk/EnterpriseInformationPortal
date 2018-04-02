@@ -8,16 +8,19 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="~/lib/Font-Awesome/css/font-awesome.css" rel="stylesheet" />
         <link href="~/css/customCss.css" rel="stylesheet" />
-        <link href="~/css/customForm.css" rel="stylesheet"/>
-        <link href="~/css/bootstrap-social.css" rel="stylesheet"/>
+        <link href="~/css/customForm.css" rel="stylesheet" />
+        <link href="~/css/bootstrap-social.css" rel="stylesheet" />
+        <link href="~/css/portalStyles.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link href="~/lib/Font-Awesome/css/font-awesome.min.css" rel="stylesheet" />
     </environment>
@@ -58,6 +61,10 @@
         <environment include="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+            <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
+            <script src="~/lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.uk.js"></script>
+            <script src="~/lib/bootstrap-treeview/src/js/bootstrap-treeview.js"></script>
             <script src="~/js/site.js" asp-append-version="true"></script>
             <script src="~/js/customAlignNavBar.js"></script>
             <script src="~/js/addActiveClass.js"></script>
@@ -77,6 +84,9 @@
                     crossorigin="anonymous"
                     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
             </script>
+            <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
+            <script src="~/lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.uk.js"></script>
+            <script src="~/lib/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
             <script src="~/js/site.min.js" asp-append-version="true"></script>
         </environment>
 

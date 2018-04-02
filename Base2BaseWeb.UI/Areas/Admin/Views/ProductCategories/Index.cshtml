@@ -12,24 +12,42 @@
     </div>
     <div class="row">
         <h4>Категории продуктов:</h4>
-        <div class="col-md-12">
+        <div class="col-md-3" id="treeCategories">
+            
+        </div>
+        <div class="col-md-9">
             <table class="table table-hover table-responsive table-striped">
                 <thead>
                     <tr>
-                        <th class="col-md-10">Категория</th>
+                        <th class="col-md-5">Категория</th>
+                        <th class="col-md-5">Подкатегория</th>
                         <th class="col-md-1"></th>
                         <th class="col-md-1"></th>
                     </tr>
                </thead>
                 <tbody>
-                    @foreach (var category in Model)
-                    {
+                    @{
+                        @foreach (var category in Model.OrderBy(x => x.ProductCategoryName))
+                        {
                     <tr>
                         <td>@category.ProductCategoryName</td>
+                        <td>
+                            <ul>
+                                @foreach (var child in category.AllChildren())
+                                {
+                                    @if(category.ProductCategoryName!= child.ProductCategoryName)
+                                    { 
+                                        <li>@child.ProductCategoryName</li>
+                                    }
+                                }
+                            </ul>
+                        </td>
                         <td><a class="btn btn-warning" asp-action="Edit" asp-route-id="@category.ProductCategoryId.ToString()">Редактировать</a></td>
                         <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@category.ProductCategoryId.ToString()">Удалить</a></td>
                     </tr>
-                    }
+                        }
+                     }
+
                </tbody>
             </table>
         </div>

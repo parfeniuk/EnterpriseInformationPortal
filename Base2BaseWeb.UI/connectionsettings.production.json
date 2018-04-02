@@ -1,6 +1,7 @@
 ﻿{
   "ConnectionStrings": {
     "DefaultConnection": "server=tcp:127.0.0.1,1433;database=Base2Base;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseIdentity",
-    "Base2BaseWebConnection": "Server=tcp:127.0.0.1,1433;Database=base2base;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseWeb"
+    "Base2BaseWebConnection": "Server=tcp:127.0.0.1,1433;Database=base2base;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseWeb",
+    "B2BTest": "Server=192.168.1.102,1433;Database=b2b-test;User Id=base2base-test-user;Password=bW3GtOUQ02o0;App=B2BTest"
   }
 }

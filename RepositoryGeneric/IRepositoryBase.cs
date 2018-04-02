@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RepositoryGeneric
 {
-    public interface IRepositoryBase<TEntity>
+    public interface IRepositoryContext<TEntity>
     {
         IQueryable<TEntity> GetAll();
         TEntity Find(object key);

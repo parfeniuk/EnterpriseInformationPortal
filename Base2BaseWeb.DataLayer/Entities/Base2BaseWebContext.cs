@@ -15,7 +15,15 @@ namespace Base2BaseWeb.DataLayer.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Define composite key for joining entity ProductProdAttribute
-            modelBuilder.Entity<ProductProdAttribute>().HasKey(entity => new { entity.ProdAttributeId, entity.ProductId });
+            modelBuilder
+                .Entity<ProductProdAttribute>()
+                .HasKey(entity => new { entity.ProdAttributeId, entity.ProductId });
+            // Self-Reference Table ProductCategory Config
+            modelBuilder
+                .Entity<ProductCategory>()
+                .HasOne(p => p.Parent)
+                .WithMany(x => x.Children)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         DbSet<Base2BaseFeature> Base2BaseFeatures { get; set; }
@@ -28,7 +36,6 @@ namespace Base2BaseWeb.DataLayer.Entities
         DbSet<Company> Companies { get; set; }
         DbSet<CompanyImage> CompanyImages { get; set; }
         DbSet<Product> Products { get; set; }
-        DbSet<ProductSubCategory> ProductSubCategories { get; set; }
         DbSet<ProductCategory> ProductCategories { get; set; }
         DbSet<ProductFeature> ProductFeatures { get; set; }
         DbSet<ProductImage> ProductImages { get; set; }

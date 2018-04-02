@@ -13,7 +13,7 @@ namespace RepositoryGeneric
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public IRepositoryBase<TEntity> Set<TEntity>() where TEntity : class, new()
+        public IRepositoryContext<TEntity> Set<TEntity>() where TEntity : class, new()
         {
             return new RepositoryBase<TEntity>(_context);
         }

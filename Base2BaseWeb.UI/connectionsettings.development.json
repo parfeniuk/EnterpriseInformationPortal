@@ -1,6 +1,7 @@
 ﻿{
   "ConnectionStrings": {
     "DefaultConnection": "Server=base2base.com.ua,14337;Database=base2base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseWeb",
-    "Base2BaseWebConnection": "Server=base2base.com.ua,14337;Database=base2base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseWeb"
+    "Base2BaseWebConnection": "Server=base2base.com.ua,14337;Database=base2base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseWeb",
+    "B2BTest": "Server=sql-001.base2base.com.ua,14332;Database=b2b-test;User Id=base2base-test-user;Password=bW3GtOUQ02o0;App=B2BTest"
   }
 }

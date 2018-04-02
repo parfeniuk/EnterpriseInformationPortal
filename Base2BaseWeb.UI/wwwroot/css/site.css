@@ -81,6 +81,9 @@ li a[disabled="disabled"]:hover {
 button .btn-text-white {
     color: #fff;
 }
+.btn-text-white a {
+    color: #fff;
+}
 /* Active class styles for clicked links in Menu */
 ul.menu-fixed-center li a.active {
     border-color: #f4511e;

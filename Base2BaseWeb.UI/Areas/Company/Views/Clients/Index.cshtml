@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ClientsIndexViewModel>
+
+@{
+    ViewData["Title"] = "Клиенты";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th>Наименование клиента</th>
+                        <th>Группа</th>
+                        <th>Контактное лицо</th>
+                        <th>Телефон</th>
+                        <th>Сальдо</th>
+                        <th>Дата подписания</th>
+                        <th>Дата окончания</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var client in Model)
+                    {
+                    <tr>
+                        <td><a asp-area="Company" asp-action="Edit" asp-route-id="@client.Id">@client.Name</a></td>
+                        <td>@client.GroupName</td>
+                        <td>@client.ContactName</td>
+                        <td>@client.PhoneNumber</td>
+                        <td>@client.Balance.GetValueOrDefault().ToString("N2") </td>
+                        <td>@client.ContractStartDate.GetValueOrDefault().ToShortDateString()</td>
+                        <td>@client.ContractEndDate.GetValueOrDefault().ToShortDateString()</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

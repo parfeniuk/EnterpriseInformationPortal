@@ -1,0 +1,139 @@
+﻿@model ClientPaymentDetailsEditViewModel
+<form class="form-horizontal" method="post" asp-action="ClientPaymentDetails" asp-controller="Clients" asp-area="Company">
+    <div class="paymentDetails-container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="BankName" class="control-label col-md-3 text-capitalize"></label>
+                        <div class="col-md-9">
+                            <input asp-for="BankName" class="form-control" />
+                        </div>
+                        <span asp-validation-for="BankName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BankAccount" class="control-label col-md-3 text-capitalize"></label>
+                        <div class="col-md-9">
+                            <input asp-for="BankAccount" class="form-control" />
+                        </div>
+                        <span asp-validation-for="BankAccount" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Mfo" class="col-md-6 control-label text-capitalize"></label>
+                        <div class="col-md-6">
+                            <input asp-for="Mfo" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Mfo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Okpo" class="col-md-6 control-label text-capitalize"></label>
+                        <div class="col-md-6">
+                            <input asp-for="Okpo" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Okpo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Certificate" class="col-md-6 control-label text-capitalize"></label>
+                        <div class="col-md-6">
+                            <input asp-for="Certificate" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Certificate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="FiscalNumber" class="col-md-6 control-label text-capitalize"></label>
+                        <div class="col-md-6">
+                            <input asp-for="FiscalNumber" class="form-control" />
+                        </div>
+                        <span asp-validation-for="FiscalNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="contract-container panel panel-default">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="col-md-offset-1 panel-heading">
+                    <div>Договор</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ContractNumber" class="col-md-6 control-label text-capitalize"></label>
+                        <div class="col-md-6">
+                            <input asp-for="ContractNumber" class="form-control" />
+                        </div>
+                        <span asp-validation-for="ContractNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-control">
+                        @foreach (var contractor in Model.Contractors)
+                        {
+
+                            <option>@contractor.ContractorName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ContractStartDate" class="col-md-6 control-label text-capitalize"></label>
+                            <div class="col-md-6">
+                                <div class="input-group date"
+                                     data-provide="datepicker"
+                                     data-date-autoclose="true"
+                                     data-date-format="dd.mm.yyyy"
+                                     data-date-language="@System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0,2)">
+                                    <input asp-for="ContractStartDate" type="text" class="form-control"
+                                           name="ContractStartDate" />
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th-large"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span asp-validation-for="ContractStartDate" class="text-danger"></span>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ContractEndDate" class="col-md-6 control-label text-capitalize"></label>
+                        <div class="col-md-6">
+                            <div class="input-group date"
+                                 data-provide="datepicker"
+                                 data-date-autoclose="true"
+                                 data-date-format="dd.mm.yyyy"
+                                 data-date-language="@System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0,2)">
+                                <input asp-for="ContractEndDate" type="text" class="form-control"
+                                       name="ContractEndDate" />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th-large"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="ContractEndDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

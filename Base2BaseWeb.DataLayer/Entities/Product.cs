@@ -14,7 +14,7 @@ namespace Base2BaseWeb.DataLayer.Entities
         }
 
         public Guid ProductId { get; set; }
-        public Guid ProductSubCategoryId { get; set; }
+        public Guid ProductCategoryId { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
@@ -23,6 +23,6 @@ namespace Base2BaseWeb.DataLayer.Entities
         public virtual ICollection<ProductImage> ProductImages { get; set; }
         public virtual ICollection<ProductFeature> ProductFeatures { get; set; }
         public virtual ICollection<ProductProdAttribute> ProductProdAttributes { get; set; }
-        public virtual ProductSubCategory ProductSubCategory { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
     }
 }

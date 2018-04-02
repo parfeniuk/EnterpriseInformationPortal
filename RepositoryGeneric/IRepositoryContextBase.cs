@@ -6,7 +6,7 @@ namespace RepositoryGeneric
 {
     public interface IRepositoryContextBase:IDisposable
     {
-        IRepositoryBase<TEntity> Set<TEntity>()
+        IRepositoryContext<TEntity> Set<TEntity>()
             where TEntity : class, new();
     }
 }

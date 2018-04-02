@@ -19,11 +19,13 @@
                 }
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav menu-fixed-center" id="menu-fixed-center">
-                        <li><a data-unique-attr="1" asp-area="" asp-controller="Manage" asp-action="Index">Мой кабинет</a></li>
                         @if (isAdmin)
                         {
+                            <li><a data-unique-attr="1" asp-area="Company" asp-controller="Clients" asp-action="Index">Клиенты</a></li>
                             <li><a data-unique-attr="2" asp-area="Admin" asp-controller="Roles" asp-action="Index">Администрирование</a></li>
                         }
+                        <li><a data-unique-attr="3" asp-area="" asp-controller="Manage" asp-action="Index">Мой кабинет</a></li>
+
                     </ul>
                 </div>
             </nav>

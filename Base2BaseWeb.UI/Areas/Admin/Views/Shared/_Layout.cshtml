@@ -24,11 +24,10 @@
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">Контент сайта<b class="caret"></b></a>
                             <ul class="dropdown-menu sub-menu">
-                                <li><a asp-controller="Clients" asp-action="Index">Наши клиенты</a></li>
+                                <li class="disabled"><a asp-controller="Clients" asp-action="Index">Наши клиенты</a></li>
                                 <li class="divider"></li>
-                                <li><a asp-controller="ProductCategories" asp-action="Index">Категории продуктов</a></li>
-                                <li><a asp-controller="ProductSubcategories" asp-action="Index">Каталог продуктов</a></li>
-                                <li><a asp-controller="Products" asp-action="Index">Описание ПО</a></li>
+                                <li class="disabled"><a asp-controller="ProductCategories" asp-action="Index">Категории продуктов</a></li>
+                                <li><a href="#">Каталог продуктов</a></li>
                                 <li><a href="#">Описание оборудования</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#">Для магазина</a></li>
@@ -48,7 +47,16 @@
 </div>
 
 @section Scripts
-{
+    {
     @await Html.PartialAsync("_ValidationScriptsPartial")
-    <script src="~/js/productCatalogLoad.js"></script>
+    @*<script src="~/js/productCatalogLoad.js"></script>*@
+        <script>
+        $.ajax({
+            url:'@Url.Action("GetAllCategories","ProductCategories",new {area="Admin" })',
+            dataType: "text",
+            success: function (data) {
+                $('#treeCategories').text(data);
+            }
+        });
+        </script>
 }

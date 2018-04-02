@@ -205,7 +205,7 @@ namespace Base2BaseWeb.DataLayer.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<Guid>("ProductSubCategoryId");
+                    b.Property<Guid>("ProductCategoryId");
 
                     b.Property<string>("ShortDescription");
 
@@ -213,7 +213,7 @@ namespace Base2BaseWeb.DataLayer.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("ProductSubCategoryId");
+                    b.HasIndex("ProductCategoryId");
 
                     b.ToTable("Products");
                 });
@@ -223,9 +223,13 @@ namespace Base2BaseWeb.DataLayer.Migrations
                     b.Property<Guid>("ProductCategoryId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid?>("ParentId");
+
                     b.Property<string>("ProductCategoryName");
 
                     b.HasKey("ProductCategoryId");
+
+                    b.HasIndex("ParentId");
 
                     b.ToTable("ProductCategories");
                 });
@@ -283,66 +287,6 @@ namespace Base2BaseWeb.DataLayer.Migrations
                     b.ToTable("ProductProdAttributes");
                 });
 
-            modelBuilder.Entity("Base2BaseWeb.DataLayer.Entities.ProductSubCategory", b =>
-                {
-                    b.Property<Guid>("ProductSubCategoryId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.Property<Guid>("ProductCategoryId");
-
-                    b.Property<string>("ShortDescription");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("ProductSubCategoryId");
-
-                    b.HasIndex("ProductCategoryId");
-
-                    b.ToTable("ProductSubCategories");
-                });
-
-            modelBuilder.Entity("Base2BaseWeb.DataLayer.Entities.ProductSubCategoryFeature", b =>
-                {
-                    b.Property<Guid>("ProductSubCategoryFeatureId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("FontIconName");
-
-                    b.Property<string>("FontType");
-
-                    b.Property<string>("ImagePath");
-
-                    b.Property<string>("Name");
-
-                    b.Property<Guid>("ProductSubCategoryId");
-
-                    b.HasKey("ProductSubCategoryFeatureId");
-
-                    b.HasIndex("ProductSubCategoryId");
-
-                    b.ToTable("ProductSubCategoryFeature");
-                });
-
-            modelBuilder.Entity("Base2BaseWeb.DataLayer.Entities.ProductSubCategoryImage", b =>
-                {
-                    b.Property<Guid>("ProductSubCategoryImageId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsPoster");
-
-                    b.Property<string>("Path");
-
-                    b.Property<Guid>("ProductSubCategoryId");
-
-                    b.HasKey("ProductSubCategoryImageId");
-
-                    b.HasIndex("ProductSubCategoryId");
-
-                    b.ToTable("ProductSubCategoryImage");
-                });
-
             modelBuilder.Entity("Base2BaseWeb.DataLayer.Entities.Base2BaseFeature", b =>
                 {
                     b.HasOne("Base2BaseWeb.DataLayer.Entities.Base2BaseFeatureCategory", "Base2BaseFeatureCategory")
@@ -385,15 +329,23 @@ namespace Base2BaseWeb.DataLayer.Migrations
 
             modelBuilder.Entity("Base2BaseWeb.DataLayer.Entities.Product", b =>
                 {
-                    b.HasOne("Base2BaseWeb.DataLayer.Entities.ProductSubCategory", "ProductSubCategory")
+                    b.HasOne("Base2BaseWeb.DataLayer.Entities.ProductCategory", "ProductCategory")
                         .WithMany("Products")
-                        .HasForeignKey("ProductSubCategoryId")
+                        .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Base2BaseWeb.DataLayer.Entities.ProductCategory", b =>
+                {
+                    b.HasOne("Base2BaseWeb.DataLayer.Entities.ProductCategory", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Base2BaseWeb.DataLayer.Entities.ProductFeature", b =>
                 {
-                    b.HasOne("Base2BaseWeb.DataLayer.Entities.Product")
+                    b.HasOne("Base2BaseWeb.DataLayer.Entities.Product", "Product")
                         .WithMany("ProductFeatures")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -417,30 +369,6 @@ namespace Base2BaseWeb.DataLayer.Migrations
                     b.HasOne("Base2BaseWeb.DataLayer.Entities.Product", "Product")
                         .WithMany("ProductProdAttributes")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Base2BaseWeb.DataLayer.Entities.ProductSubCategory", b =>
-                {
-                    b.HasOne("Base2BaseWeb.DataLayer.Entities.ProductCategory")
-                        .WithMany("ProductSubCategories")
-                        .HasForeignKey("ProductCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Base2BaseWeb.DataLayer.Entities.ProductSubCategoryFeature", b =>
-                {
-                    b.HasOne("Base2BaseWeb.DataLayer.Entities.ProductSubCategory")
-                        .WithMany("ProductSubCategoryFeatures")
-                        .HasForeignKey("ProductSubCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Base2BaseWeb.DataLayer.Entities.ProductSubCategoryImage", b =>
-                {
-                    b.HasOne("Base2BaseWeb.DataLayer.Entities.ProductSubCategory", "ProductSubCategory")
-                        .WithMany("ProductSubCategoryImages")
-                        .HasForeignKey("ProductSubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

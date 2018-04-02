@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <div>
+                <ul class="nav nav-pills nav-stacked navVertical">
+                    <li class="active"><a href="#">Новый клиент</a></li>
+                    <li class=""><a  href="#">Справочник групп</a></li>
+                    <li class=""><a  href="#">Счета</a></li>
+                    <li class=""><a  href="#">Акты</a></li>
+                    <li class=""><a  href="#">Задания печати</a></li>
+                    <li class=""><a  href="#">Отчеты</a></li>
+                </ul>
+                <ul class="nav nav-pills nav-stacked nav-clients">
+                    @RenderSection("NavVertical", false)
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+        <script src="~/js/loadClientData.js"></script>
+        <script src="~/js/addNavActiveClass.js"></script>
+        <script src="~/js/getMaxHeight.js"></script>
+    }

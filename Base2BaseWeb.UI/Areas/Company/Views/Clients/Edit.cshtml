@@ -1,0 +1,71 @@
+﻿@model ClientEditViewModel
+
+@{
+    ViewData["Title"] = "Редактирование клиента";
+}
+@section NavVertical
+    {
+        <li class="nav-item"><a href="#">Сохранить</a></li>
+    }
+<div class="container-fluid">
+    <form class="form-horizontal" method="post" asp-action="Edit" asp-controller="Clients" asp-area="Company">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-2">
+                    <a asp-action="Index" class="btn btn-info">К списку клиентов</a>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="Id" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label col-md-2"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Name" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Группа клиентов</label>
+                        <div class="col-md-10">
+                            <select class="form-control">
+                                @foreach (CliGroup group in Model.CliGroups)
+                                {
+                                    if (group.CliGroupNumber == Model.CliGroupNumber)
+                                    {
+                                        <option selected>@group.CliGroupName</option>
+                                    }
+                                    else
+                                    {
+                                        <option>@group.CliGroupName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 panel panel-default">
+                <div class="panel panel-primary">
+                    <ul class="nav nav-pills tabpanel" role="tabpanel">
+                        <li class="col-md-3 active"><a class="tbs" id="tb1" data-info="clientContacts"
+                                              data-request-url='@Url.Action("ClientContacts","Clients",new {area="Company",id=Model.Id })'>
+                            Контактные данные</a></li>
+                        <li class="col-md-3" ><a class="tbs" id="tb2" data-info="clientPaymentDetails"
+                               data-request-url='@Url.Action("ClientPaymentDetails","Clients",new {area="Company",id=Model.Id })'>
+                            Банковские реквизиты</a></li>
+                        <li class="col-md-3"><a class="tbs" id="tb3" data-info="clientDebtDetails"
+                               data-request-url='@Url.Action("ClientDebtDetails","Clients",new {area="Company",id=Model.Id })'>
+                            Данные для расчетов</a></li>
+                        <li class="col-md-2"><a class="tbs" id="tb4" data-info="clientProducts"
+                               data-request-url='@Url.Action("ClientProducts","Clients",new {area="Company",id=Model.Id })'
+                               href="#tb4">Услуги и тарифы</a></li>
+                    </ul>
+                </div>
+                <div id="tabContent" class="tab-pane">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,136 @@
+﻿@model ClientContactsEditViewModel
+<form class="form-horizontal" method="post" asp-action="ClientContacts" asp-controller="Clients" asp-area="Company">
+    <div class="address-container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="LegalAddress" class="control-label col-md-3 text-capitalize"></label>
+                        <div class="col-md-9">
+                            <input asp-for="LegalAddress" class="form-control" />
+                        </div>
+                        <span asp-validation-for="LegalAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FirstSignatory" class="control-label col-md-3 text-capitalize"></label>
+                        <div class="col-md-9">
+                            <input asp-for="FirstSignatory" class="form-control" />
+                        </div>
+                        <span asp-validation-for="FirstSignatory" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SecondSignatory" class="control-label col-md-3 text-capitalize"></label>
+                        <div class="col-md-9">
+                            <input asp-for="SecondSignatory" class="form-control" />
+                        </div>
+                        <span asp-validation-for="SecondSignatory" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ActualAddress" class="control-label col-md-3 text-capitalize"></label>
+                        <div class="col-md-9">
+                            <input asp-for="ActualAddress" class="form-control" />
+                        </div>
+                        <span asp-validation-for="ActualAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MailAddress" class="control-label col-md-3 text-capitalize"></label>
+                        <div class="col-md-9">
+                            <input asp-for="MailAddress" class="form-control" />
+                        </div>
+                        <span asp-validation-for="MailAddress" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="phones-container">
+            <div class="row">
+                <div class="col-md-10">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="PhoneNumber1" class="col-md-6 control-label text-capitalize"></label>
+                                <div class="col-md-6">
+                                    <input asp-for="PhoneNumber1" class="form-control" />
+                                </div>
+                                <span asp-validation-for="PhoneNumber1" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ContactFullName1" class="control-label text-capitalize"></label>
+                                <div class="col-md-12">
+                                    <input asp-for="ContactFullName1" class="form-control" />
+                                </div>
+                                <span asp-validation-for="ContactFullName1" class="text-danger"></span>
+                            </div>
+                        </div>
+                        @foreach (var contact in Model.ContactPhonesView)
+                        {
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@contact.PhoneNumber" class="col-md-6 control-label text-capitalize"></label>
+                                    <div class="col-md-6">
+                                        <input asp-for="@contact.PhoneNumber" class="form-control" />
+                                    </div>
+                                    <span asp-validation-for="@contact.PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@contact.ContactFullName" class="control-label text-capitalize"></label>
+                                    <div class="col-md-12">
+                                        <input asp-for="@contact.ContactFullName" class="form-control" />
+                                    </div>
+                                    <span asp-validation-for="@contact.ContactFullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                         }
+                </div>
+            </div>
+        </div>
+        <div class="email-container">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Email1" class="col-md-6 control-label text-capitalize"></label>
+                            <div class="col-md-6">
+                                <input asp-for="Email1" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Email1" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="">автоматическая рассылка</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @foreach (var email in Model.ContactEmailsView)
+            {
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="@email.Email" class="col-md-6 control-label text-capitalize"></label>
+                                <div class="col-md-6">
+                                    <input asp-for="@email.Email" class="form-control" />
+                                </div>
+                                <span asp-validation-for="@email.Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="@email.IncludeToMailList">автоматическая рассылка</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+</form>

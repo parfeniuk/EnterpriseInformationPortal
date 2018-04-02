@@ -12,5 +12,7 @@ namespace Base2BaseWeb.DataLayer.Entities
         public string FontType { get; set; }
         public string FontIconName { get; set; }
         public string ImagePath { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

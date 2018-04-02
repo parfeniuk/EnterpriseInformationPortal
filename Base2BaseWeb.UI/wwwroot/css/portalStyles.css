@@ -1,0 +1,37 @@
+﻿.nav-clients .nav-item {
+    margin-top: 30px !important;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:3px;
+}
+.email-container {
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.phones-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.billSettings-container .form-group .control-label {
+    text-align: left !important;
+}
+
+/*form,input {
+    max-width: 80%!important;
+}*/
+
+
+/*.debtControl-container .radio,
+.billSettings-container .radio
+ {
+    padding-left: 40px;
+}
+.billSettings-container .checkbox {
+    margin-left:20px;
+}
+
+.billSettings-container .form-group label {
+    margin-left: 20px;
+}*/
