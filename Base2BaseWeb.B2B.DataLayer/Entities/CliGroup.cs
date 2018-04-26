@@ -8,6 +8,7 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
         public CliGroup()
         {
             Point = new HashSet<Point>();
+            InitializeNavigationExtentions();
         }
 
         public int CliGroupNumber { get; set; }

@@ -11,13 +11,10 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.ClientEditViewModel
     public class ClientEditViewModel
     {
         public int Id { get; set; }
-        [Display(Name ="Наименование клиента")]
+        [Display(Name ="Имя клиента")]
         public string Name { get; set; }
         public int CliGroupNumber { get; set; }
         [Display(Name = "Группа клиентов")]
         public ICollection<CliGroup> CliGroups { get; set; }
-
-        // Products' Attributes
-        public ICollection<Product> Products { get; set; }
     }
 }

@@ -11,9 +11,10 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.ClientEditViewModel
     {
         public ClientPaymentDetailsEditViewModel()
         {
-            Contractors = new HashSet<ContractorDto>();
+            Contractors = new List<ContractorDto>();
         }
 
+        public int Id { get; set; }
         // Bank's data properties
         [Display(Name = "Банк")]
         public string BankName { get; set; }
@@ -38,6 +39,9 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.ClientEditViewModel
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         [DataType(DataType.DateTime)]
         public DateTime? ContractEndDate { get; set; }
-        public ICollection<ContractorDto> Contractors { get; set; }
+        
+        public int ContractorId { get; set; }
+        [Display(Name = "Исполнитель")]
+        public List<ContractorDto> Contractors { get; set; }
     }
 }

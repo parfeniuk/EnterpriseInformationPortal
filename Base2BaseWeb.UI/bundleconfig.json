@@ -18,7 +18,8 @@
       "wwwroot/js/site.js",
       "wwwroot/js/addActiveClass.js",
       "wwwroot/js/customAlignNavBar.js",
-      "wwwroot/js/imagesPreview.js"
+      "wwwroot/js/imagesPreview.js",
+      "wwwroot/js/searchClientsTable"
     ],
     // Optionally specify minification options
     "minify": {

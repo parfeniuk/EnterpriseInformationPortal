@@ -11,13 +11,16 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.ClientEditViewModel
     {
         public ClientDebtDetailsEditViewModel()
         {
-            DocumentTemplates = new HashSet<DocumentTemplateDto>();
-            ServicePlaceholders = new HashSet<ServicePlaceholderDto>();
-            PrintJobsView = new HashSet<PrintJobDto>();
-            BillSettingsOptionsView = new HashSet<BillSettingsOptionsDto>();
+            DocumentTemplatesAll = new List<DocumentTemplateDto>();
+            ServicePlaceholdersAll = new List<ServicePlaceholderDto>();
+            PrintJobsAll = new List<PrintJobDto>();
+            BillOptionsAll = new List<BillOptionsDto>();
+            DebtCalcMethodsAll = new List<DebtCalcMethodTypeDto>();
+            FranchisingTypesAll = new List<FranchisingTypeDto>();
+            FranchisingClients = new List<FranchisingClientDto>();
         }
         private int _printJobsCapacity = 2;
-        
+
         public int PrintJobsCapacity
         {
             get
@@ -30,56 +33,84 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.ClientEditViewModel
             }
         }
 
-        private int _billSettingsOptionsCapacity= 2;
+        private int _billOptionsCapacity = 2;
 
-        public int BillSettingsOptionsCapacity
+        public int BillOptionsCapacity
         {
             get
             {
-                return _billSettingsOptionsCapacity;
+                return _billOptionsCapacity;
             }
             private set
             {
-                _billSettingsOptionsCapacity = value;
+                _billOptionsCapacity = value;
             }
         }
-        // Debt Calculation properties
+
+        public int Id { get; set; }
+        // LABELS and CAPTIONS
+            // Debt Control & Debt Calc Labels
+        public string DebtControlCaption { get { return "Контроль задолженности"; } }
         [Display(Name ="Отсрочка задолженности")]
         public bool GracePeriodLabel { get; set; }
         [Display(Name = "Ограничение задолженности клиента")]
         public bool SetLimitLabel { get; set; }
-        [Display(Name = "Оповещение клиента")]
-        public string NotificationLabel { get; set; }
-
-        public DebtControlDto DebtControl { get; set; }
-        public DebtCalcMethodDto DebtCalcMethod { get; set; }
-        public BillSettingsDto BillSettings { get; set; }
-        public FranchisingDto Franchising { get; set; }
-        // PrintJob View Properties
-        [Display(Name="Назначение задания печати")]
-        public bool AssignPrintJob { get; set; }
-        [Display(Name ="Счет")]
+        public string ClientNotificationCaption { get { return "Оповещение клиента:"; } }
+        public string GracePeriodUnits { get { return "дней"; } }
+        public string DebtLimitUnits { get { return "грн."; } }
+        public string NotificationUnits { get { return "дней"; } }
+        public string DebtCalcMethodCaption { get { return "Метод расчета"; } }
+            // Franchising Labels
+        public string FranchisingCaption { get { return "Франчайзинг"; } }
+        [Display(Name = "Использовать франчайзинг")]
+        public bool UseFranchisingLabel { get; set; }
+            // Documents (Bills and Acts) Settings
+        public string BillTemplatesCaption { get { return "Формирование документов"; } }
+        [Display(Name = "Шаблон счета")]
+        public string BillTemplatesLabel { get { return "Шаблон счета"; } }
+        [Display(Name = "Шаблон акта")]
+        public string ActTemplatesLabel { get { return string.Empty; } }
+            // Bill(Act) Options Labels
+        [Display(Name = "Дополнительные параметры актов:")]
+        public string BillOptionsLabel { get { return string.Empty; } }
+        [Display(Name = "")]
+        public bool IsActiveActOption { get; set; }
+            // PrintJobs Settings Labels
+        [Display(Name = "Назначение задания печати")]
+        public bool AssignPrintJobLabel { get; set; }
+        [Display(Name = "Счет")]
         public bool IsBill { get; set; }
         [Display(Name = "Акт")]
         public bool IsAct { get; set; }
-        public ICollection<PrintJobDto> PrintJobsView { get; set; }
-        // Documents Collections
-        public ICollection<ServicePlaceholderDto> ServicePlaceholders { get; set; }
 
-        public ICollection<DocumentTemplateDto> DocumentTemplates { get; set; }
+        [Display(Name = "Заменять список услуг в документах на:")]
+        public bool ReplaceServiceList { get; set; }
 
-        [Display(Name ="Шаблон счета")]
-        public string BillTemplatesLabel { get { return string.Empty; } }
-        [Display(Name = "Шаблон акта")]
-        public string ActTemplatesLabel { get { return string.Empty; } }
+        // Connection Labels
+        public string ConnectionCaption { get { return "Источник данных для расчета"; } }
 
-        [Display(Name = "Дополнительные параметры актов:")]
-        public string ActOptionsLabel { get { return string.Empty; } }
-        [Display(Name = "")]
-        public bool IsActiveActOption { get; set; }
-        public ICollection<BillSettingsOptionsDto> BillSettingsOptionsView { get; set; }
+        // DTO Properties
+        public int DebtCalcMethodTypeId { get; set; }
+        public int FranchisingTypeId { get; set; }
+        public int FranchisingClientId { get; set; }
 
-        // Client Connection Properties
+        public DebtControlDto DebtControl { get; set; }
+        public BillSettingsDto BillSettings { get; set; }
         public ClientConnectionDto ClientConnection { get; set; }
+        //public PrintJobDto PrintJob { get; set; }
+        //public FranchisingDto Franchising { get; set; }
+
+        // Collections for SelectLists
+        public List<DocumentTemplateDto> DocumentTemplatesAll { get; set; }
+        public List<ServicePlaceholderDto> ServicePlaceholdersAll { get; set; }
+        public List<FranchisingClientDto> FranchisingClients { get; set; }
+        
+        // Collections for Checklists
+        //     One-to-one relation with Point
+        public List<DebtCalcMethodTypeDto> DebtCalcMethodsAll { get; set; }
+        public List<FranchisingTypeDto> FranchisingTypesAll { get; set; }
+        //     One-to-many relation with Point
+        public List<BillOptionsDto> BillOptionsAll { get; set; }
+        public List<PrintJobDto> PrintJobsAll { get; set; }
     }
 }

@@ -7,8 +7,8 @@ namespace EntityMapper
 {
     public interface IEntityMapperContextBase
     {
-        IEntityMapperBase<TEntity, TDto> Set<TEntity, TDto>(Action<IMapperConfigurationExpression> cfg)
-            where TEntity : class, new()
-            where TDto : class, new();
+        IEntityMapperBase<TSource, TDestination> Set<TSource, TDestination>(Action<IMapperConfigurationExpression> cfg=null)
+            where TSource : class, new()
+            where TDestination : class, new();
     }
 }

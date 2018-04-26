@@ -15,6 +15,8 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
             Recipe = new HashSet<Recipe>();
             Reestr = new HashSet<Reestr>();
             TovarCode = new HashSet<TovarCode>();
+
+            InitializeNavigationExtentions();
         }
 
         public int TovarNumber { get; set; }

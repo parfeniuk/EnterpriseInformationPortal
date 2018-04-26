@@ -12,11 +12,11 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.ClientEditViewModel
     {
         public ClientContactsEditViewModel()
         {
-            ContactPhonesAll = new HashSet<ContactPhoneDto>();
-            ContactEmailsAll = new HashSet<ContactEmailDto>();
+            ContactPhonesAll = new List<ContactPhoneDto>();
+            ContactEmailsAll = new List<ContactEmailDto>();
 
-            ContactPhonesView= new HashSet<ContactPhoneDto>(_contactPhonesCapacity);
-            ContactEmailsView = new HashSet<ContactEmailDto>(_contactEmailsCapacity);
+            ContactPhonesView= new List<ContactPhoneDto>(_contactPhonesCapacity);
+            ContactEmailsView = new List<ContactEmailDto>(_contactEmailsCapacity);
         }
         private int _contactPhonesCapacity=2;
         private int _contactEmailsCapacity=4;
@@ -44,6 +44,7 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.ClientEditViewModel
             }
         }
 
+        public int Id { get; set; }
         // Contact's data properties
         [Display(Name ="Юридический адрес")]
         public string LegalAddress { get; set; }
@@ -59,13 +60,16 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.ClientEditViewModel
         public string PhoneNumber1 { get; set; }
         [Display(Name = "")]
         public string ContactFullName1 { get; set; }
-        [Display(Name = "Email")]
+        [Display(Name = "Адрес e-mail")]
         public string Email1 { get; set; }
+        [Display(Name = "автоматическая рассылка")]
+        public bool IncludeToMailList { get; set; }
 
-        public ICollection<ContactPhoneDto> ContactPhonesView { get; set; }
-        public ICollection<ContactEmailDto> ContactEmailsView { get; set; }
+        public List<ContactPhoneDto> ContactPhonesView { get; set; }
+        [Display(Name = "Адрес e-mail")]
+        public List<ContactEmailDto> ContactEmailsView { get; set; }
 
-        public ICollection<ContactPhoneDto> ContactPhonesAll { get; set; }
-        public ICollection<ContactEmailDto> ContactEmailsAll { get; set; }
+        public List<ContactPhoneDto> ContactPhonesAll { get; set; }
+        public List<ContactEmailDto> ContactEmailsAll { get; set; }
     }
 }

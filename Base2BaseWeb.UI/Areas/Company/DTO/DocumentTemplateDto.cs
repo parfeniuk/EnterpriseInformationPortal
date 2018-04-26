@@ -8,7 +8,7 @@ namespace Base2BaseWeb.UI.Areas.Company.DTO
 {
     public class DocumentTemplateDto
     {
-        public int DocumentTemplateInfoId { get; set; }
+        public int? DocumentTemplateId { get; set; }
         [Display(Name="Наименование шаблона")]
         public string Name { get; set; }
     }

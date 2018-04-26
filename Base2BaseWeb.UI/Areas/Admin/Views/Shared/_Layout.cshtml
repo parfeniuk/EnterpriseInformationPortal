@@ -3,8 +3,8 @@
 }
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
-            <div class="col-md-4">
+        <div class="col-md-1 roles-left-column">
+            @*<div class="col-md-4">
                 <div class="avatar-container">
                     <img class="avatar-circle img-responsive center-block" src="~/images/DefaultImages/DefaultUser.jpg" />
                 </div>
@@ -13,34 +13,32 @@
                 <div>
                     <h4>@User.Identity.Name</h4>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div>
+            </div>*@
                     @*@await Html.PartialAsync("_ManageNav")*@
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class=""><a asp-controller="Roles" asp-action="UserList">Пользователи</a></li>
-                        <li class=""><a asp-controller="Roles" asp-action="Index">Роли</a></li>
-                        @*<li class=""><a asp-action="">Контент сайта</a></li>*@
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Контент сайта<b class="caret"></b></a>
-                            <ul class="dropdown-menu sub-menu">
-                                <li class="disabled"><a asp-controller="Clients" asp-action="Index">Наши клиенты</a></li>
-                                <li class="divider"></li>
-                                <li class="disabled"><a asp-controller="ProductCategories" asp-action="Index">Категории продуктов</a></li>
-                                <li><a href="#">Каталог продуктов</a></li>
-                                <li><a href="#">Описание оборудования</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Для магазина</a></li>
-                                <li><a href="#">Для супермаркета</a></li>
-                                <li><a href="#">Для кафе</a></li>
-                                <li><a href="#">Для киосков</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+            <div class="roles-left-navbar">
+                <ul class="nav nav-pills nav-stacked navVerticalClients">
+                    <li class=""><a asp-controller="Roles" asp-action="UserList">Пользователи</a></li>
+                    <li class=""><a asp-controller="Roles" asp-action="Index">Роли</a></li>
+                    @*<li class=""><a asp-action="">Контент сайта</a></li>*@
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Контент сайта<b class="caret"></b></a>
+                        <ul class="dropdown-menu sub-menu">
+                            <li class="disabled"><a asp-controller="Clients" asp-action="Index">Наши клиенты</a></li>
+                            <li class="divider"></li>
+                            <li class="disabled"><a asp-controller="ProductCategories" asp-action="Index">Категории продуктов</a></li>
+                            <li><a href="#">Каталог продуктов</a></li>
+                            <li><a href="#">Описание оборудования</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Для магазина</a></li>
+                            <li><a href="#">Для супермаркета</a></li>
+                            <li><a href="#">Для кафе</a></li>
+                            <li><a href="#">Для киосков</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-11 roles-right-column">
             @RenderBody()
         </div>
     </div>
@@ -49,6 +47,7 @@
 @section Scripts
     {
     @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="~/js/addNavActiveClass.js"></script>
     @*<script src="~/js/productCatalogLoad.js"></script>*@
         <script>
         $.ajax({

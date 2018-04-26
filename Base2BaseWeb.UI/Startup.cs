@@ -12,6 +12,7 @@ using Base2BaseWeb.Identity.Models;
 using Base2BaseWeb.Identity.Services;
 using Base2BaseWeb.Identity.Store;
 using Base2BaseWeb.UI.Areas.Company.Models.ClientsViewModel;
+using Base2BaseWeb.UI.DbSync;
 using Base2BaseWeb.UI.EntityMappers.CompanyArea;
 using Base2BaseWeb.UI.Helpers;
 using Base2BaseWeb.UI.Services;
@@ -23,6 +24,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.WebEncoders;
 using RepositoryGeneric;
@@ -124,6 +127,10 @@ namespace Base2BaseWeb.UI
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("Base2BaseServer"));
             services.Configure<ImageSettings>(Configuration.GetSection("ImageSettings"));
             services.Configure<AdminSettings>(Configuration.GetSection("AdminSettings"));
+            services.Configure<ConnectionSettingsOptions>(Configuration.GetSection("ConnectionStrings"));
+            services.Configure<TimerSettings>(Configuration.GetSection("TimerSettings"));
+            // Add Hosted Service - run on the timer DbSync worker
+            //services.AddSingleton<IHostedService, TimedHostedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

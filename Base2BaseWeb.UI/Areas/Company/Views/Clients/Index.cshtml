@@ -1,39 +1,33 @@
-﻿@model IEnumerable<ClientsIndexViewModel>
+﻿@model ClientsIndexViewModel
 
 @{
     ViewData["Title"] = "Клиенты";
 }
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-hover table-responsive table-striped">
-                <thead>
-                    <tr>
-                        <th>Наименование клиента</th>
-                        <th>Группа</th>
-                        <th>Контактное лицо</th>
-                        <th>Телефон</th>
-                        <th>Сальдо</th>
-                        <th>Дата подписания</th>
-                        <th>Дата окончания</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var client in Model)
-                    {
-                    <tr>
-                        <td><a asp-area="Company" asp-action="Edit" asp-route-id="@client.Id">@client.Name</a></td>
-                        <td>@client.GroupName</td>
-                        <td>@client.ContactName</td>
-                        <td>@client.PhoneNumber</td>
-                        <td>@client.Balance.GetValueOrDefault().ToString("N2") </td>
-                        <td>@client.ContractStartDate.GetValueOrDefault().ToShortDateString()</td>
-                        <td>@client.ContractEndDate.GetValueOrDefault().ToShortDateString()</td>
-                    </tr>
+    <div class="clients-index-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input asp-for="SearchString" id="inputClientSearch"
+                                   data-request-url='@Url.Action("ClientsList","Clients",new {area="Company" })'
+                                   class="form-control" placeholder="Введите наименование клиента..">
+                            <div class="input-group-addon" id="btnClientSearch">
+                                <span class="fa fa-search" 
+                                      data-toggle="tooltip" title="Поиск"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="clientsFilter">
+                    @{ 
+                        Html.RenderPartial("ClientsList", Model);
                     }
-                </tbody>
-            </table>
+                    
+                </div>
+            </div>
         </div>
     </div>
 </div>

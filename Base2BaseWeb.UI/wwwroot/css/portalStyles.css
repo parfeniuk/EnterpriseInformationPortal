@@ -5,33 +5,172 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius:3px;
 }
-.email-container {
-    margin-top:10px;
-    margin-bottom:10px;
-}
-.phones-container {
-    margin-top: 10px;
-    margin-bottom: 10px;
+#btnClientSearch {
+    cursor:pointer;
 }
 
-.billSettings-container .form-group .control-label {
+.clients-tabpanel-container .panel.panel-primary {
+    margin-bottom: 3px;
+}
+
+.user-left-navbar,
+.roles-left-navbar,
+.client-left-navbar {
+    position: fixed;
+    font-size: 14px;
+}
+.user-left-column,
+.roles-left-column,
+.clients-left-column {
+    padding-left: 0px;
+}
+.user-right-column,
+.roles-right-column,
+.clients-right-column {
+    padding-left: 35px;
+}
+
+.clients-right-column {
+    /*margin-left: -40px;*/
+    /*margin-right:-40px;*/
+}
+
+#btnClientSave:hover {
+    cursor: pointer;
+}
+.client-debtControl-container .panel-heading {
+    padding: 0px 0px;
+}
+.client-debtControl-container panel {
+    margin-bottom: 2px;
+}
+.client-payment-details-container .panel-heading {
+    padding: 2px 2px;
+}
+
+.text-vertical-align {
+    position: relative;
+    top: 50%;
+    transform: translateY(-6%);
+}
+.text-vertical-align-low {
+    position: relative;
+    top: 50%;
+    transform: translateY(30%);
+}
+.text-vertical-align-up {
+    position: relative;
+    top: 50%;
+    transform: translateY(-16%);
+}
+.client-contacts-container .panel,
+.client-payment-details-container .panel,
+.client-debtControl-container .panel {
+    margin-bottom:0px;
+}
+.client-name-group-container .panel {
+    margin-bottom:3px;
+}
+
+/*FONTS*/
+.client-name-group-container {
+    font-size: 12px;
+}
+.tabpanel li a {
+    font-size: 12px;
+}
+.client-name-group-container .form-control {
+    font-size: 12px;
+    height:30px;
+}
+.client-name-group-container .form-group {
+    margin-bottom:3px;
+}
+.client-contacts-container .form-group,
+.client-payment-details-container .form-group,
+.client-debtControl-container .form-group {
+    margin-bottom:3px;
+}
+
+.clients-index-container {
+    font-size: 12px;
+}
+.client-products-container tbody tr td {
+    padding: 0px !important;
+    line-height:1.2!important;
+}
+.client-products-container {
+    font-size: 10px !important;
+}
+.client-contacts-container .form-control,
+.client-payment-details-container .form-control,
+.client-debtControl-container .form-control{
+    font-size: 12px!important;
+}
+.client-debtControl-container label,
+.client-contacts-container label,
+.client-payment-details-container label, 
+.client-products-container label {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+}
+a.text-bold {
+    font-weight: 500;
+}
+
+.row-after-panel-heading {
+    margin-top:3px;
+}
+
+.debtControl-container .control-label,
+.billSettings-container .control-label {
     text-align: left !important;
 }
-
-/*form,input {
-    max-width: 80%!important;
-}*/
-
-
-/*.debtControl-container .radio,
-.billSettings-container .radio
- {
-    padding-left: 40px;
-}
-.billSettings-container .checkbox {
-    margin-left:20px;
+.tabpanel li:hover {
+    cursor:pointer;
 }
 
-.billSettings-container .form-group label {
-    margin-left: 20px;
-}*/
+.label-left-align .form-group .control-label {
+    text-align: left !important;
+}
+.clients-thead-grey thead th {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.client-debtControl-container .form-group .block-padding-min {
+    padding-left: 0px;
+    padding-right: 3px;
+}
+.client-debtControl-container .form-group .block-padding-min-left {
+    padding-left: 0px;
+}
+
+.client-debtControl-container .form-group .block-margin-min-left {
+    margin-left: -4px;
+}
+.client-debtControl-container .form-group .block-padding-min-right {
+    padding-right: 5px;
+}
+
+.client-contacts-container .form-group,
+.client-payment-details-container .form-group,
+.client-debtControl-container .form-group {
+    margin-bottom: 3px;
+}
+.client-group-container .form-group {
+    margin-bottom:5px;
+}
+.client-debtControl-container .form-control,
+.client-contacts-container .form-control,
+.client-payment-details-container .form-control {
+    height: 26px;
+}
+
+label.panel-custom-header {
+    font-size:14px!important;
+    font-weight:bold!important;
+}
+.contract-container {
+    padding-left: 0px;
+    padding-right: 0px;
+}

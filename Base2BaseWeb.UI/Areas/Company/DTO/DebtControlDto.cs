@@ -11,11 +11,11 @@ namespace Base2BaseWeb.UI.Areas.Company.DTO
         public int DebtControlInfoId { get; set; }
         [Display(Name = "Период отсрочки")]
         public int GracePeriod { get; set; }
-        [Display(Name = "Максимально допустимая")]
+        [Display(Name = "Макс. допустимая")]
         public double DebtLimit { get; set; }
         [Display(Name = "Периодичность")]
         public int NotificationFrequency { get; set; }
-        [Display(Name = "email")]
+        [Display(Name = "e-mail")]
         public bool NotifyByEmail { get; set; }
         [Display(Name = "SMS")]
         public bool NotifyBySms { get; set; }

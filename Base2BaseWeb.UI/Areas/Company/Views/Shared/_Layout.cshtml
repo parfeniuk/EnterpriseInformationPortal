@@ -3,23 +3,22 @@
 }
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
-            <div>
-                <ul class="nav nav-pills nav-stacked navVertical">
-                    <li class="active"><a href="#">Новый клиент</a></li>
-                    <li class=""><a  href="#">Справочник групп</a></li>
-                    <li class=""><a  href="#">Счета</a></li>
-                    <li class=""><a  href="#">Акты</a></li>
-                    <li class=""><a  href="#">Задания печати</a></li>
-                    <li class=""><a  href="#">Отчеты</a></li>
-                </ul>
-                <ul class="nav nav-pills nav-stacked nav-clients">
-                    @RenderSection("NavVertical", false)
-                </ul>
+        <div class="">
+            <div class="col-md-1 clients-left-column">
+                <div class="client-left-navbar">
+                    <ul class="nav nav-pills nav-stacked navVertical">
+                        @{ 
+                            Html.RenderPartial("_NavVerticalTop");
+                        }
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked nav-clients">
+                        @RenderSection("NavVertical", false)
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="col-md-10">
-            @RenderBody()
+            <div class="col-md-11 clients-right-column">
+                @RenderBody()
+            </div>
         </div>
     </div>
 </div>
@@ -30,4 +29,9 @@
         <script src="~/js/loadClientData.js"></script>
         <script src="~/js/addNavActiveClass.js"></script>
         <script src="~/js/getMaxHeight.js"></script>
+        <script src="~/js/allowDisabled.js"></script>
+        <script src="~/js/submitForm.js"></script>
+        <script src="~/js/searchClientsTable.js"></script>
+        <script src="~/js/clientSearch.js"></script>
+        <script src="~/js/uncheckNotActive.js"></script>
     }

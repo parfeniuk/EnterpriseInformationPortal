@@ -8,14 +8,11 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.ClientsViewModel
 {
     public class ClientsIndexViewModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string GroupName { get; set; }
-        public string ContactName { get; set; }
-        public string PhoneNumber { get; set; }
-        [DataType(DataType.Currency)]
-        public double? Balance { get; set; }
-        public DateTime? ContractStartDate { get; set; }
-        public DateTime? ContractEndDate { get; set; }
+        public ClientsIndexViewModel()
+        {
+            Clients = new HashSet<Client>();
+        }
+        public IEnumerable<Client> Clients { get; set; }
+        public string SearchString { get; set; }
     }
 }

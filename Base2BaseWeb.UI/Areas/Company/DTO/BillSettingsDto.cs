@@ -13,11 +13,8 @@ namespace Base2BaseWeb.UI.Areas.Company.DTO
         public bool AutomaticBilling { get; set; }
         [Display(Name = "Отправка на email")]
         public bool SendByEmail { get; set; }
-        [Display(Name = "Заменять список услуг в документах на:")]
-        public bool ReplaceServiceList { get; set; }
 
-        public virtual DocumentTemplateDto DocumentTemplate { get; set; }
-        public virtual ICollection<PrintJobDto> PrintJobInfo { get; set; }
-        public virtual ICollection<BillSettingsOptionsDto> BillSettingsOptionsInfo { get; set; }
+        public int? DocumentTemplateId { get; set; }
+        public int? ServicePlaceholderTypeId { get; set; }
     }
 }

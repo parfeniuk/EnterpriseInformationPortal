@@ -5,9 +5,9 @@ using System.Text;
 
 namespace EntityMapper
 {
-    public class EntityMapperBase<TEntity,TDto> : IEntityMapperBase<TEntity,TDto>
-        where TEntity:class,new()
-        where TDto:class,new()
+    public class EntityMapperBase<TSource,TDestination> : IEntityMapperBase<TSource,TDestination>
+        where TSource:class,new()
+        where TDestination:class,new()
     {
         private IMapper _mapper;
         protected Action<IMapperConfigurationExpression> _cfg;
@@ -23,8 +23,8 @@ namespace EntityMapper
             {
                 return new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<TEntity, TDto>();
-                    cfg.CreateMap<TDto, TEntity>();
+                    cfg.CreateMap<TSource, TDestination>();
+                    cfg.CreateMap<TDestination, TSource>();
                 });
             }
             else
@@ -33,14 +33,14 @@ namespace EntityMapper
             }
         }
 
-        public TEntity Map(TDto dto)
+        public TSource Map(TDestination dto)
         {
-            return _mapper.Map<TDto,TEntity>(dto);
+            return _mapper.Map<TDestination,TSource>(dto);
         }
 
-        public TDto Map(TEntity entity)
+        public TDestination Map(TSource entity)
         {
-            return _mapper.Map<TEntity,TDto>(entity);
+            return _mapper.Map<TSource,TDestination>(entity);
         }
     }
 }

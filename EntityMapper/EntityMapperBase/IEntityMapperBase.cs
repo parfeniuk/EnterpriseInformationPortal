@@ -4,11 +4,11 @@ using System.Text;
 
 namespace EntityMapper
 {
-    public interface IEntityMapperBase<TEntity,TDto>
-        where TEntity : class, new()
-        where TDto : class, new()
+    public interface IEntityMapperBase<TSource,TDestination>
+        where TSource : class, new()
+        where TDestination : class, new()
     {
-        TDto Map(TEntity entity);
-        TEntity Map(TDto dto);
+        TDestination Map(TSource entity);
+        TSource Map(TDestination dto);
     }
 }

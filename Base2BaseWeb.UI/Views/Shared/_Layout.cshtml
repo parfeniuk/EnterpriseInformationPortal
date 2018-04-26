@@ -29,7 +29,7 @@
     <div id="body"></div>
     <div class="body-wrapper">
         <!--Navigation Bar Section-->
-        <div id="menu-master">
+        <nav id="menu-master" class="navbar navbar-fixed-top">
             <div class="menu-static" id="menu-static">
                 <nav class="navbar navbar-inverse inline-navbar">
                     <ul class="nav navbar-nav menu-static-left" id="menu-static-left">
@@ -46,7 +46,7 @@
                 </nav>
             </div>
             @Html.Partial("_MenuFixedPartial")
-        </div>
+        </nav>
 
         <!--Body Section-->
         <div class="body-content">
@@ -69,6 +69,7 @@
             <script src="~/js/customAlignNavBar.js"></script>
             <script src="~/js/addActiveClass.js"></script>
             <script src="~/js/imagesPreview.js"></script>
+            @*<script src="~/js/navBarFixedTop.js"></script>*@
             @*<script src="~/js/customAffix.js"></script>*@
         </environment>
         <environment exclude="Development">

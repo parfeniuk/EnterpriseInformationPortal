@@ -10,11 +10,11 @@
     <PackageReference Include="MailKit" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+	<PackageReference Include="NLog.Web.AspNetCore" Version="4.5.2" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
-    <!--<DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />-->
   </ItemGroup>
 
   <ItemGroup>
@@ -22,13 +22,19 @@
     <Folder Include="Areas\Company\Data\" />
     <Folder Include="Views\Products\" />
     <Folder Include="wwwroot\images\ClientImages\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Base2BaseWeb.B2B.DataLayer\Base2BaseWeb.B2B.DataLayer.csproj" />
     <ProjectReference Include="..\Base2BaseWeb.DataLayer\Base2BaseWeb.DataLayer.csproj" />
     <ProjectReference Include="..\Base2BaseWeb.Identity\Base2BaseWeb.Identity.csproj" />
+    <ProjectReference Include="..\DbSyncService\DbSyncService.csproj" />
     <ProjectReference Include="..\EntityMapper\EntityMapper.csproj" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <Content Update="nlog.config" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  
 </Project>

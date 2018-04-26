@@ -13,6 +13,7 @@ namespace RepositoryGeneric
         IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate);
         TEntity Add(TEntity entity);
         TEntity Update(TEntity entity,object key);
+        TEntity Update(TEntity entity);
         TEntity Delete(TEntity entity);
         int Save();
     }

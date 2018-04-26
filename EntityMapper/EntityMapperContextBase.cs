@@ -7,11 +7,11 @@ namespace EntityMapper
 {
     public class EntityMapperContextBase : IEntityMapperContextBase
     {
-        public IEntityMapperBase<TEntity, TDto> Set<TEntity, TDto>(Action<IMapperConfigurationExpression> cfg)
-            where TEntity : class, new()
-            where TDto : class, new()
+        public IEntityMapperBase<TSource, TDestination> Set<TSource, TDestination>(Action<IMapperConfigurationExpression> cfg=null)
+            where TSource : class, new()
+            where TDestination : class, new()
         {
-            return new EntityMapperBase<TEntity,TDto>(cfg);
+            return new EntityMapperBase<TSource,TDestination>(cfg);
         }
     }
 }

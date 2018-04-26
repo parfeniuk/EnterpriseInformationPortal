@@ -1,255 +1,466 @@
 ﻿@model ClientDebtDetailsEditViewModel
-<form class="form-horizontal" method="post" asp-action="ClientDebtDetails" asp-controller="Clients" asp-area="Company">
-    <div class="col-md-4">
-        <div class="debtControl-container panel panel-primary">
-            <div class="panel-heading">
-                <div>Контроль задолженности</div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="col-md-1">
-                                <input asp-for="GracePeriodLabel" class="checkbox" />
-                            </div>
-                            <div class="col-md-11">
-                                <label asp-for="GracePeriodLabel" class="control-label"></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="col-md-7">
-                                <label asp-for="DebtControl.GracePeriod" class="control-label"></label>
-                            </div>
-                            <div class="col-md-3">
-                                <input asp-for="DebtControl.GracePeriod" class="form-control" min="0" />
-                            </div>
-                            <span>дней</span>
-                            <span asp-validation-for="DebtControl.GracePeriod" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="col-md-1">
-                                <input asp-for="SetLimitLabel" class="checkbox" />
-                            </div>
-                            <div class="col-md-11">
-                                <label asp-for="SetLimitLabel" class="control-label"></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="col-md-7">
-                                <label asp-for="DebtControl.DebtLimit" class="control-label"></label>
-                            </div>
-                            <div class="col-md-3">
-                                <input asp-for="DebtControl.DebtLimit" class="form-control" min="0" />
-                            </div>
-                            <span>грн</span>
-                            <span asp-validation-for="DebtControl.DebtLimit" class="text-danger"></span>
-                        </div>
-                    </div>
 
+<form id="clientDebtDetailsForm" class="form-horizontal" method="post" asp-action="ClientDebtDetails" asp-controller="Clients" asp-area="Company">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="client-debtControl-container label-left-align">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="debtControl-container panel panel-default">
+                    <div class="panel-heading">
+                        <div><label class="panel-custom-header control-label">@Model.DebtControlCaption</label></div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default client-graceperiod-container">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <input asp-for="GracePeriodLabel" class="checkbox" id="allow-grace-period" />
+                                        </div>
+                                        <label asp-for="GracePeriodLabel"
+                                               class="block-padding-min text-vertical-align control-label col-md-10 col-sm-10 col-xs-10"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label asp-for="DebtControl.GracePeriod"
+                                               class="block-padding-min-right control-label col-md-5 col-sm-4 col-xs-4"></label>
+                                        <div class="block-padding-min-left col-md-3 col-sm-4 col-xs-4">
+                                            <input asp-for="DebtControl.GracePeriod" class="form-control allow-grace-period" readonly min="0" />
+                                        </div>
+                                        <label class="block-padding-min control-label col-md-3 col-sm-3 col-xs-3">
+                                            @Model.GracePeriodUnits
+                                        </label>
+                                        <span asp-validation-for="DebtControl.GracePeriod" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default client-debtlimit-container">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <input asp-for="SetLimitLabel" class="checkbox" id="allow-debt-limit"/>
+                                        </div>
+                                        <label asp-for="SetLimitLabel"
+                                               class="block-padding-min text-vertical-align control-label col-md-10  col-sm-10 col-xs-10"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label asp-for="DebtControl.DebtLimit"
+                                               class="block-padding-min-right control-label col-md-6 col-sm-6 col-xs-6"></label>
+                                        <div class="block-margin-min-left block-padding-min-left col-md-4 col-sm-4 col-xs-4">
+                                            <input asp-for="DebtControl.DebtLimit" class="form-control allow-debt-limit" readonly min="0" type="number" />
+                                        </div>
+                                        <label class="control-label col-md-1 col-sm-2 col-xs-2">@Model.DebtLimitUnits</label>
+                                        <span asp-validation-for="DebtControl.DebtLimit" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default client-notification-container">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-8 col-xs-8">
+                                    <div class="row">
+                                        <label class="text-vertical-align control-label col-md-12 col-sm-12 col-xs-12">@Model.ClientNotificationCaption</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="DebtControl.NotificationFrequency"
+                                                       class="block-padding-min-right control-label col-md-5 col-sm-12 col-xs-12"></label>
+                                                <div class="block-margin-min-left block-padding-min-left col-md-4 col-sm-offset-2 col-sm-10 col-xs-offset-2 col-xs-10">
+                                                    <input asp-for="DebtControl.NotificationFrequency" class="form-control" min="0" />
+                                                </div>
+                                                <label class="block-margin-min-left block-padding-min control-label col-md-2 col-sm-12 col-xs-12">@Model.NotificationUnits</label>
+                                                <span asp-validation-for="DebtControl.NotificationFrequency" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-xs-4">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                                        <input asp-for="DebtControl.NotifyByEmail" class="checkbox" />
+                                                    </div>
+                                                    <label asp-for="DebtControl.NotifyByEmail"
+                                                           class="block-padding-min text-vertical-align col-md-8 col-sm-8 col-xs-8 control-label" style="font-size:11px;"></label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                                        <input asp-for="DebtControl.NotifyBySms" class="checkbox" />
+                                                    </div>
+                                                    <label asp-for="DebtControl.NotifyBySms"
+                                                           class="block-padding-min text-vertical-align col-md-8 col-sm-8 col-xs-8 control-label" style="font-size:11px;"></label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                                        <input asp-for="DebtControl.NotifyByViber" class="checkbox" />
+                                                    </div>
+                                                    <label asp-for="DebtControl.NotifyByViber"
+                                                           class="block-padding-min text-vertical-align col-md-8 col-sm-8 col-xs-8 control-label" style="font-size:11px;"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <label class="col-md-5 text-info control-label">Оповещение клиента</label>
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <label asp-for="DebtControl.NotificationFrequency" class="col-md-6 control-label"></label>
-                        <div class="col-md-4">
-                            <input asp-for="DebtControl.NotificationFrequency" class="form-control" min="0" />
-                        </div>
-                        <span>дней</span>
-                        <span asp-validation-for="DebtControl.NotificationFrequency" class="text-danger"></span>
+            <div class="col-md-8">
+                <div class="billSettings-container panel panel-default">
+                    <div class="panel-heading">
+                        <div><label class="panel-custom-header control-label">@Model.BillTemplatesCaption</label></div>
                     </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label asp-for="DebtControl.NotifyByEmail" class="col-md-6 control-label"></label>
-                        <div class="col-md-3">
-                            <input asp-for="DebtControl.NotifyByEmail" class="checkbox" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="panel panel-default bill-basic-settings-container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    <input asp-for="BillSettings.AutomaticBilling" class="checkbox">
+                                                </div>
+                                                <label asp-for="BillSettings.AutomaticBilling" 
+                                                       class="block-padding-min text-vertical-align-low col-md-10 col-sm-10 col-xs-10"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    <input asp-for="BillSettings.SendByEmail" class="checkbox">
+                                                </div>
+                                                <label asp-for="BillSettings.SendByEmail" 
+                                                       class="block-padding-min text-vertical-align-low col-md-10 col-sm-10 col-xs-10"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label asp-for="BillTemplatesLabel"
+                                                       class="control-label col-md-4 col-sm-12 col-xs-12"></label>
+                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                    <select asp-for="BillSettings.DocumentTemplateId" class="form-control"
+                                                            asp-items="@(new SelectList(Model.DocumentTemplatesAll,"DocumentTemplateId","Name"))">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default bill-replace-list-container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    <input asp-for="ReplaceServiceList" class="checkbox" id="allow-replace-list">
+                                                </div>
+                                                <label asp-for="ReplaceServiceList" 
+                                                       class="block-padding-min text-vertical-align control-label col-md-10 col-sm-10 col-xs-10"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-10">
+                                            <div class="form-group">
+                                                <select asp-for="BillSettings.ServicePlaceholderTypeId"
+                                                        asp-items="@(new SelectList(Model.ServicePlaceholdersAll,"ServicePlaceholderTypeId","Name"))"
+                                                        class="form-control allow-replace-list" readonly>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <label asp-for="DebtControl.NotifyBySms" class="col-md-6 control-label"></label>
-                        <div class="col-md-3">
-                            <input asp-for="DebtControl.NotifyBySms" class="checkbox" />
-                        </div>
-                        <label asp-for="DebtControl.NotifyByViber" class="col-md-6 control-label"></label>
-                        <div class="col-md-3">
-                            <input asp-for="DebtControl.NotifyByViber" class="checkbox" />
+                        <div class="col-md-6" style="border-left:1px solid #333">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default print-job-settings-container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                                        <input asp-for="AssignPrintJobLabel" class="checkbox" id="allow-print-job">
+                                                    </div>
+                                                    <label asp-for="AssignPrintJobLabel" class="block-padding-min control-label col-md-10"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
+                                                        <input asp-for="PrintJobsAll[0].Active" class="checkbox allow-print-job" readonly/>
+                                                    </div>
+                                                    <label asp-for="PrintJobsAll[0].Active" 
+                                                           class="block-padding-min control-label col-md-2">Счет</label>
+                                                    <div class="block-margin-min-left col-md-3 col-sm-3 col-xs-3">
+                                                        <input asp-for="PrintJobsAll[0].DocumentToPrintCopies"
+                                                                class="block-margin-min-left form-control allow-print-job" min="0" readonly />
+                                                    </div>
+                                                    <label asp-for="PrintJobsAll[0].DocumentToPrintCopies"
+                                                            class="block-margin-min-left block-padding-min control-label col-md-4"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
+                                                        <input asp-for="PrintJobsAll[0].Active" class="checkbox allow-print-job" readonly/>
+                                                    </div>
+                                                    <label asp-for="PrintJobsAll[0].Active" 
+                                                           class="block-padding-min control-label col-md-2">Акт</label>
+                                                    <div class="block-margin-min-left col-md-3 col-sm-3 col-xs-3">
+                                                        <input asp-for="PrintJobsAll[1].DocumentToPrintCopies"
+                                                                class="block-margin-min-left form-control allow-print-job" min="0" readonly />
+                                                    </div>
+                                                    <label asp-for="PrintJobsAll[1].DocumentToPrintCopies"
+                                                            class="block-margin-min-left block-padding-min control-label col-md-4"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default print-job-documents-container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label asp-for="BillTemplatesLabel" class="control-label col-md-4"></label>
+                                                    <div class="block-margin-min-left col-md-7 col-sm-7 col-xs-7">
+                                                        <select asp-for="PrintJobsAll[0].DocumentTemplateId"
+                                                                asp-items="@(new SelectList(Model.DocumentTemplatesAll,"DocumentTemplateId","Name"))"
+                                                                class="form-control allow-print-job" readonly>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label asp-for="ActTemplatesLabel" class="control-label col-md-4"></label>
+                                                    <div class="block-margin-min-left col-md-7 col-sm-7 col-xs-7">
+                                                        <select asp-for="PrintJobsAll[1].DocumentTemplateId"
+                                                                asp-items="@(new SelectList(Model.DocumentTemplatesAll,"DocumentTemplateId","Name"))"
+                                                                class="form-control allow-print-job" readonly>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default print-job-options-container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-1">
+                                                        <label asp-for="BillOptionsLabel" class="control-label"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @for (int i = 0; i < Model.BillOptionsAll.Count; i++)
+                                        {
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                                        <input asp-for="BillOptionsAll[i].Active" class="checkbox" id="allow-bill-options-@i" />
+                                                    </div>
+                                                    <label asp-for="BillOptionsAll[i].Limit" 
+                                                            class="block-padding-min control-label col-md-2"></label>
+                                                    <div class="block-margin-min-left col-md-4 col-sm-12 col-xs-12">
+                                                        <input asp-for="BillOptionsAll[i].Limit" 
+                                                                class="form-control allow-bill-options-@i" type="number" min="0" readonly/>
+                                                    </div>
+                                                    <div class="block-margin-min-left col-md-5 col-sm-12 col-xs-12">
+                                                        <select asp-for="BillOptionsAll[i].DocumentTemplateId"
+                                                                asp-items="@(new SelectList(Model.DocumentTemplatesAll,"DocumentTemplateId","Name"))"
+                                                                class="form-control allow-bill-options-@i" readonly>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-8">
-        <div class="billSettings-container panel panel-primary">
-            <div class="panel-heading">
-                <div>Формирование документов</div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="debtCalcMethod-container panel panel-default">
+                    <div class="panel-heading">
+                        <div><label class="panel-custom-header control-label">@Model.DebtCalcMethodCaption</label></div>
+                    </div>
+                    <div class="col-md-12">
+                        @for (int i=0;i<Model.DebtCalcMethodsAll.Count;i++)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form-group">
+                            @if (Model.DebtCalcMethodsAll[i].DebtCalcMethodTypeId == Model.DebtCalcMethodTypeId)
+                            {
+                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <input asp-for="@Model.DebtCalcMethodsAll[i].Active" checked class="debt-calc-method-check" />
+                                            <input asp-for="@Model.DebtCalcMethodTypeId" type="hidden" />
+                                        </div>
+                            }
+                            else
+                            {
+                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <input asp-for="@Model.DebtCalcMethodsAll[i].Active" class="debt-calc-method-check"/>
+                                        </div>
+                            }
+
+                                        <label asp-for="@Model.DebtCalcMethodsAll[i].DebtCalcMethodTypeId"
+                                               class="block-padding-min text-vertical-align-up control-label col-md-10 col-sm-10 col-xs-10">
+                                            @Model.DebtCalcMethodsAll[i].Name
+                                        </label>
+                                        <input asp-for="@Model.DebtCalcMethodsAll[i].DebtCalcMethodTypeId" type="hidden"/>
+                                    </div>
+                                </div>
+                            </div>
+                         }
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="col-md-1">
-                                <input asp-for="BillSettings.AutomaticBilling" class="checkbox">
-                            </div>
-                            <div class="col-md-10">
-                                <label asp-for="BillSettings.AutomaticBilling"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-1">
-                                <input asp-for="BillSettings.SendByEmail" class="checkbox">
-                            </div>
-                            <div class="col-md-10">
-                                <label asp-for="BillSettings.SendByEmail"></label>
-                            </div>
-                        </div>
+            <div class="col-md-4">
+                <div class="franchising-container panel panel-default">
+                    <div class="panel-heading">
+                        <div><label class="panel-custom-header control-label">@Model.FranchisingCaption</label></div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="col-md-4 control-label">Шаблон счета</label>
-                            <div class="col-md-8">
-                                <select class="form-control">
-                                @foreach (var document in Model.DocumentTemplates)
-                                {
-                                    <option>@document.Name</option>
-                                }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="col-md-1">
-                                <input asp-for="BillSettings.ReplaceServiceList" class="checkbox">
-                            </div>
-                            <div class="col-md-11">
-                                <label asp-for="BillSettings.ReplaceServiceList"></label>
-                            </div>
+                    <div class="col-md-12">
+                        <div class="row">
                             <div class="col-md-12">
-                                <select class="form-control">
-                                    @foreach (var placeholder in Model.ServicePlaceholders)
+                                <div class="form-group">
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <input asp-for="UseFranchisingLabel" class="checkbox" id="allow-franchising">
+                                    </div>
+                                    <label asp-for="UseFranchisingLabel" 
+                                           class="block-padding-min text-vertical-align-low col-md-10 col-sm-10 col-xs-10"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="form-group">
+                                @for (int i=0; i< Model.FranchisingTypesAll.Count;i++)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                            <div class="form-group">
+                                                @if (Model.FranchisingTypesAll[i].FranchisingTypeId == Model.FranchisingTypeId)
+                                                {
+                                            <div class="col-md-offset-1 col-md-1 col-sm-offset-1 col-xs-offset-1 col-sm-1 col-xs-1">
+                                                <input asp-for="@Model.FranchisingTypesAll[i].Active" checked
+                                                       class="franchising-type-check allow-franchising" readonly />
+                                            </div>
+                                            <input asp-for="@Model.FranchisingTypeId" type="hidden" />
+                                                }
+                                                else
+                                                {
+                                            <div class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
+                                                <input asp-for="@Model.FranchisingTypesAll[i].Active"
+                                                       class="franchising-type-check allow-franchising" readonly />
+                                            </div>
+                                                }
+                                                <label class="block-padding-min text-vertical-align control-label col-md-9 col-sm-9 col-xs-9">
+                                                    @Model.FranchisingTypesAll[i].Name
+                                                </label>
+                                                <input asp-for="@Model.FranchisingTypesAll[i].FranchisingTypeId" type="hidden" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10 col-sm-10 col-xs-10">
+                            <div class="form-group">
+                                <select class="form-control allow-franchising" readonly>
+                                    @for (int i=0; i< Model.FranchisingClients.Count;i++)
                                     {
-                                    <option>@placeholder.Name</option>
+                                    <option id="FranchisingClients[@i].FranchisingClientDtoId"
+                                            value="@Model.FranchisingClients[i].FranchisingClientDtoId">
+                                        @Model.FranchisingClients[i].Name
+                                    </option>
                                     }
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-6" style="border-left:1px solid blue">
+            </div>
+            <div class="col-md-4">
+                <div class="connection-container panel panel-default">
+                    <div class="panel-heading">
+                        <div>
+                            <label class="panel-custom-header control-label">@Model.ConnectionCaption</label>
+                        </div>
+                    </div>
                     <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="col-md-1">
-                                    <input asp-for="AssignPrintJob" class="checkbox">
-                                </div>
-                                <div class="col-md-11">
-                                    <label asp-for="AssignPrintJob"></label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-1 col-md-11">
-                                    <div class="col-md-1">
-                                        <input asp-for="IsBill" class="checkbox" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label asp-for="IsBill"></label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input asp-for="PrintJobsView.Take(1).FirstOrDefault().DocumentToPrintCopies" class="form-control" min="0" />
-                                    </div>
-                                    <div class="col-md-5">
-                                        <label asp-for="PrintJobsView.Take(1).FirstOrDefault().DocumentToPrintCopies" class="control-label"></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-1 col-md-11">
-                                    <div class="col-md-1">
-                                        <input asp-for="IsAct" class="checkbox" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label asp-for="IsAct"></label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input asp-for="PrintJobsView.Take(2).FirstOrDefault().DocumentToPrintCopies" class="form-control" min="0" />
-                                    </div>
-                                    <div class="col-md-5">
-                                        <label asp-for="PrintJobsView.Take(2).FirstOrDefault().DocumentToPrintCopies" class="control-label"></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="col-md-4">
-                                    <label asp-for="BillTemplatesLabel" class="control-label"></label>
-                                </div>
-                                <div class="col-md-7">
-                                <select class="form-control">
-                                @foreach (var template in Model.DocumentTemplates)
-                                 {   
-                                    <option>@template.Name</option>
-                                 }
-                                </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="col-md-4">
-                                    <label asp-for="ActTemplatesLabel" class="control-label"></label>
-                                </div>
-                                <div class="col-md-7">
-                                <select class="form-control">
-                                @foreach (var template in Model.DocumentTemplates)
-                                 {
-                                    <option>@template.Name</option>
-                                 }
-                                </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <div class="col-md-12">
-                            <div>
-                                <label asp-for="ActOptionsLabel" class="control-label"></label>
+                            <div class="form-group">
+                                <label asp-for="ClientConnection.ServerName" class="control-label col-md-4 col-sm-4 col-xs-4"></label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <input asp-for="ClientConnection.ServerName" class="form-control" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                    @for (int i=0;i<Model.BillSettingsOptionsView.Count;i++)
-                    { 
-                    <div class="form-group">
+                    <div class="row">
                         <div class="col-md-12">
-                            <div class="col-md-1">
-                                <input asp-for="IsActiveActOption" class="checkbox" />
-                            </div>
-                            <div class="col-md-2">
-                                <label asp-for="BillSettingsOptionsView.Take(i).FirstOrDefault().Limit" style="font-size:9px;font-weight:bold"></label>
-                            </div>
-                            <div class="col-md-4">
-                                <input asp-for="BillSettingsOptionsView.Take(i).FirstOrDefault().Limit" class="form-control" type="number" min="0" />
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-control">
-                                @foreach (var template in Model.DocumentTemplates)
-                                 {
-                                    <option>@template.Name</option>
-                                 }
-                                </select>
+                            <div class="form-group">
+                                <label asp-for="ClientConnection.DatabaseName" class="control-label col-md-4 col-sm-4 col-xs-4"></label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <input asp-for="ClientConnection.DatabaseName" class="form-control" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                    }
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="ClientConnection.Login" class="control-label col-md-4 col-sm-4 col-xs-4"></label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <input asp-for="ClientConnection.Login" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="ClientConnection.PasswordHash" class="control-label col-md-4 col-sm-4 col-xs-4"></label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <input asp-for="ClientConnection.PasswordHash" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -12,10 +12,10 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
         [StringLength(100)]
         public string Name { get; set; }
 
-        public int DocumentTemplateCategoryId { get; set; }
+        public int? DocumentTemplateCategoryId { get; set; }
         public virtual DocumentTemplateCategory DocumentTemplateCategory { get; set; }
         public virtual BillSettingsInfo BillSettingsInfo { get; set; }
-        public virtual BillSettingsOptionsInfo BillSettingsOptionsInfo { get; set; }
+        public virtual BillOptionsInfo BillOptionsInfo { get; set; }
         public virtual PrintJobInfo PrintJobInfo { get; set; }
     }
 }

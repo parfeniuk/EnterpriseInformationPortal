@@ -60,6 +60,14 @@ namespace RepositoryGeneric
             return existed;
         }
 
+        public TEntity Update(TEntity entity)
+        {
+            if (entity == null) return null;
+            _context.Update(entity);
+            _context.SaveChanges();
+            return entity;
+        }
+
         public int Save()
         {
             return _context.SaveChanges();

@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace Base2BaseWeb.UI.Areas.Company.DTO
 {
-    public class Product
+    public class DebtCalcMethodTypeDto
     {
-        public int ProductId { get; set; }
+        //public bool SelectedMethod { get; set; }
+        public int DebtCalcMethodTypeId { get; set; }
         public string Name { get; set; }
-        public double Price { get; set; }
+        public bool Active { get; set; }
     }
 }

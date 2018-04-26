@@ -11,6 +11,7 @@ namespace Base2BaseWeb.UI.Areas.Company.DTO
         public int ContactEmailInfoId { get; set; }
         [Display(Name ="Email")]
         public string Email { get; set; }
+        [Display(Name = "автоматическая рассылка")]
         public bool IncludeToMailList { get; set; }
     }
 }

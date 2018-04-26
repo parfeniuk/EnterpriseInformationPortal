@@ -830,12 +830,12 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
                         principalTable: "cli_group",
                         principalColumn: "cli_group_number",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_point_cli_group_CliGroupNumber1",
-                        column: x => x.CliGroupNumber1,
-                        principalTable: "cli_group",
-                        principalColumn: "cli_group_number",
-                        onDelete: ReferentialAction.Restrict);
+                    //table.ForeignKey(
+                    //    name: "FK_point_cli_group_CliGroupNumber1",
+                    //    column: x => x.CliGroupNumber1,
+                    //    principalTable: "cli_group",
+                    //    principalColumn: "cli_group_number",
+                    //    onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

@@ -1,0 +1,33 @@
+﻿@model SupportIndexViewModel
+
+@{
+    ViewData["Title"] = "Тех-поддержка";
+}
+
+<div class="container-fluid">
+    <div class="clients-index-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input asp-for="SearchString" id="inputClientSearch"
+                                   data-request-url='@Url.Action("ClientsList","Support",new {area="Company" })'
+                                   class="form-control" placeholder="Введите наименование клиента..">
+                            <div class="input-group-addon" id="btnClientSearch">
+                                <span class="fa fa-search" 
+                                      data-toggle="tooltip" title="Поиск"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="clientsFilter">
+                    @{ 
+                        Html.RenderPartial("ClientsList", Model);
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

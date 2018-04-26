@@ -1,6 +1,6 @@
 ﻿$(function () {
     loadClientContacts();
-    $('.tbs').on('click', switchTab);
+    $('body').on('click','.tbs', switchTab);
 });
 
 function loadClientContacts() {
@@ -9,12 +9,15 @@ function loadClientContacts() {
         dataType: 'html',
         success: function (data) {
             $('#tabContent').html(data);
+            setSubmitLink();
+            saveInitialState();
         }
     });
 }
 function switchTab() {
     var id = $(this).attr('id');
     var info = $(this).data('info');
+
     switch (info)
     {
         case 'clientContacts': loadClientData(id);
@@ -37,11 +40,24 @@ function loadClientData(id)
         success: function (data) {
             $('#tabContent').html(data);
             setMaxHeight();
+            setSubmitLink();
+            saveInitialState();
         }
     });
 }
-
 function setMaxHeight() {
     var highest = $('.billSettings-container').height();
     $('.debtControl-container').height(highest);
+    highest = $('.franchising-container').height();
+    $('.connection-container').height(highest);
+    $('.debtCalcMethod-container').height(highest);
+}
+function setSubmitLink() {
+    var formId = $('#tabContent').find('form').attr('id');
+    $('#btnClientSave').attr('data-form-id', formId);
+}
+function saveInitialState() {
+    var formId = $('#btnClientSave').attr('data-form-id').valueOf();
+    var form = $('#' + formId);
+    form.data('serialize', form.serialize());
 }

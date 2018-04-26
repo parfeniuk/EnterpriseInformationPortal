@@ -14,7 +14,7 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
         public bool NotifyBySms { get; set; }
         public bool NotifyByViber { get; set; }
 
-        public int PointNumber { get; set; }
+        public int? PointNumber { get; set; }
         public virtual Point Point { get; set; }
     }
 }

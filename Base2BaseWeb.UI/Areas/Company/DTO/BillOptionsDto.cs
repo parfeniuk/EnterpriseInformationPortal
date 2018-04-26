@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Base2BaseWeb.UI.Areas.Company.DTO
 {
-    public class BillSettingsOptionsDto
+    public class BillOptionsDto
     {
-        public int BillSettingsOptionsInfoId { get; set; }
+        public int BillOptionsInfoId { get; set; }
         [Display(Name = "Сумма >")]
         public double Limit { get; set; }
+        public int? DocumentTemplateId { get; set; }
+        public bool Active { get; set; }
     }
 }

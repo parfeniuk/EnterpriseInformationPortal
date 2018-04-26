@@ -22,9 +22,13 @@
                         @if (isAdmin)
                         {
                             <li><a data-unique-attr="1" asp-area="Company" asp-controller="Clients" asp-action="Index">Клиенты</a></li>
-                            <li><a data-unique-attr="2" asp-area="Admin" asp-controller="Roles" asp-action="Index">Администрирование</a></li>
+                            <li><a data-unique-attr="2" asp-area="Company" asp-controller="Support" asp-action="Index">Тех-поддержка</a></li>
+                            <li><a data-unique-attr="3" href="#">Магазин</a></li>
+                            <li><a data-unique-attr="4" href="#">Дата-Центр</a></li>
+                            <li><a data-unique-attr="5" href="#">Контент сайта</a></li>
+                            <li><a data-unique-attr="6" asp-area="Admin" asp-controller="Roles" asp-action="Index">Администрирование</a></li>
                         }
-                        <li><a data-unique-attr="3" asp-area="" asp-controller="Manage" asp-action="Index">Мой кабинет</a></li>
+                        @*<li><a data-unique-attr="7" asp-area="" asp-controller="Manage" asp-action="Index">Мой кабинет</a></li>*@
 
                     </ul>
                 </div>
