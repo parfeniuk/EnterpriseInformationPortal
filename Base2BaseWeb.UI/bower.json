@@ -6,6 +6,7 @@
     "bootstrap": "v3.3.7",
     "bootstrap-datepicker": "bootstrap-3-datepicker#v1.7.1",
     "jquery-validation-unobtrusive": "v3.2.6",
-    "bootstrap-treeview": "v1.2.0"
+    "bootstrap-treeview": "v1.2.0",
+    "bootstrap-select": "v1.12.4"
   }
 }

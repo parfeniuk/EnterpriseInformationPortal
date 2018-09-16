@@ -1,28 +1,28 @@
 ﻿@model ClientsIndexViewModel
 
-<table id="clientsTable" class="table table-hover table-responsive table-striped table-bordered clients-thead-grey">
-    <thead class="clients-thead-grey">
-        <tr>
-            <th class="col-md-3">Наименование клиента</th>
-            <th class="col-md-2 text-center">Группа</th>
-            <th class="col-md-3 text-center">Контактное лицо</th>
-            <th class="text-center">Телефон</th>
-            <th class="col-md-1 text-center">Сальдо</th>
-            <th class="text-center">Дата подписания</th>
-            <th class="text-center">Дата окончания</th>
+<table id="clientsTable" class="table table-hover table-responsive table-striped table-bordered clients-thead-grey table-fixed-header">
+    <thead class="clients-thead-grey header" id="headerFixed">
+        <tr id="clients-row-th">
+            <th id="clients-th-1" class="col-md-3">Наименование клиента</th>
+            <th id="clients-th-2" class="col-md-2 text-center">Группа</th>
+            <th id="clients-th-3" class="col-md-3 text-center">Контактное лицо</th>
+            <th id="clients-th-4" class="col-md-1 text-center">Телефон</th>
+            <th id="clients-th-5" class="col-md-1 text-center">Сальдо</th>
+            <th id="clients-th-6" class="col-md-1 text-center">Дата подписания</th>
+            <th id="clients-th-7" class="col-md-1 text-center">Дата окончания</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="table-content">
         @foreach (var client in Model.Clients)
         {
-            <tr>
-                <td><a asp-area="Company" asp-action="Edit" asp-route-id="@client.Id">@client.Name</a></td>
-                <td class="text-center">@client.GroupName</td>
-                <td class="text-center">@client.ContactName</td>
-                <td class="text-center">@client.PhoneNumber</td>
-                <td class="text-center">@client.Balance.GetValueOrDefault().ToString("N2") </td>
-                <td class="text-center">@client.ContractStartDate.GetValueOrDefault().ToShortDateString()</td>
-                <td class="text-center">@client.ContractEndDate.GetValueOrDefault().ToShortDateString()</td>
+            <tr id="clients-row-td">
+                <td id="clients-td-1"><a asp-area="Company" asp-action="Edit" asp-route-id="@client.Id">@client.Name</a></td>
+                <td id="clients-td-2" class="text-center">@client.GroupName</td>
+                <td id="clients-td-3" class="text-center">@client.ContactName</td>
+                <td id="clients-td-4" class="text-center">@client.PhoneNumber</td>
+                <td id="clients-td-5" class="text-center">@client.Balance.GetValueOrDefault().ToString("N2") </td>
+                <td id="clients-td-6" class="text-center">@client.ContractStartDate.GetValueOrDefault().ToShortDateString()</td>
+                <td id="clients-td-7" class="text-center">@client.ContractEndDate.GetValueOrDefault().ToShortDateString()</td>            
             </tr>
         }
     </tbody>

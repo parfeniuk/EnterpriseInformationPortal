@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Base2BaseWeb.B2B.DataLayer.Migrations
 {
@@ -262,6 +263,74 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
             migrationBuilder.DropIndex(
                 name: "IX_BillSettingsInfo_PointNumber",
                 table: "BillSettingsInfo");
+
+            // Update NULL values before changing column type from NULLABLE to NOT NULLABLE
+            StringBuilder updateNullPrintJobInfo_DocumentTemplateId = new StringBuilder();
+            updateNullPrintJobInfo_DocumentTemplateId.Append("Delete from PrintJobInfo" + Environment.NewLine);
+            updateNullPrintJobInfo_DocumentTemplateId.Append("Where DocumentTemplateId is Null" + Environment.NewLine);
+
+            StringBuilder updateNullPrintJobInfo_BillSettingsInfoId = new StringBuilder();
+            updateNullPrintJobInfo_BillSettingsInfoId.Append("Delete from PrintJobInfo" + Environment.NewLine);
+            updateNullPrintJobInfo_BillSettingsInfoId.Append("Where BillSettingsInfoId is Null" + Environment.NewLine);
+
+            StringBuilder updateNullFranchisingInfo_PointNumber = new StringBuilder();
+            updateNullFranchisingInfo_PointNumber.Append("Delete from FranchisingInfo" + Environment.NewLine);
+            updateNullFranchisingInfo_PointNumber.Append("Where PointNumber is Null" + Environment.NewLine);
+
+            StringBuilder DocumentTemplate_DocumentTemplateCategoryId = new StringBuilder();
+            DocumentTemplate_DocumentTemplateCategoryId.Append("Delete from DocumentTemplate" + Environment.NewLine);
+            DocumentTemplate_DocumentTemplateCategoryId.Append("Where DocumentTemplateCategoryId is Null" + Environment.NewLine);
+
+            StringBuilder DebtControlInfo_PointNumber = new StringBuilder();
+            DebtControlInfo_PointNumber.Append("Delete from DebtControlInfo" + Environment.NewLine);
+            DebtControlInfo_PointNumber.Append("Where PointNumber is Null" + Environment.NewLine);
+
+            StringBuilder DebtCalcMethodInfo_DebtCalcMethodTypeId = new StringBuilder();
+            DebtCalcMethodInfo_DebtCalcMethodTypeId.Append("Delete from DebtCalcMethodInfo" + Environment.NewLine);
+            DebtCalcMethodInfo_DebtCalcMethodTypeId.Append("Where DebtCalcMethodTypeId is Null" + Environment.NewLine);
+
+            StringBuilder ContactPhonelInfo_PointNumber = new StringBuilder();
+            ContactPhonelInfo_PointNumber.Append("Delete from ContactPhonelInfo" + Environment.NewLine);
+            ContactPhonelInfo_PointNumber.Append("Where PointNumber is Null" + Environment.NewLine);
+
+            StringBuilder ContactEmailInfo_PointNumber = new StringBuilder();
+            ContactEmailInfo_PointNumber.Append("Delete from ContactEmailInfo" + Environment.NewLine);
+            ContactEmailInfo_PointNumber.Append("Where PointNumber is Null" + Environment.NewLine);
+
+            StringBuilder ClientConnectionInfo_PointNumber = new StringBuilder();
+            ClientConnectionInfo_PointNumber.Append("Delete from ClientConnectionInfo" + Environment.NewLine);
+            ClientConnectionInfo_PointNumber.Append("Where PointNumber is Null" + Environment.NewLine);
+
+            StringBuilder BillSettingsOptionsInfo_DocumentTemplateId = new StringBuilder();
+            BillSettingsOptionsInfo_DocumentTemplateId.Append("Delete from BillSettingsOptionsInfo" + Environment.NewLine);
+            BillSettingsOptionsInfo_DocumentTemplateId.Append("Where DocumentTemplateId is Null" + Environment.NewLine);
+
+            StringBuilder BillSettingsOptionsInfo_BillSettingsInfoId = new StringBuilder();
+            BillSettingsOptionsInfo_BillSettingsInfoId.Append("Delete from BillSettingsOptionsInfo" + Environment.NewLine);
+            BillSettingsOptionsInfo_BillSettingsInfoId.Append("Where BillSettingsInfoId is Null" + Environment.NewLine);
+
+            StringBuilder BillSettingsInfo_PointNumber = new StringBuilder();
+            BillSettingsInfo_PointNumber.Append("Delete from BillSettingsInfo" + Environment.NewLine);
+            BillSettingsInfo_PointNumber.Append("Where PointNumber is Null" + Environment.NewLine);
+
+            StringBuilder BillSettingsInfo_DocumentTemplateId = new StringBuilder();
+            BillSettingsInfo_DocumentTemplateId.Append("Delete from BillSettingsInfo" + Environment.NewLine);
+            BillSettingsInfo_DocumentTemplateId.Append("Where DocumentTemplateId is Null" + Environment.NewLine);
+
+            migrationBuilder.Sql(updateNullPrintJobInfo_DocumentTemplateId.ToString());
+            migrationBuilder.Sql(updateNullPrintJobInfo_BillSettingsInfoId.ToString());
+            migrationBuilder.Sql(updateNullFranchisingInfo_PointNumber.ToString());
+            migrationBuilder.Sql(DocumentTemplate_DocumentTemplateCategoryId.ToString());
+            migrationBuilder.Sql(DebtControlInfo_PointNumber.ToString());
+            migrationBuilder.Sql(DebtCalcMethodInfo_DebtCalcMethodTypeId.ToString());
+            migrationBuilder.Sql(ContactPhonelInfo_PointNumber.ToString());
+            migrationBuilder.Sql(ContactEmailInfo_PointNumber.ToString());
+            migrationBuilder.Sql(ClientConnectionInfo_PointNumber.ToString());
+            migrationBuilder.Sql(BillSettingsOptionsInfo_DocumentTemplateId.ToString());
+            migrationBuilder.Sql(BillSettingsOptionsInfo_BillSettingsInfoId.ToString());
+            migrationBuilder.Sql(BillSettingsInfo_PointNumber.ToString());
+            migrationBuilder.Sql(BillSettingsInfo_DocumentTemplateId.ToString());
+
 
             migrationBuilder.AlterColumn<int>(
                 name: "DocumentTemplateId",

@@ -1,0 +1,136 @@
+﻿@model TicketCreateViewModel
+@{
+    ViewData["Title"] = "Create Ticket";
+}
+
+<form id="ticketCreateForm" class="form-horizontal" method="post" asp-action="CreateTicket" asp-controller="Support" asp-area="Company">
+    <div class="ticket-container">
+        <div class="panel panel-default ticket-branch-container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="TicketCreateDto.ClientId" class="control-label col-md-3"></label>
+                        <div class="col-md-9">
+                            <select asp-for="TicketCreateDto.ClientId"
+                                    class="form-control selectpicker selectpicker-clients btn-text-white"
+                                    data-live-search="true" title="Список клиентов..."
+                                    data-style="btn-primary" data-size="auto"
+                                    asp-items="@(new SelectList(Model.Clients,"ClientId","Name"))"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TicketCreateDto.BranchId" class="control-label col-md-3"></label>
+                        <div class="col-md-9">
+                            <select asp-for="TicketCreateDto.BranchId"
+                                    class="form-control selectpicker selectpicker-branches btn-text-white"
+                                    data-request-url="@Url.Action("GetBranchesById","Support",new {Area="Company"})"
+                                    data-live-search="true" title="Список торговых точек..."
+                                    data-style="btn-primary" data-size="10"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label asp-for="TicketCreateDto.PointCommunicationTypeId" class="control-label col-md-1"></label>
+                        <div class="col-md-3">
+                            <select asp-for="TicketCreateDto.PointCommunicationTypeId"
+                                    class="form-control selectpicker selectpicker-communication-type btn-text-white"
+                                    data-live-search="true" title="Канал коммуникации..."
+                                    data-style="btn-primary" data-size="auto"
+                                    asp-items="@(
+                                          new SelectList(Model.PointCommunicationTypes,"PointCommunicationTypeId","Name"))"></select>
+                        </div>
+                        <label asp-for="TicketCreateDto.PointContactPhoneId" class="control-label col-md-1"></label>
+                        <div class="col-md-3">
+                            <select asp-for="TicketCreateDto.PointContactPhoneId"
+                                    class="form-control selectpicker selectpicker-phones btn-text-white"
+                                    data-request-url="@Url.Action("GetPhonesById","Support",new {Area="Company"})"
+                                    data-live-search="true" title="Список торговых точек..."
+                                    data-style="btn-primary" data-size="auto"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TicketCreateDto.PointContactPersonPositionType" class="control-label col-md-1"></label>
+                        <div class="col-md-3">
+                            <input asp-for="TicketCreateDto.PointContactPersonPositionType"
+                                   class="form-control" readonly />
+                        </div>
+                        <label asp-for="TicketCreateDto.PointContactPersonName" class="control-label col-md-1"></label>
+                        <div class="col-md-7">
+                            <input asp-for="TicketCreateDto.PointContactPersonName"
+                                   class="form-control" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default ticket-options-container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="TicketCreateDto.TicketSubjectParentId" class="control-label col-md-3"></label>
+                        <div class="col-md-9">
+                            <select asp-for="TicketCreateDto.TicketSubjectParentId"
+                                    class="form-control selectpicker selectpicker-ticket-subject btn-text-white"
+                                    data-live-search="true"
+                                    title="Категория заявки..."
+                                    data-style="btn-primary"
+                                    data-size="auto"
+                                    asp-items="@(new SelectList(Model.TicketSubjectParents,"TicketSubjectId","Name"))"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TicketCreateDto.TicketSubjectFirstChildrenId" class="control-label col-md-3"></label>
+                        <div class="col-md-9">
+                            <select asp-for="TicketCreateDto.TicketSubjectFirstChildrenId"
+                                    class="form-control selectpicker selectpicker-ticket-subject-details btn-text-white"
+                                    data-request-url="@Url.Action("GetSubCategoryById","Support",new {Area="Company"})"
+                                    data-live-search="true"
+                                    title=" Тема заявки..."
+                                    data-style="btn-primary"
+                                    data-size="auto"
+                                    data-max-options="1"
+                                    asp-items="@(new SelectList(Model.TicketSubjectFirstChildren,"TicketSubjectId","Name"))"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TicketCreateDto.TicketSubjectLastChildrenId" class="control-label col-md-3"></label>
+                        <div class="col-md-9">
+                            @for (int i = 0; i < Model.TicketSubjectLastChildren.Count; i++)
+                            {
+
+                                <div class="col-md-1">
+                                    <input asp-for="TicketSubjectLastChildren[i].Active" class="category-type-check" />
+                                    <input asp-for="TicketSubjectLastChildren[i].TicketSubjectId" type="hidden" />
+                                </div>
+                                <div class="col-md-10">
+                                    <label>@Model.TicketSubjectLastChildren[i].Name</label>
+                                </div>
+                            }
+                                <div  class="form-group" >
+                                   
+                                    @*<div id="treeCat"  class="col-md-9">
+                                        ДЕРЕВО!ДЕРЕВО!ДЕРЕВО!ДЕРЕВО!ДЕРЕВО!ДЕРЕВО!ДЕРЕВО!ДЕРЕВО!ДЕРЕВО! bДЕРЕВО! sdv
+                                    </div>*@
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+                @*<div class="form-group" id="treeJsonText">
+                    <label asp-for="TicketCreateDto.TicketSubjectLastChildrenId" class="control-label col-md-3"></label>
+                    ТУТ буде текст вирішення звернення
+                </div>*@
+                <div class="col-md-6">
+                    @* Place List of equipment here *@
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="submit" value="Создать заявку" class="btn btn-primary" id="btnCreateTicket" />
+            </div>
+        </div>
+    </div>
+</form>
+

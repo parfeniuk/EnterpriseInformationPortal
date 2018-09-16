@@ -11,6 +11,7 @@ namespace DbSyncService
         public string User { get; set; }
         public string Password { get; set; }
         public int PointNumber { get; set; }
+        public string PointName { get; set; }
         public string GroupName { get; set; }
     }
 }

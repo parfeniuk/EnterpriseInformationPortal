@@ -19,7 +19,8 @@
       "wwwroot/js/addActiveClass.js",
       "wwwroot/js/customAlignNavBar.js",
       "wwwroot/js/imagesPreview.js",
-      "wwwroot/js/searchClientsTable"
+      "wwwroot/js/searchClientsTable.js",
+      "wwwroot/js/table-fixed-header.js"
     ],
     // Optionally specify minification options
     "minify": {

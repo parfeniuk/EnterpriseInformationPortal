@@ -9,6 +9,8 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="~/lib/Font-Awesome/css/font-awesome.css" rel="stylesheet" />
         <link href="~/css/customCss.css" rel="stylesheet" />
@@ -21,6 +23,8 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link href="~/lib/Font-Awesome/css/font-awesome.min.css" rel="stylesheet" />
     </environment>
@@ -30,19 +34,17 @@
     <div class="body-wrapper">
         <!--Navigation Bar Section-->
         <nav id="menu-master" class="navbar navbar-fixed-top">
-            <div class="menu-static" id="menu-static">
+            <div class="collapse navbar-collapse">
                 <nav class="navbar navbar-inverse inline-navbar">
-                    <ul class="nav navbar-nav menu-static-left" id="menu-static-left">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Company">Компания</a></li>
+                    <ul class="nav navbar-nav">
+                        <li class="navbar-left"><a asp-area="" asp-controller="Home" asp-action="Company">Компания</a></li>
+                        <li class="navbar-center"><a asp-area="" asp-controller="Home" asp-action="Software">Продукты</a></li>
+                        <li class="navbar-center"><a asp-area="" asp-controller="Home" asp-action="Support">Поддержка</a></li>
+                        <li class="navbar-center"><a asp-area="" asp-controller="Home" asp-action="Updates">Обновления</a></li>
+                        <li class="navbar-center"><a asp-area="" asp-controller="Home" asp-action="Blog" disabled="disabled">Блог</a></li>
+                        <li class="navbar-center"><a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a></li>
+                        @await Html.PartialAsync("_LoginPartial")
                     </ul>
-                    <ul class="nav navbar-nav menu-static-center" id="menu-static-center">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Software">Продукты</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Support">Поддержка</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Updates">Обновления</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Blog" disabled="disabled">Блог</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a></li>
-                    </ul>
-                    @await Html.PartialAsync("_LoginPartial")
                 </nav>
             </div>
             @Html.Partial("_MenuFixedPartial")
@@ -62,6 +64,7 @@
             <script src="~/lib/jquery/dist/jquery.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
             <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+            <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.js"></script>
             <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
             <script src="~/lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.uk.js"></script>
             <script src="~/lib/bootstrap-treeview/src/js/bootstrap-treeview.js"></script>
@@ -87,6 +90,7 @@
             </script>
             <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
             <script src="~/lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.uk.js"></script>
+            <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
             <script src="~/lib/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
             <script src="~/js/site.min.js" asp-append-version="true"></script>
         </environment>

@@ -21,6 +21,22 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
         // Bypass Initial Migration (Initial migration is DB snapshot resulting from Reverse Engineering)
         public static void BypassInitialMigration(b2b_testContext context)
         {
+            /* Create __EFMigration Table IF NOT EXISTS*/
+            StringBuilder createTable = new StringBuilder();
+            createTable.Append("if not exists" + Environment.NewLine);
+            createTable.Append("(select * from sysobjects where name='__EFMigrationsHistory' and xtype='U')" + Environment.NewLine);
+            createTable.Append("CREATE TABLE [dbo].[__EFMigrationsHistory](" + Environment.NewLine);
+            createTable.Append("[MigrationId] [nvarchar](150) NOT NULL," + Environment.NewLine);
+            createTable.Append("[ProductVersion] [nvarchar](32) NOT NULL," + Environment.NewLine);
+            createTable.Append("CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED" + Environment.NewLine);
+            createTable.Append("([MigrationId] ASC)" + Environment.NewLine);
+            createTable.Append("WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF," + Environment.NewLine);
+            createTable.Append("IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON," + Environment.NewLine);
+            createTable.Append("ALLOW_PAGE_LOCKS = ON) ON [PRIMARY])" + Environment.NewLine);
+            createTable.Append("ON [PRIMARY]" + Environment.NewLine);
+            string strCreate = createTable.ToString();
+            context.Database.ExecuteSqlCommand(createTable.ToString());
+
             // Get 1st migration of All (Non-applied + applied)
             string initialMigration = context.Database.GetMigrations()?.First();
 

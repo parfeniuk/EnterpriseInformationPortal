@@ -10,9 +10,9 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.SupportViewModel
     {
         public SupportIndexViewModel()
         {
-            Tickets = new HashSet<TicketDto>();
+            Tickets = new HashSet<TicketIndexDto>();
         }
-        public IEnumerable<TicketDto> Tickets { get; set; }
+        public IEnumerable<TicketIndexDto> Tickets { get; set; }
         public string SearchString { get; set; }
     }
 }

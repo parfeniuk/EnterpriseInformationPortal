@@ -34,30 +34,6 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
                 .HasForeignKey<BillSettingsInfo>(p => p.PointNumber)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            modelBuilder.Entity<BillSettingsInfo>()
-                .HasOne(bs => bs.ServicePlaceholderType)
-                .WithOne(s => s.BillSettingsInfo)
-                .HasForeignKey<BillSettingsInfo>(bs => bs.ServicePlaceholderTypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            modelBuilder.Entity<BillSettingsInfo>()
-                .HasOne(bs => bs.DocumentTemplate)
-                .WithOne(s => s.BillSettingsInfo)
-                .HasForeignKey<BillSettingsInfo>(bs => bs.DocumentTemplateId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            modelBuilder.Entity<BillOptionsInfo>()
-                .HasOne(bo => bo.DocumentTemplate)
-                .WithOne(d => d.BillOptionsInfo)
-                .HasForeignKey<BillOptionsInfo>(bo => bo.DocumentTemplateId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            modelBuilder.Entity<PrintJobInfo>()
-                .HasOne(pj => pj.DocumentTemplate)
-                .WithOne(d => d.PrintJobInfo)
-                .HasForeignKey<PrintJobInfo>(pj => pj.DocumentTemplateId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
             modelBuilder.Entity<ClientConnectionInfo>()
                 .HasOne(c => c.Point)
                 .WithOne(p => p.ClientConnectionInfo)
@@ -125,6 +101,37 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
                 .HasForeignKey(f => f.FranchisingTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
+            modelBuilder.Entity<PointChildren>()
+                .HasOne(pc => pc.Point)
+                .WithMany(p => p.PointChildren)
+                .HasForeignKey(pc => pc.PointNumber)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<BillSettingsInfo>()
+                .HasOne(bs => bs.ServicePlaceholderType)
+                .WithMany(s => s.BillSettingsInfo)
+                .HasForeignKey(bs => bs.ServicePlaceholderTypeId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<BillSettingsInfo>()
+                .HasOne(bs => bs.DocumentTemplate)
+                .WithMany(s => s.BillSettingsInfo)
+                .HasForeignKey(bs => bs.DocumentTemplateId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<BillOptionsInfo>()
+                .HasOne(bo => bo.DocumentTemplate)
+                .WithMany(d => d.BillOptionsInfo)
+                .HasForeignKey(bo => bo.DocumentTemplateId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<PrintJobInfo>()
+                .HasOne(pj => pj.DocumentTemplate)
+                .WithMany(d => d.PrintJobInfo)
+                .HasForeignKey(pj => pj.DocumentTemplateId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            // TICKETS RELATIONS
             modelBuilder.Entity<Ticket>()
                 .HasOne(t => t.Point)
                 .WithMany(p => p.Tickets)
@@ -143,11 +150,49 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
                 .HasForeignKey(t => t.TicketStatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            modelBuilder.Entity<PointChildren>()
-                .HasOne(pc => pc.Point)
-                .WithMany(p => p.PointChildren)
-                .HasForeignKey(pc => pc.PointNumber)
-                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Ticket>()
+                .HasOne(t => t.PointCommunicationType)
+                .WithMany(pct => pct.Tickets)
+                .HasForeignKey(t => t.PointCommunicationTypeId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Ticket>()
+                .HasOne(t => t.PointContactPerson)
+                .WithMany(person => person.Tickets)
+                .HasForeignKey(t => t.PointContactPersonId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<PointContactPerson>()
+                .HasOne(person => person.Point)
+                .WithMany(point => point.PointContactPeople)
+                .HasForeignKey(person => person.PointNumber)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<PointContactPerson>()
+                .HasOne(person => person.PointContactPersonPositionType)
+                .WithMany(position => position.PointContactPeople)
+                .HasForeignKey(person => person.PointContactPersonPositionTypeId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<PointContactPhone>()
+                .HasOne(phone => phone.PointContactPerson)
+                .WithMany(person => person.PointContactPhones)
+                .HasForeignKey(phone => phone.PointContactPersonId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<PointContactEmail>()
+                .HasOne(email => email.PointContactPerson)
+                .WithMany(person => person.PointContactEmails)
+                .HasForeignKey(email => email.PointContactPersonId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            // Self-Reference
+            modelBuilder.Entity<TicketSubject>()
+                .HasOne(subject => subject.Parent)
+                .WithMany(parent => parent.Children)
+                .HasForeignKey(subject => subject.ParentId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
             //Add FK on Point Table
             //modelBuilder.Entity<Point>()
             //        .HasOne(p => p.CliGroup)
@@ -181,7 +226,6 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
                 .HasOne<CliGroup>(gc => gc.CliGroup)
                 .WithMany(p => p.GroupClients)
                 .HasForeignKey(gc => gc.CliGroupNumber);
-
 
             // Configure Indexes
             modelBuilder.Entity<DebtCalcMethodType>()

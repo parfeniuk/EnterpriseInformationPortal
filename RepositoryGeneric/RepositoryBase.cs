@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace RepositoryGeneric
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _set=_context.Set<TEntity>()?? throw new ArgumentNullException(nameof(_set));
+        }
+
+        public IDbContextTransaction BeginTransaction()
+        {
+            return _context.Database.BeginTransaction();
         }
 
         public TEntity Find(object key)

@@ -11,10 +11,11 @@ namespace Base2BaseWeb.UI.Areas.Company.Models.ClientEditViewModel
         public ClientProductsEditViewModel()
         {
             ProductsAll = new List<ProductDto>();
+            ProductsClient = new List<ProductDto>();
         }
         
         public int Id { get; set; }
         public List<ProductDto> ProductsAll { get; set; }
-        public List<ProductDto> ProductClient { get; set; }
+        public List<ProductDto> ProductsClient { get; set; }
     }
 }

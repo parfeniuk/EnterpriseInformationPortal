@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Base2BaseWeb.B2B.DataLayer.Entities
@@ -19,5 +20,12 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
         public int? TicketStatusId { get; set; }
         public virtual TicketStatus TicketStatus { get; set; }
 
+        public Guid UserId { get; set; }
+
+        public int? PointCommunicationTypeId { get; set; }
+        public virtual PointCommunicationType PointCommunicationType { get; set; }
+
+        public int? PointContactPersonId { get; set; }
+        public virtual PointContactPerson PointContactPerson { get; set; }
     }
 }

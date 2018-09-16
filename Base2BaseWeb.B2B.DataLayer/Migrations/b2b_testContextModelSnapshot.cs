@@ -305,9 +305,7 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
 
                     b.HasKey("BillOptionsInfoId");
 
-                    b.HasIndex("DocumentTemplateId")
-                        .IsUnique()
-                        .HasFilter("[DocumentTemplateId] IS NOT NULL");
+                    b.HasIndex("DocumentTemplateId");
 
                     b.HasIndex("PointNumber");
 
@@ -331,17 +329,13 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
 
                     b.HasKey("BillSettingsInfoId");
 
-                    b.HasIndex("DocumentTemplateId")
-                        .IsUnique()
-                        .HasFilter("[DocumentTemplateId] IS NOT NULL");
+                    b.HasIndex("DocumentTemplateId");
 
                     b.HasIndex("PointNumber")
                         .IsUnique()
                         .HasFilter("[PointNumber] IS NOT NULL");
 
-                    b.HasIndex("ServicePlaceholderTypeId")
-                        .IsUnique()
-                        .HasFilter("[ServicePlaceholderTypeId] IS NOT NULL");
+                    b.HasIndex("ServicePlaceholderTypeId");
 
                     b.ToTable("BillSettingsInfo");
                 });
@@ -454,6 +448,8 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
                     b.Property<string>("CliGroupName")
                         .HasColumnName("cli_group_name")
                         .HasMaxLength(250);
+
+                    b.Property<int?>("PointNumber");
 
                     b.Property<bool>("Post")
                         .HasColumnName("post");
@@ -2110,6 +2106,8 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
                     b.Property<int?>("CashPointNumber")
                         .HasColumnName("cash_point_number");
 
+                    b.Property<int>("ChildId");
+
                     b.Property<int?>("CliGroupNumber")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("cli_group_number")
@@ -2178,6 +2176,8 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
                     b.Property<string>("Iban")
                         .HasColumnName("iban")
                         .HasMaxLength(255);
+
+                    b.Property<bool>("IncludeToMailList");
 
                     b.Property<string>("IndNum")
                         .HasColumnName("ind_num")
@@ -2411,6 +2411,97 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
                     b.ToTable("PointChildren");
                 });
 
+            modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PointCommunicationType", b =>
+                {
+                    b.Property<int>("PointCommunicationTypeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("PointCommunicationTypeId");
+
+                    b.ToTable("PointCommunicationType");
+                });
+
+            modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PointContactEmail", b =>
+                {
+                    b.Property<int>("PointContactEmailId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<int?>("PointContactPersonId");
+
+                    b.HasKey("PointContactEmailId");
+
+                    b.HasIndex("PointContactPersonId");
+
+                    b.ToTable("PointContactEmail");
+                });
+
+            modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PointContactPerson", b =>
+                {
+                    b.Property<int>("PointContactPersonId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("MiddleName")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("PointContactPersonPositionTypeId");
+
+                    b.Property<int?>("PointNumber");
+
+                    b.HasKey("PointContactPersonId");
+
+                    b.HasIndex("PointContactPersonPositionTypeId");
+
+                    b.HasIndex("PointNumber");
+
+                    b.ToTable("PointContactPerson");
+                });
+
+            modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PointContactPersonPositionType", b =>
+                {
+                    b.Property<int>("PointContactPersonPositionTypeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.HasKey("PointContactPersonPositionTypeId");
+
+                    b.ToTable("PointContactPersonPositionType");
+                });
+
+            modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PointContactPhone", b =>
+                {
+                    b.Property<int>("PointContactPhoneId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int?>("PointContactPersonId");
+
+                    b.HasKey("PointContactPhoneId");
+
+                    b.HasIndex("PointContactPersonId");
+
+                    b.ToTable("PointContactPhone");
+                });
+
             modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PriceImportJrn", b =>
                 {
                     b.Property<int>("PriceImportJrnNumber")
@@ -2532,9 +2623,7 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
 
                     b.HasKey("PrintJobInfoId");
 
-                    b.HasIndex("DocumentTemplateId")
-                        .IsUnique()
-                        .HasFilter("[DocumentTemplateId] IS NOT NULL");
+                    b.HasIndex("DocumentTemplateId");
 
                     b.HasIndex("PointNumber");
 
@@ -3228,13 +3317,23 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
 
                     b.Property<DateTime?>("DateFinished");
 
+                    b.Property<int?>("PointCommunicationTypeId");
+
+                    b.Property<int?>("PointContactPersonId");
+
                     b.Property<int?>("PointNumber");
 
                     b.Property<int?>("TicketStatusId");
 
                     b.Property<int?>("TicketSubjectId");
 
+                    b.Property<Guid>("UserId");
+
                     b.HasKey("TicketId");
+
+                    b.HasIndex("PointCommunicationTypeId");
+
+                    b.HasIndex("PointContactPersonId");
 
                     b.HasIndex("PointNumber");
 
@@ -3267,11 +3366,15 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
                     b.Property<int>("TicketSubjectId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("ParentId");
+
                     b.Property<string>("TicketSubjectName")
                         .IsRequired()
-                        .HasMaxLength(100);
+                        .HasMaxLength(255);
 
                     b.HasKey("TicketSubjectId");
+
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("TicketSubjectName")
                         .IsUnique();
@@ -4064,8 +4167,8 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
             modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.BillOptionsInfo", b =>
                 {
                     b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.DocumentTemplate", "DocumentTemplate")
-                        .WithOne("BillOptionsInfo")
-                        .HasForeignKey("Base2BaseWeb.B2B.DataLayer.Entities.BillOptionsInfo", "DocumentTemplateId");
+                        .WithMany("BillOptionsInfo")
+                        .HasForeignKey("DocumentTemplateId");
 
                     b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.Point", "Point")
                         .WithMany("BillOptionsInfo")
@@ -4075,16 +4178,16 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
             modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.BillSettingsInfo", b =>
                 {
                     b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.DocumentTemplate", "DocumentTemplate")
-                        .WithOne("BillSettingsInfo")
-                        .HasForeignKey("Base2BaseWeb.B2B.DataLayer.Entities.BillSettingsInfo", "DocumentTemplateId");
+                        .WithMany("BillSettingsInfo")
+                        .HasForeignKey("DocumentTemplateId");
 
                     b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.Point", "Point")
                         .WithOne("BillSettingsInfo")
                         .HasForeignKey("Base2BaseWeb.B2B.DataLayer.Entities.BillSettingsInfo", "PointNumber");
 
                     b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.ServicePlaceholderType", "ServicePlaceholderType")
-                        .WithOne("BillSettingsInfo")
-                        .HasForeignKey("Base2BaseWeb.B2B.DataLayer.Entities.BillSettingsInfo", "ServicePlaceholderTypeId");
+                        .WithMany("BillSettingsInfo")
+                        .HasForeignKey("ServicePlaceholderTypeId");
                 });
 
             modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.ClientConnectionInfo", b =>
@@ -4366,6 +4469,31 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PointContactEmail", b =>
+                {
+                    b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.PointContactPerson", "PointContactPerson")
+                        .WithMany("PointContactEmails")
+                        .HasForeignKey("PointContactPersonId");
+                });
+
+            modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PointContactPerson", b =>
+                {
+                    b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.PointContactPersonPositionType", "PointContactPersonPositionType")
+                        .WithMany("PointContactPeople")
+                        .HasForeignKey("PointContactPersonPositionTypeId");
+
+                    b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.Point", "Point")
+                        .WithMany("PointContactPeople")
+                        .HasForeignKey("PointNumber");
+                });
+
+            modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PointContactPhone", b =>
+                {
+                    b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.PointContactPerson", "PointContactPerson")
+                        .WithMany("PointContactPhones")
+                        .HasForeignKey("PointContactPersonId");
+                });
+
             modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PriceShields", b =>
                 {
                     b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.Nakl", "NaklNumberNavigation")
@@ -4382,8 +4510,8 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
             modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.PrintJobInfo", b =>
                 {
                     b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.DocumentTemplate", "DocumentTemplate")
-                        .WithOne("PrintJobInfo")
-                        .HasForeignKey("Base2BaseWeb.B2B.DataLayer.Entities.PrintJobInfo", "DocumentTemplateId");
+                        .WithMany("PrintJobInfo")
+                        .HasForeignKey("DocumentTemplateId");
 
                     b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.Point", "Point")
                         .WithMany("PrintJobInfo")
@@ -4504,6 +4632,14 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
 
             modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.Ticket", b =>
                 {
+                    b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.PointCommunicationType", "PointCommunicationType")
+                        .WithMany("Tickets")
+                        .HasForeignKey("PointCommunicationTypeId");
+
+                    b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.PointContactPerson", "PointContactPerson")
+                        .WithMany("Tickets")
+                        .HasForeignKey("PointContactPersonId");
+
                     b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.Point", "Point")
                         .WithMany("Tickets")
                         .HasForeignKey("PointNumber");
@@ -4515,6 +4651,13 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
                     b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.TicketSubject", "TicketSubject")
                         .WithMany("Tickets")
                         .HasForeignKey("TicketSubjectId");
+                });
+
+            modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.TicketSubject", b =>
+                {
+                    b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.TicketSubject", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
                 });
 
             modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.Tovar", b =>

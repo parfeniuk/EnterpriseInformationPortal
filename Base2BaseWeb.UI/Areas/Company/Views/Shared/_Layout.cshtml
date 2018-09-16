@@ -7,7 +7,7 @@
             <div class="col-md-1 clients-left-column">
                 <div class="client-left-navbar">
                     <ul class="nav nav-pills nav-stacked navVertical">
-                        @{ 
+                        @{
                             Html.RenderPartial("_NavVerticalTop");
                         }
                     </ul>
@@ -25,13 +25,22 @@
 
 @section Scripts
     {
-        @await Html.PartialAsync("_ValidationScriptsPartial")
-        <script src="~/js/loadClientData.js"></script>
-        <script src="~/js/addNavActiveClass.js"></script>
-        <script src="~/js/getMaxHeight.js"></script>
-        <script src="~/js/allowDisabled.js"></script>
-        <script src="~/js/submitForm.js"></script>
-        <script src="~/js/searchClientsTable.js"></script>
-        <script src="~/js/clientSearch.js"></script>
-        <script src="~/js/uncheckNotActive.js"></script>
-    }
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="~/js/loadClientData.js"></script>
+    <script src="~/js/addNavActiveClass.js"></script>
+    <script src="~/js/getMaxHeight.js"></script>
+    <script src="~/js/allowDisabled.js"></script>
+    <script src="~/js/submitForm.js"></script>
+    <script src="~/js/searchClientsTable.js"></script>
+    <script src="~/js/clientSearch.js"></script>
+    <script src="~/js/uncheckNotActive.js"></script>
+    <script src="~/js/fixedHeaderOnScroll.js"></script>
+    <script src="~/js/table-fixed-header.js"></script>
+    <script>
+        $(document).ready(function () {
+            // make the header fixed on scroll
+            $('.table-fixed-header').fixedHeader();
+        });
+    </script>
+    <script src="~/js/populateSelect.js"></script>
+}

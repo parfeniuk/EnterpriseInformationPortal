@@ -1,4 +1,6 @@
-﻿namespace Base2BaseWeb.B2B.DataLayer.Entities
+﻿using System.ComponentModel;
+
+namespace Base2BaseWeb.B2B.DataLayer.Entities
 {
     public class DebtCalcMethodInfo
     {

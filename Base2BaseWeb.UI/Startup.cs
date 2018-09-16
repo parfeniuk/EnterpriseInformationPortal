@@ -57,20 +57,20 @@ namespace Base2BaseWeb.UI
             services.AddDbContext<Base2BaseWebContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Base2BaseWebConnection"),
                 b => b.MigrationsAssembly("Base2BaseWeb.DataLayer")));
-            services.AddScoped<DbContext, Base2BaseWebContext>();
+            //services.AddScoped<DbContext, Base2BaseWebContext>();
 
             // Add reference to b2b_testContext in a different Assembly (Base2BaseWeb.B2B.DataLayer)
             services.AddDbContext<b2b_testContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("B2BTest"),
+                options.UseSqlServer(Configuration.GetConnectionString("B2B"),
                 b => b.MigrationsAssembly("Base2BaseWeb.B2B.DataLayer")));
             services.AddScoped<DbContext, b2b_testContext>();
 
             // Add RepositoryContext for base2base DB (site)
-            services.AddTransient<IRepositoryContextBase, RepositoryContext>();
+            services.AddScoped<IRepositoryWebB2B, WebRepositoryContext>();
             // Add RepositoryContext for b2b DB (clients)
-            services.AddTransient<IRepositoryContextBase, B2BRepositoryContext>();
+            services.AddScoped<IRepositoryContextBase, B2BRepositoryContext>();
             // Add EntityMapperContext
-            services.AddTransient<IEntityMapperContextBase, EntityMapperContextBase>();
+            services.AddScoped<IEntityMapperContextBase, EntityMapperContextBase>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -128,9 +128,11 @@ namespace Base2BaseWeb.UI
             services.Configure<ImageSettings>(Configuration.GetSection("ImageSettings"));
             services.Configure<AdminSettings>(Configuration.GetSection("AdminSettings"));
             services.Configure<ConnectionSettingsOptions>(Configuration.GetSection("ConnectionStrings"));
+            services.Configure<InternalServerSettings>(Configuration.GetSection("InternalServers"));
             services.Configure<TimerSettings>(Configuration.GetSection("TimerSettings"));
+
             // Add Hosted Service - run on the timer DbSync worker
-            //services.AddSingleton<IHostedService, TimedHostedService>();
+            services.AddSingleton<IHostedService, TimedHostedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -156,7 +158,8 @@ namespace Base2BaseWeb.UI
             // Apply migrations
             AppIdentityContextInitializer.Initialize(identityContext,userManager,roleManager,options);
             Base2BaseWebContextInitializer.Initialize(base2BaseWebContext);
-            b2b_testContextInitializer.BypassInitialMigration(b2B_TestContext);
+            b2b_testContextInitializer.Initialize(b2B_TestContext);
+            //b2b_testContextInitializer.BypassInitialMigration(b2B_TestContext);
 
             app.UseAuthentication();
 

@@ -2,6 +2,12 @@
   "ConnectionStrings": {
     "DefaultConnection": "server=localhost;database=Base2Base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseWeb",
     "Base2BaseWebConnection": "Server=base2base.com.ua,14337;Database=base2base2;User Id=base2base-user;Password=WOSlHbmlOJuw;App=Base2BaseWeb",
-    "B2BTest": "Server=sql-001.base2base.com.ua,14332;Database=b2b-test;User Id=base2base-test-user;Password=bW3GtOUQ02o0;App=B2BTest"
+    "B2BTest": "Server=sql-001.base2base.com.ua,14332;Database=b2b-test;User Id=base2base-test-user;Password=bW3GtOUQ02o0;App=B2BTest",
+    "B2BTest2": "Server=sql-001.base2base.com.ua,14332;Database=b2b-test2;User Id=base2base-test-user;Password=bW3GtOUQ02o0;App=B2BTest2",
+    "B2B": "Server=sql-001.base2base.com.ua,14332;Database=b2b-test2;User Id=base2base-test-user;Password=bW3GtOUQ02o0;App=B2BTest2"
+  },
+  "InternalServers": {
+    "InternalServerOne": "192.168.1.102,1433",
+    "InternalServerTwo": "192.168.1.105,1433"
   }
 }

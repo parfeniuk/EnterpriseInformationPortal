@@ -12,6 +12,7 @@ using EntityMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RepositoryGeneric;
 
 namespace Base2BaseWeb.UI.Areas.Company.Controllers
@@ -20,36 +21,45 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
     [Authorize(Roles ="Admin")]
     public class ClientsController :BaseController
     {
-        //private IEntityMapperBase<Point,ClientsIndexViewModel> _entityMapper;
         private IEntityMapperContextBase _entityMapperContextBase;
         private IEntityMapperBase<Point, Client> _clientIndexMapper;
         private IEntityMapperBase<Point, ClientEditViewModel> _clientEditMapper;
         private IEntityMapperBase<Point, ClientContactsEditViewModel> _clientContactsMapper;
-        //private IEntityMapperBase<ClientContactsEditViewModel, Point> _clientContactsMapperPost;
-
         private IEntityMapperBase<Point, ClientPaymentDetailsEditViewModel> _clientPaymentDetailsMapper;
         private IEntityMapperBase<Point, ClientDebtDetailsEditViewModel> _clientDebtDetailsMapper;
-        //private IEntityMapperBase<Point, ClientProductsEditViewModel> _clientProductsMapper;
 
-        public ClientsController(IRepositoryContextBase context, IEntityMapperContextBase entityMapperContextBase)
+        private readonly ILogger _logger;
+
+        public ClientsController(IRepositoryContextBase context, 
+            IEntityMapperContextBase entityMapperContextBase, ILogger<ClientsController> logger)
             :base(context)
         {
             _entityMapperContextBase = entityMapperContextBase;
+            _logger = logger;
         }
 
         public IActionResult Index(string searchString="")
         {
-            _clientIndexMapper = _entityMapperContextBase.Set<Point, Client>(cfg =>
+            _logger.LogInformation($"Getting Customers' List, search by {searchString}, user: {User.Identity.Name}");
+            try
             {
-                cfg.CreateMap<Point, Client>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PointNumber))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.NamePoint))
-                .ForMember(dest => dest.GroupName, opt => opt.MapFrom(src => src.CliGroup.CliGroupName))
-                .ForMember(dest => dest.ContactName, opt => opt.MapFrom(src => src.ContactPerson))
-                .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.Telefon))
-                .ForMember(dest => dest.Balance, opt => opt.MapFrom(src => src.Saldo));
+                _clientIndexMapper = _entityMapperContextBase.Set<Point, Client>(cfg =>
+                {
+                    cfg.CreateMap<Point, Client>()
+                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PointNumber))
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.NamePoint))
+                    .ForMember(dest => dest.GroupName, opt => opt.MapFrom(src => src.CliGroup.CliGroupName))
+                    .ForMember(dest => dest.ContactName, opt => opt.MapFrom(src => src.ContactPerson))
+                    .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.Telefon))
+                    .ForMember(dest => dest.Balance, opt => opt.MapFrom(src => src.Saldo));
+                }
+                );
             }
-            );
+            catch (Exception ex)
+            {
+                _logger.LogError($"Mapping error: {ex.Message}");
+            }
+
             IEnumerable<Client> clients;
             var model = new ClientsIndexViewModel();
             
@@ -58,7 +68,8 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
                 model.SearchString = string.Concat(searchString.ToCharArray().Where(c => !Char.IsWhiteSpace(c)));
 
                 clients = _context.Set<Point>()
-                    .FindBy(p => p.CliGroupNumber == 7 || p.CliGroupNumber == 2)
+                    .GetAll()
+                    //.FindBy(p => p.CliGroupNumber == 7 || p.CliGroupNumber == 2)
                     ?.Where(p=>p.NamePoint.ToLower().Contains(searchString.ToLower()))
                     ?.Include(e => e.CliGroup)
                     ?.Select(c => _clientIndexMapper.Map(c))
@@ -68,7 +79,8 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
             else
             {
                 clients = _context.Set<Point>()
-                    ?.FindBy(p => p.CliGroupNumber == 7 || p.CliGroupNumber == 2)
+                    .GetAll()
+                    //?.FindBy(p => p.CliGroupNumber == 7 || p.CliGroupNumber == 2)
                     ?.Include(e => e.CliGroup)
                     ?.Select(c => _clientIndexMapper.Map(c))
                     ?.OrderBy(c => c.GroupName)
@@ -82,23 +94,33 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
             }
             else
             {
+                _logger.LogWarning("Customers NOT FOUND!");
                 return NotFound("Клиенты не найдены");
             }
         }
 
         public IActionResult ClientsList(string searchString)
         {
-            _clientIndexMapper = _entityMapperContextBase.Set<Point, Client>(cfg =>
+            _logger.LogInformation($"Getting Customers' List, search by {searchString}, user: {User.Identity.Name}");
+            try
             {
-                cfg.CreateMap<Point, Client>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PointNumber))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.NamePoint))
-                .ForMember(dest => dest.GroupName, opt => opt.MapFrom(src => src.CliGroup.CliGroupName))
-                .ForMember(dest => dest.ContactName, opt => opt.MapFrom(src => src.ContactPerson))
-                .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.Telefon))
-                .ForMember(dest => dest.Balance, opt => opt.MapFrom(src => src.Saldo));
+                _clientIndexMapper = _entityMapperContextBase.Set<Point, Client>(cfg =>
+                {
+                    cfg.CreateMap<Point, Client>()
+                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PointNumber))
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.NamePoint))
+                    .ForMember(dest => dest.GroupName, opt => opt.MapFrom(src => src.CliGroup.CliGroupName))
+                    .ForMember(dest => dest.ContactName, opt => opt.MapFrom(src => src.ContactPerson))
+                    .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.Telefon))
+                    .ForMember(dest => dest.Balance, opt => opt.MapFrom(src => src.Saldo));
+                }
+                );
             }
-            );
+            catch (Exception ex)
+            {
+                _logger.LogError($"Mapping error: {ex.Message}");
+            }
+
             IEnumerable<Client> clients;
             var model = new ClientsIndexViewModel();
             
@@ -107,7 +129,8 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
                 model.SearchString = string.Concat(searchString.ToCharArray().Where(c => !Char.IsWhiteSpace(c)));
 
                 clients = _context.Set<Point>()
-                    .FindBy(p => p.CliGroupNumber == 7 || p.CliGroupNumber == 2)
+                    .GetAll()
+                    //.FindBy(p => p.CliGroupNumber == 7 || p.CliGroupNumber == 2)
                     ?.Where(p=>p.NamePoint.ToLower().Contains(model.SearchString.ToLower()))
                     ?.Include(e => e.CliGroup)
                     ?.Select(c => _clientIndexMapper.Map(c))
@@ -117,7 +140,8 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
             else
             {
                 clients = _context.Set<Point>()
-                    ?.FindBy(p => p.CliGroupNumber == 7 || p.CliGroupNumber == 2)
+                    .GetAll()
+                    //?.FindBy(p => p.CliGroupNumber == 7 || p.CliGroupNumber == 2)
                     ?.Include(e => e.CliGroup)
                     ?.Select(c => _clientIndexMapper.Map(c))
                     ?.OrderBy(c => c.GroupName)
@@ -125,35 +149,51 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
             }
             if (clients != null)
             {
-                
                 model.Clients = clients;
                 return PartialView(model);
             }
             else
             {
+                _logger.LogWarning($"Customers by search pattern: {searchString} NOT FOUND!");
                 return NotFound("Клиенты не найдены");
             }
         }
 
         public IActionResult Edit(int id)
         {
-            _clientEditMapper = _entityMapperContextBase.Set<Point, ClientEditViewModel>(cfg =>
+            _logger.LogInformation($"Getting Customer, ID: {id}, user: {User.Identity.Name}");
+            try
             {
-                cfg.CreateMap<Point, ClientEditViewModel>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PointNumber))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.NamePoint));
+                _clientEditMapper = _entityMapperContextBase.Set<Point, ClientEditViewModel>(cfg =>
+                {
+                    cfg.CreateMap<Point, ClientEditViewModel>()
+                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PointNumber))
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.NamePoint));
+                }
+                );
             }
-            );
+            catch (Exception ex)
+            {
+                _logger.LogError($"Mapping error: {ex.Message}");
+            }
             var model = _context.Set<Point>()
-                .FindBy(p => p.PointNumber == id)
-                .Include(p => p.CliGroup)
-                .Select(p => _clientEditMapper.Map(p))
-                .FirstOrDefault();
-            // Add List of Groups to the Model
-            IEnumerable<CliGroup> groups = _context.Set<CliGroup>()
-                .FindBy(g=>g.CliGroupNumber==2||g.CliGroupNumber==7);
-            model.CliGroups = groups.ToList();
-            return View(model);
+                ?.FindBy(p => p.PointNumber == id)
+                ?.Include(p => p.CliGroup)
+                ?.Select(p => _clientEditMapper.Map(p))
+                ?.FirstOrDefault();
+            if (model != null)
+            {
+                // Add List of Groups to the Model
+                IEnumerable<CliGroup> groups = _context.Set<CliGroup>()
+                    ?.FindBy(g => g.CliGroupNumber == 2 || g.CliGroupNumber == 7);
+                model.CliGroups = groups?.ToList();
+                return View(model);
+            }
+            else
+            {
+                _logger.LogWarning($"Customer with ID: {id} NOT FOUND!");
+                return NotFound($"Клиент с id: {id} не найден.");
+            }
         }
 
         [HttpPost]
@@ -169,19 +209,28 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
 
         public IActionResult ClientContacts(int id)
         {
-            _clientContactsMapper = _entityMapperContextBase.Set<Point, ClientContactsEditViewModel>(cfg =>
+            _logger.LogInformation($"Getting Customer CONTACT INFO, ID: {id}, user: {User.Identity.Name}");
+            try
             {
-                cfg.CreateMap<Point, ClientContactsEditViewModel>()
-                .ForMember(dest => dest.LegalAddress, opt => opt.MapFrom(src => src.Address))
-                .ForMember(dest => dest.PhoneNumber1, opt => opt.MapFrom(src => src.Telefon))
-                .ForMember(dest => dest.ContactFullName1, opt => opt.MapFrom(src => src.ContactPerson))
-                .ForMember(dest => dest.Email1, opt => opt.MapFrom(src => src.Email))
-                .ForMember(dest => dest.FirstSignatory, opt => opt.MapFrom(src => src.Name1Person))
-                .ForMember(dest => dest.SecondSignatory, opt => opt.MapFrom(src => src.Name2Person))
-                .ForMember(dest=>dest.ContactPhonesAll,opt=>opt.MapFrom(src=>src.ContactPhoneInfo))
-                .ForMember(dest=>dest.ContactEmailsAll,opt=>opt.MapFrom(src=>src.ContactEmailInfo));
+                _clientContactsMapper = _entityMapperContextBase.Set<Point, ClientContactsEditViewModel>(cfg =>
+                {
+                    cfg.CreateMap<Point, ClientContactsEditViewModel>()
+                    .ForMember(dest => dest.LegalAddress, opt => opt.MapFrom(src => src.Address))
+                    .ForMember(dest => dest.PhoneNumber1, opt => opt.MapFrom(src => src.Telefon))
+                    .ForMember(dest => dest.ContactFullName1, opt => opt.MapFrom(src => src.ContactPerson))
+                    .ForMember(dest => dest.Email1, opt => opt.MapFrom(src => src.Email))
+                    .ForMember(dest => dest.FirstSignatory, opt => opt.MapFrom(src => src.Name1Person))
+                    .ForMember(dest => dest.SecondSignatory, opt => opt.MapFrom(src => src.Name2Person))
+                    .ForMember(dest => dest.ContactPhonesAll, opt => opt.MapFrom(src => src.ContactPhoneInfo))
+                    .ForMember(dest => dest.ContactEmailsAll, opt => opt.MapFrom(src => src.ContactEmailInfo));
+                }
+                );
             }
-            );
+            catch (Exception ex)
+            {
+                _logger.LogError($"Mapping error: {ex.Message}");
+            }
+
             var model = _context.Set<Point>()
                 .FindBy(p => p.PointNumber == id)
                 ?.Include(p=>p.ContactPhoneInfo)
@@ -219,6 +268,7 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
             }
             else
             {
+                _logger.LogWarning($"Customer with ID: {id} NOT FOUND!");
                 return NotFound($"Клиент с id: {id} не найден.");
             }
         }
@@ -226,11 +276,12 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
         [HttpPost]
         public IActionResult ClientContacts(ClientContactsEditViewModel model)
         {
+            _logger.LogInformation($"Editing Customer CONTACT INFO, ID: {model.Id}, user: {User.Identity.Name}");
             if (ModelState.IsValid)
             {
                 // Get current Domain Entity object
                 Point entity = _context.Set<Point>()
-                    .FindBy(p=>p.PointNumber==model.Id)
+                    ?.FindBy(p=>p.PointNumber==model.Id)
                     ?.Include(p=>p.ContactPhoneInfo)
                     ?.Include(p=>p.ContactEmailInfo)
                     ?.FirstOrDefault();
@@ -243,6 +294,7 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
                     entity.Email = model.Email1;
                     entity.Name1Person = model.FirstSignatory;
                     entity.Name2Person = model.SecondSignatory;
+                    entity.IncludeToMailList = model.IncludeToMailList;
                     entity.ContactPhoneInfo =
                        model.ContactPhonesView.Select(c =>
                        _entityMapperContextBase.Set<ContactPhoneDto, ContactPhoneInfo>().Map(c))
@@ -254,10 +306,13 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
                     // Update mapped Domain Entity object
                     _context.Set<Point>()
                         .Update(entity);
+
+                    _logger.LogInformation($"UPDATED Customer CONTACT INFO, ID: {model.Id}, user: {User.Identity.Name}");
                     return View(model);
                 }
                 else
                 {
+                    _logger.LogWarning($"Customer with ID: {model.Id} NOT FOUND!");
                     ModelState.AddModelError("ClientEdit", $"Клиент с данным id: {model.Id} отсутствует в БД");
                 }
             }
@@ -266,13 +321,22 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
 
         public IActionResult ClientPaymentDetails(int id)
         {
-            _clientPaymentDetailsMapper = _entityMapperContextBase.Set<Point, ClientPaymentDetailsEditViewModel>(cfg =>
+            _logger.LogInformation($"Getting Customer PAYMENT DETAILS INFO, ID: {id}, user: {User.Identity.Name}");
+            try
             {
-                cfg.CreateMap<Point, ClientPaymentDetailsEditViewModel>()
-                .ForMember(dest => dest.FiscalNumber, opt => opt.MapFrom(src => src.IndNum))
-                .ForMember(dest => dest.Certificate, opt => opt.MapFrom(src => src.SvidNum));
+                _clientPaymentDetailsMapper = _entityMapperContextBase.Set<Point, ClientPaymentDetailsEditViewModel>(cfg =>
+                {
+                    cfg.CreateMap<Point, ClientPaymentDetailsEditViewModel>()
+                    .ForMember(dest => dest.FiscalNumber, opt => opt.MapFrom(src => src.IndNum))
+                    .ForMember(dest => dest.Certificate, opt => opt.MapFrom(src => src.SvidNum));
+                }
+                );
             }
-            );
+            catch (Exception ex)
+            {
+                _logger.LogError($"Mapping error: {ex.Message}");
+            }
+
             var model = _context.Set<Point>()
                 .FindBy(p => p.PointNumber == id)
                 .Select(c => _clientPaymentDetailsMapper.Map(c))
@@ -296,6 +360,7 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
             }
             else
             {
+                _logger.LogWarning($"Customer with ID: {id} NOT FOUND!");
                 return NotFound($"Клиент с id: {id} не найден.");
             }
         }
@@ -303,6 +368,7 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
         [HttpPost]
         public IActionResult ClientPaymentDetails(ClientPaymentDetailsEditViewModel model)
         {
+            _logger.LogInformation($"Editing Customer PAYMENT DETAILS INFO, ID: {model.Id}, user: {User.Identity.Name}");
             if (ModelState.IsValid)
             {
                 // Get current Domain Entity object
@@ -324,10 +390,13 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
                     // Update mapped Domain Entity object
                     _context.Set<Point>()
                         .Update(entity);
+
+                    _logger.LogInformation($"UPDATED Customer PAYMENT DETAILS INFO, ID: {model.Id}, user: {User.Identity.Name}");
                     return View(model);
                 }
                 else
                 {
+                    _logger.LogWarning($"Customer with ID: {model.Id} NOT FOUND!");
                     ModelState.AddModelError("ClientEdit", $"Клиент с данным id: {model.Id} отсутствует в БД");
                 }
             }
@@ -336,36 +405,45 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
 
         public IActionResult ClientDebtDetails(int id)
         {
-            _clientDebtDetailsMapper = _entityMapperContextBase.Set<Point, ClientDebtDetailsEditViewModel>(cfg=> 
+            _logger.LogInformation($"Getting Customer DEBT DETAILS INFO, ID: {id}, user: {User.Identity.Name}");
+            try
             {
-                cfg.CreateMap<Point, ClientDebtDetailsEditViewModel>()
-                .ForMember(dest => dest.BillSettings, opt => opt.MapFrom(src => src.BillSettingsInfo))
-                .ForMember(dest => dest.DebtControl, opt => opt.MapFrom(src => src.DebtControlInfo))
-                .ForMember(dest => dest.FranchisingTypeId, opt => opt.MapFrom(src => src.FranchisingInfo.FranchisingTypeId))
-                .ForMember(dest => dest.DebtCalcMethodTypeId, opt => opt.MapFrom(src => src.DebtCalcMethodInfo.DebtCalcMethodTypeId))
-                .ForMember(dest => dest.ClientConnection, opt => opt.MapFrom(src => src.ClientConnectionInfo))
-                .ForMember(dest => dest.BillOptionsAll, opt => opt.MapFrom(src => src.BillOptionsInfo))
-                .ForMember(dest => dest.PrintJobsAll, opt => opt.MapFrom(src => src.PrintJobInfo))
-                .ForMember(dest => dest.BillSettings, opt => opt.Condition(src => src.BillSettingsInfo != null))
-                .ForMember(dest=>dest.DebtControl,opt=>opt.Condition(src=>src.DebtControlInfo!=null))
-                .ForMember(dest => dest.FranchisingTypeId, opt => opt.Condition(src => src.FranchisingInfo != null))
-                .ForMember(dest => dest.DebtCalcMethodTypeId, opt => opt.Condition(src => src.DebtCalcMethodInfo != null))
-                .ForMember(dest => dest.ClientConnection, opt => opt.Condition(src => src.ClientConnectionInfo != null))
-                .ForMember(dest=>dest.BillOptionsAll,opt=>opt.Condition(src=>src.BillOptionsInfo!=null))
-                .ForMember(dest => dest.PrintJobsAll, opt => opt.Condition(src => src.PrintJobInfo != null))
-                ;
-                cfg.CreateMap<PrintJobInfo, PrintJobDto>();
-                cfg.CreateMap<BillOptionsInfo, BillOptionsDto>();
-            });
+                _clientDebtDetailsMapper = _entityMapperContextBase.Set<Point, ClientDebtDetailsEditViewModel>(cfg =>
+                {
+                    cfg.CreateMap<Point, ClientDebtDetailsEditViewModel>()
+                    .ForMember(dest => dest.BillSettings, opt => opt.MapFrom(src => src.BillSettingsInfo))
+                    .ForMember(dest => dest.DebtControl, opt => opt.MapFrom(src => src.DebtControlInfo))
+                    .ForMember(dest => dest.FranchisingTypeId, opt => opt.MapFrom(src => src.FranchisingInfo.FranchisingTypeId))
+                    .ForMember(dest => dest.DebtCalcMethodTypeId, opt => opt.MapFrom(src => src.DebtCalcMethodInfo.DebtCalcMethodTypeId))
+                    .ForMember(dest => dest.ClientConnection, opt => opt.MapFrom(src => src.ClientConnectionInfo))
+                    .ForMember(dest => dest.BillOptionsAll, opt => opt.MapFrom(src => src.BillOptionsInfo))
+                    .ForMember(dest => dest.PrintJobsAll, opt => opt.MapFrom(src => src.PrintJobInfo))
+                    .ForMember(dest => dest.BillSettings, opt => opt.Condition(src => src.BillSettingsInfo != null))
+                    .ForMember(dest => dest.DebtControl, opt => opt.Condition(src => src.DebtControlInfo != null))
+                    .ForMember(dest => dest.FranchisingTypeId, opt => opt.Condition(src => src.FranchisingInfo != null))
+                    .ForMember(dest => dest.DebtCalcMethodTypeId, opt => opt.Condition(src => src.DebtCalcMethodInfo != null))
+                    .ForMember(dest => dest.ClientConnection, opt => opt.Condition(src => src.ClientConnectionInfo != null))
+                    .ForMember(dest => dest.BillOptionsAll, opt => opt.Condition(src => src.BillOptionsInfo != null))
+                    .ForMember(dest => dest.PrintJobsAll, opt => opt.Condition(src => src.PrintJobInfo != null))
+                    ;
+                    cfg.CreateMap<PrintJobInfo, PrintJobDto>();
+                    cfg.CreateMap<BillOptionsInfo, BillOptionsDto>();
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Mapping error: {ex.Message}");
+            }
+
             var clients = _context.Set<Point>()
-                .FindBy(p => p.PointNumber == id)
+                ?.FindBy(p => p.PointNumber == id)
                 ?.Include(p=>p.BillSettingsInfo)
-                .Include(p=>p.BillOptionsInfo)
-                .Include(p=>p.PrintJobInfo)
-                .Include(p=>p.DebtControlInfo)
-                .Include(p=>p.DebtCalcMethodInfo)
-                .Include(p=>p.FranchisingInfo)
-                .Include(p=>p.ClientConnectionInfo);
+                ?.Include(p=>p.BillOptionsInfo)
+                ?.Include(p=>p.PrintJobInfo)
+                ?.Include(p=>p.DebtControlInfo)
+                ?.Include(p=>p.DebtCalcMethodInfo)
+                ?.Include(p=>p.FranchisingInfo)
+                ?.Include(p=>p.ClientConnectionInfo);
             if (clients?.FirstOrDefault() != null)
             {
                 var client = clients.FirstOrDefault();
@@ -457,6 +535,7 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
             }
             else
             {
+                _logger.LogWarning($"Customer with ID: {id} NOT FOUND!");
                 return NotFound($"Клиент с id: {id} не найден.");
             }
         }
@@ -464,6 +543,7 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
         [HttpPost]
         public IActionResult ClientDebtDetails(ClientDebtDetailsEditViewModel model)
         {
+            _logger.LogInformation($"Editing Customer DEBT DETAILS INFO, ID: {model.Id}, user: {User.Identity.Name}");
             if (ModelState.IsValid)
             {
                 // Get current Domain Entity object
@@ -553,10 +633,13 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
                     // Update mapped Domain Entity object
                     _context.Set<Point>()
                         .Update(entity);
+
+                    _logger.LogInformation($"UPDATED Customer DEBT DETAILS INFO, ID: {model.Id}, user: {User.Identity.Name}");
                     return View(model);
                 }
                 else
                 {
+                    _logger.LogWarning($"Customer with ID: {model.Id} NOT FOUND!");
                     ModelState.AddModelError("ClientEdit", $"Клиент с данным id: {model.Id} отсутствует в БД");
                 }
             }
@@ -565,6 +648,7 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
 
         public IActionResult ClientProducts(int id)
         {
+            _logger.LogInformation($"Getting Customer PRODUCTS, ID: {id}, user: {User.Identity.Name}");
             if (_context.Set<Point>().FindBy(p=>p.PointNumber==id)!=null)
             {
                 var model = new ClientProductsEditViewModel();
@@ -588,12 +672,13 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
                     });
 
                 model.ProductsAll = productsAll?.ToList() ?? model.ProductsAll;
-                model.ProductClient = productsClient?.ToList() ?? model.ProductClient;
+                model.ProductsClient = productsClient?.ToList() ?? model.ProductsClient;
 
                 return PartialView(model);
             }
             else
             {
+                _logger.LogWarning($"Customer with ID: {id} NOT FOUND!");
                 return NotFound($"Клиент с id: {id} не найден.");
             }
         }
@@ -601,46 +686,59 @@ namespace Base2BaseWeb.UI.Areas.Company.Controllers
         [HttpPost]
         public IActionResult ClientProducts(ClientProductsEditViewModel model)
         {
+            _logger.LogInformation($"Editing Customer PRODUCTS, ID: {model.Id}, user: {User.Identity.Name}");
             if (ModelState.IsValid)
             {
                 // Get current Domain Entity object
-                Point entity = _context.Set<Point>()
-                .FindBy(p => p.PointNumber == model.Id)
-                .Include(p=>p.ProductClients)
-                ?.FirstOrDefault();
-
-                //ProductClient entity = _context.Set<ProductClient>()
-                //    .FindBy(p => p.PointNumber == model.Id)
-                //    ?.FirstOrDefault();
-                if (entity != null)
+                Point client = _context.Set<Point>()
+                    ?.FindBy(p => p.PointNumber == model.Id)?.FirstOrDefault();
+                if (client != null)
                 {
                     // Update modified properties
-
-
-                    //for (int i=0; i< model.ProductsAll.Where(p=>p.Active==true).Count();i++)
-                    //{
-                    //    if (entity.ProductClients.ElementAtOrDefault(i) != null)
-                    //    {
-                    //        entity.ProductClients.ElementAtOrDefault(i).PointNumber = model.Id;
-                    //        entity.ProductClients.ElementAtOrDefault(i).TovarNumber = model.ProductsAll[i].ProductId;
-                    //    }
-                    //    else
-                    //    {
-                    //        entity.ProductClients.Add(new ProductClient()
-                    //        {
-                    //            PointNumber=model.Id,
-                    //            TovarNumber = model.ProductsAll[i].ProductId
-                    //        });
-                    //    }
-                    //}
-                    // Update mapped Domain Entity object
-                    //_context.Set<Point>()
-                    //    .Update(entity);
-                    //return View(model);
+                    using (var transaction = _context.Set<ProductClient>().BeginTransaction())
+                    {
+                        try
+                        {
+                            //Delete all existing records in ProductClient database
+                            var existingProductClients = _context.Set<ProductClient>()
+                                ?.FindBy(pc => pc.PointNumber == model.Id).ToList();
+                            if (existingProductClients!=null)
+                            {
+                                foreach (var productClient in existingProductClients)
+                                {
+                                    _context.Set<ProductClient>()
+                                        .Delete(productClient);
+                                }
+                            }
+                            //Insert new records from posted model
+                            var postedProductClients = model.ProductsAll?.Where(p => p.Active == true)?.ToList();
+                            if (postedProductClients!=null)
+                            {
+                                foreach (var product in postedProductClients)
+                                {
+                                    _context.Set<ProductClient>()
+                                        .Add(new ProductClient
+                                        {
+                                            PointNumber = model.Id,
+                                            TovarNumber = product.ProductId
+                                        });
+                                }
+                            }
+                            _logger.LogInformation($"UPDATED Customer PRODUCTS, ID: {model.Id}, user: {User.Identity.Name}");
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError($"ERROR on UPDATING Customer PRODUCTS, ID: {model.Id}, user: {User.Identity.Name}," +
+                                $"ERROR: {ex.Message}");
+                            transaction.Rollback();
+                        }
+                    }
                 }
                 else
                 {
-                    //ModelState.AddModelError("ClientEdit", $"Клиент с данным id: {model.Id} отсутствует в БД");
+                    _logger.LogWarning($"Customer with ID: {model.Id} NOT FOUND!");
+                    ModelState.AddModelError("ClientEdit", $"Клиент с данным id: {model.Id} отсутствует в БД");
                 }
             }
             return View(model);

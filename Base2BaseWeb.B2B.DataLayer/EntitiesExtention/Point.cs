@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Base2BaseWeb.B2B.DataLayer.Entities
@@ -13,10 +15,13 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
             ContactPhoneInfo = new HashSet<ContactPhoneInfo>();
             ContactEmailInfo = new HashSet<ContactEmailInfo>();
             Tickets = new HashSet<Ticket>();
+            PointContactPeople = new HashSet<PointContactPerson>();
             ProductClients = new HashSet<ProductClient>();
             GroupClients = new HashSet<GroupClient>();
             PointChildren = new HashSet<PointChildren>();
         }
+        public bool IncludeToMailList { get; set; }
+        public int ChildId { get; set; }
 
         public virtual CliGroup CliGroup { get; set; }
 
@@ -32,6 +37,8 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
         public virtual ICollection<ContactEmailInfo> ContactEmailInfo { get; set; }
 
         public virtual ICollection<Ticket> Tickets { get; set; }
+        public virtual ICollection<PointContactPerson> PointContactPeople { get; set; }
+
         public virtual ICollection<ProductClient> ProductClients { get; set; }
         public virtual ICollection<GroupClient> GroupClients { get; set; }
         public virtual ICollection<PointChildren> PointChildren { get; set; }

@@ -17,7 +17,7 @@
                         {
                             <tr>
                                 <td>
-                                    @if (Model.ProductClient.Exists(pc => pc.ProductId == Model.ProductsAll[i].ProductId))
+                                    @if (Model.ProductsClient.Exists(pc => pc.ProductId == Model.ProductsAll[i].ProductId))
                                     {
                                         <input asp-for="ProductsAll[i].Active" checked/>
                                     }

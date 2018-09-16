@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Base2BaseWeb.DataLayer.Entities;
+using Base2BaseWeb.DataLayer.Repository;
 using Base2BaseWeb.UI.Areas.Admin.Models.ProductCategoryViewModel;
 using Base2BaseWeb.UI.Helpers;
 using Base2BaseWeb.UI.Services;
@@ -19,10 +20,10 @@ namespace Base2BaseWeb.UI.Areas.Admin.Controllers
     [Authorize(Roles ="Admin")]
     public class ProductCategoriesController : Controller
     {
-        private IRepositoryContextBase _context;
+        private IRepositoryWebB2B _context;
         private IHierarchyNavigate _hierarchyNavigate;
 
-        public ProductCategoriesController(IRepositoryContextBase context,
+        public ProductCategoriesController(IRepositoryWebB2B context,
             IHierarchyNavigate hierarchyNavigate)
         {
             _context = context;

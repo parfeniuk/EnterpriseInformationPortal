@@ -23,12 +23,12 @@ namespace Base2BaseWeb.UI.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class ClientsController : Controller
     {
-        private IRepositoryContextBase _context;
+        private IRepositoryWebB2B _context;
         private IHostingEnvironment _environment;
         private IOptions<ImageSettings> _optionsAccessor;
         private IFilesHelper _filesHelper;
 
-        public ClientsController(IRepositoryContextBase context,IHostingEnvironment environment, 
+        public ClientsController(IRepositoryWebB2B context,IHostingEnvironment environment, 
             IOptions<ImageSettings> optionsAccessor,IFilesHelper filesHelper)
         {
             _context = context;

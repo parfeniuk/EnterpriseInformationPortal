@@ -10,5 +10,7 @@ namespace Base2BaseWeb.UI.Services
         public string DefaultConnection { get; set; }
         public string Base2BaseWebConnection { get; set; }
         public string B2BTest { get; set; }
+        public string B2BTest2 { get; set; }
+        public string B2B { get; set; }
     }
 }

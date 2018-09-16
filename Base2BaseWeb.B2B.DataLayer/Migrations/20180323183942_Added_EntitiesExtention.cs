@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Base2BaseWeb.B2B.DataLayer.Migrations
 {
@@ -9,6 +10,28 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            ///* Added cli_group_number with 0 value */
+            //StringBuilder insertCliGroup = new StringBuilder();
+            //insertCliGroup.Append("SET IDENTITY_INSERT cli_group ON" + Environment.NewLine);
+            //insertCliGroup.Append("insert into cli_group (cli_group_number,cli_group_name,post)" + Environment.NewLine);
+            //insertCliGroup.Append("values(0,'Бэйстубейс',1)" + Environment.NewLine);
+            //insertCliGroup.Append("SET IDENTITY_INSERT cli_group OFF" + Environment.NewLine);
+            //migrationBuilder.Sql(insertCliGroup.ToString());
+
+            ///* Added Foreign Key Constraint on Point */
+            //StringBuilder FK_Constraint = new StringBuilder();
+            //FK_Constraint.Append("ALTER TABLE [dbo].[point]  WITH CHECK" + Environment.NewLine);
+            //FK_Constraint.Append("ADD  CONSTRAINT [FK_point_cli_group_cli_group_number]" + Environment.NewLine);
+            //FK_Constraint.Append("FOREIGN KEY([cli_group_number])" + Environment.NewLine);
+            //FK_Constraint.Append("REFERENCES [dbo].[cli_group] ([cli_group_number])" + Environment.NewLine);
+            //migrationBuilder.Sql(FK_Constraint.ToString());
+
+            ///* Added Check Constraint on Point */
+            //StringBuilder Check_Constraint = new StringBuilder();
+            //Check_Constraint.Append("ALTER TABLE [dbo].[point]" + Environment.NewLine);
+            //Check_Constraint.Append("CHECK CONSTRAINT [FK_point_cli_group_cli_group_number]" + Environment.NewLine);
+            //migrationBuilder.Sql(Check_Constraint.ToString());
+
             migrationBuilder.CreateTable(
                 name: "ClientConnectionInfo",
                 columns: table => new
@@ -370,6 +393,18 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            ///* Added cli_group_number with 0 value */
+            //StringBuilder deleteCliGroup = new StringBuilder();
+            //deleteCliGroup.Append("delete from cli_group" + Environment.NewLine);
+            //deleteCliGroup.Append("where cli_group_number=0" + Environment.NewLine);
+            //migrationBuilder.Sql(deleteCliGroup.ToString());
+
+            ///* Added Foreign Key Constraint on Point */
+            //StringBuilder FK_Constraint = new StringBuilder();
+            //FK_Constraint.Append("ALTER TABLE [dbo].[point]" + Environment.NewLine);
+            //FK_Constraint.Append("DROP  CONSTRAINT [FK_point_cli_group_cli_group_number]" + Environment.NewLine);
+            //migrationBuilder.Sql(FK_Constraint.ToString());
+
             migrationBuilder.DropTable(
                 name: "BillSettingsOptionsInfo");
 

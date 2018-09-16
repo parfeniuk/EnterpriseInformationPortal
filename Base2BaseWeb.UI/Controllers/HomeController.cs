@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Base2BaseWeb.DataLayer.Entities;
+using Base2BaseWeb.DataLayer.Repository;
 using Base2BaseWeb.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,9 @@ namespace Base2BaseWeb.UI.Controllers
     
     public class HomeController : Controller
     {
-        private IRepositoryContextBase _context;
+        private IRepositoryWebB2B _context;
 
-        public HomeController(IRepositoryContextBase context)
+        public HomeController(IRepositoryWebB2B context)
         {
             _context = context;
         }

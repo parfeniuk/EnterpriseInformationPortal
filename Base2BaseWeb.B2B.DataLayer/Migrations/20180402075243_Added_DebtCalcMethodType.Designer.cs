@@ -4046,13 +4046,13 @@ namespace Base2BaseWeb.B2B.DataLayer.Migrations
                         .HasConstraintName("FK__ext_tovar__tovar__52E34C9D");
                 });
 
-            modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.FranchisingInfo", b =>
-                {
-                    b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.Point", "Point")
-                        .WithOne("FranchisingInfo")
-                        .HasForeignKey("FranchisingInfo", "PointNumber")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
+            //modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.FranchisingInfo", b =>
+            //    {
+            //        b.HasOne("Base2BaseWeb.B2B.DataLayer.Entities.Point", "Point")
+            //            .WithOne("FranchisingInfo")
+            //            .HasForeignKey("Point", "PointNumber")
+            //            .OnDelete(DeleteBehavior.Restrict);
+            //    });
 
             modelBuilder.Entity("Base2BaseWeb.B2B.DataLayer.Entities.Jrn", b =>
                 {

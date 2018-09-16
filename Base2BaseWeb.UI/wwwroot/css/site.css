@@ -78,6 +78,9 @@ li a[disabled="disabled"]:hover {
 }
 
 /* Style text of buttons */
+.btn-text-white button span {
+    color: #fff!important;
+}
 button .btn-text-white {
     color: #fff;
 }

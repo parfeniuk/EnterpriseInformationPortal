@@ -1896,9 +1896,9 @@ namespace Base2BaseWeb.B2B.DataLayer.Entities
 
                 entity.Property(e => e.ZadActivate).HasColumnName("zad_activate");
 
-                entity.HasOne(d => d.CliGroup)
-                    .WithMany(p => p.Point)
-                    .HasForeignKey(d => d.CliGroupNumber);
+                //entity.HasOne(d => d.CliGroup)
+                //    .WithMany(p => p.Point)
+                //    .HasForeignKey(d => d.CliGroupNumber);
             });
 
             modelBuilder.Entity<PointAgent>(entity =>

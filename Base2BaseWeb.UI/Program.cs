@@ -53,6 +53,7 @@ namespace Base2BaseWeb.UI
                     logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
                 })
                 .UseNLog()
+                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
     }
