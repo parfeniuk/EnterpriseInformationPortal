@@ -29,9 +29,9 @@ appsettings.production.json
 
 # ignore connectionstrings
 connectionsettings.json
-connectionsettings.development.json
-connectionsettings.staging.json
-connectionsettings.production.json
+connectionsettings.Development.json
+connectionsettings.Staging.json
+connectionsettings.Production.json
 
 # ignore mailsettings
 mailsettings.json
